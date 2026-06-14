@@ -17,10 +17,10 @@
       --muted: #9dbca5;
       --soft: #cfe8d5;
       --green: #4dff88;
-      --gold: #ffc940;
-      --orange: #ff8a00;
-      --orange-hot: #ff5a1f;
-      --orange-soft: #ffd08a;
+      --gold: #F5D36B;
+      --accent-gold: #F5D36B;
+      --accent-gold-light: #FFF0A6;
+      --accent-gold-dark: #B8892E;
       --red: #ff6b6b;
     }
 
@@ -87,13 +87,13 @@
       position: relative;
       overflow: hidden;
       padding: clamp(24px, 4vw, 38px);
-      border: 1px solid rgba(255, 138, 0, 0.58);
+      border: 1px solid rgba(245, 211, 107, 0.42);
       border-radius: 22px;
       background:
-        radial-gradient(circle at 6% 0%, rgba(255, 138, 0, 0.24), transparent 34%),
-        radial-gradient(circle at 94% 12%, rgba(255, 90, 31, 0.14), transparent 32%),
+        radial-gradient(circle at 6% 0%, rgba(245, 211, 107, 0.16), transparent 34%),
+        radial-gradient(circle at 94% 12%, rgba(184, 137, 46, 0.10), transparent 32%),
         rgba(10, 34, 20, 0.82);
-      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.38), 0 0 0 1px rgba(255, 138, 0, 0.18) inset;
+      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.38), 0 0 0 1px rgba(245, 211, 107, 0.14) inset;
     }
 
     .hero-grid {
@@ -113,21 +113,29 @@
       min-width: 0;
       overflow: hidden;
       padding: 18px 14px;
-      border: 1px solid rgba(255, 138, 0, 0.26);
+      border: 1px solid rgba(245, 211, 107, 0.28);
       border-radius: 16px;
       background:
-        linear-gradient(180deg, rgba(255, 138, 0, 0.09), rgba(0, 0, 0, 0.24));
-      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.20), 0 0 24px rgba(255, 138, 0, 0.08) inset;
+        linear-gradient(180deg, rgba(245, 211, 107, 0.06), rgba(0, 0, 0, 0.24));
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.20), 0 0 24px rgba(245, 211, 107, 0.07) inset;
+    }
+
+    .hero h1,
+    .metric strong {
+      display: block;
+      color: var(--accent-gold);
+      background: linear-gradient(180deg, #FFF0A6 0%, #F5D36B 45%, #B8892E 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 16px rgba(245, 211, 107, 0.24));
     }
 
     .metric strong {
-      display: block;
-      color: var(--orange);
       font-size: clamp(30px, 3.8vw, 48px);
       line-height: 1;
       white-space: nowrap;
       letter-spacing: -0.04em;
-      text-shadow: 0 0 24px rgba(255, 138, 0, 0.36);
     }
 
     .metric span {
@@ -258,12 +266,16 @@
     }
 
     .result-score {
-      color: var(--orange);
+      color: var(--accent-gold);
+      background: linear-gradient(180deg, #FFF0A6 0%, #F5D36B 45%, #B8892E 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       font-size: 28px;
       font-weight: 950;
       line-height: 1;
       white-space: nowrap;
-      text-shadow: 0 0 18px rgba(255, 138, 0, 0.28);
+      filter: drop-shadow(0 0 14px rgba(245, 211, 107, 0.22));
     }
 
     .result-checks {
