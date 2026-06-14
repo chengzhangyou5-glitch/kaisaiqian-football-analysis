@@ -16,6 +16,8 @@
       --muted: #9dbca5;
       --green: #4dff88;
       --gold: #ffc940;
+      --red: #ff6b6b;
+      --blue: #6cb6ff;
     }
 
     * { box-sizing: border-box; }
@@ -81,6 +83,97 @@
       box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
     }
 
+    .history-card {
+      position: relative;
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 26px;
+      min-height: 260px;
+      overflow: hidden;
+      border-color: rgba(255, 201, 64, 0.46);
+      background:
+        radial-gradient(circle at 8% 12%, rgba(255, 201, 64, 0.18), transparent 34%),
+        radial-gradient(circle at 88% 18%, rgba(77, 255, 136, 0.20), transparent 32%),
+        linear-gradient(135deg, rgba(14, 56, 31, 0.96), rgba(5, 23, 15, 0.90));
+      box-shadow: 0 28px 90px rgba(77, 255, 136, 0.16), 0 0 0 1px rgba(255, 201, 64, 0.12) inset;
+    }
+
+    .history-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -60px -90px auto;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 201, 64, 0.28), transparent 62%);
+      pointer-events: none;
+    }
+
+    .history-kicker {
+      width: fit-content;
+      padding: 7px 10px;
+      border: 1px solid rgba(255, 201, 64, 0.38);
+      border-radius: 999px;
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+    }
+
+    .history-title {
+      margin-top: 18px;
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 950;
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+    }
+
+    .history-copy {
+      margin-top: 14px;
+      max-width: 620px;
+      color: #c7ead0;
+    }
+
+    .history-stats {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      align-content: center;
+    }
+
+    .history-stat {
+      min-height: 132px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.22);
+    }
+
+    .history-stat strong {
+      display: block;
+      color: var(--green);
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1;
+    }
+
+    .history-stat span {
+      display: block;
+      margin-top: 10px;
+      color: #d6eede;
+      font-weight: 850;
+      line-height: 1.35;
+    }
+
+    .history-stat small {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
     .teams {
       font-size: 26px;
       font-weight: 950;
@@ -117,6 +210,8 @@
       main { padding: 34px 0; }
       .grid { grid-template-columns: 1fr; }
       .card { min-height: 170px; }
+      .history-card { grid-template-columns: 1fr; }
+      .history-stats { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -129,6 +224,32 @@
     </header>
 
     <section class="grid" aria-label="比赛报告列表">
+      <a class="card history-card" href="./history.html">
+        <div>
+          <div class="history-kicker">PINNED · 历史预测情况汇总</div>
+          <div class="history-title">8 场已赛样本复盘</div>
+          <p class="history-copy">只统计已经结束的比赛，未开赛场次暂不计入。点击查看逐场赛果、胜平负判断、前二比分覆盖和总进球区间表现。</p>
+          <div class="pick">查看历史明细 →</div>
+        </div>
+        <div class="history-stats" aria-label="历史预测数据预览">
+          <div class="history-stat">
+            <strong>7/8</strong>
+            <span>胜平负猜中</span>
+            <small>命中率 87.5%</small>
+          </div>
+          <div class="history-stat">
+            <strong>6/8</strong>
+            <span>前二比分至少一个中</span>
+            <small>覆盖率 75%</small>
+          </div>
+          <div class="history-stat">
+            <strong>8/8</strong>
+            <span>总球数区间</span>
+            <small>命中率 100%</small>
+          </div>
+        </div>
+      </a>
+
       <a class="card" href="./mexico-south-africa.html">
         <div class="teams">墨西哥 vs 南非</div>
         <div class="meta">小组赛 · 北京时间 6月12日 03:00</div>
