@@ -1043,19 +1043,17 @@
       .detail-actions .btn { flex: 1 1 0; }
       .prob-grid, .note-grid { grid-template-columns: 1fr; }
       .score-grid {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
-        overflow-x: auto;
-        grid-template-columns: none;
-        scroll-snap-type: x mandatory;
-        padding: 0 2px 10px;
-        margin-inline: -2px;
+        overflow: visible;
+        padding: 0;
+        margin-inline: 0;
       }
       .score-grid::-webkit-scrollbar { height: 0; }
       .score-card {
-        flex: 0 0 min(178px, 72vw);
+        min-width: 0;
         min-height: 142px;
-        scroll-snap-align: start;
         padding: 16px;
       }
       .score-line { font-size: clamp(42px, 14vw, 58px); }
@@ -1160,7 +1158,7 @@
             <strong>本场结算方向：西班牙胜</strong>
             <span>比分概率与总进球倾向仅作为附加分析参考，不参与结算判断。</span>
           </div>
-          <p class="verdict-sub">西班牙整体控球质量、前场个人能力和大赛经验明显占优，本场赛前判断以<strong>西班牙胜</strong>为第一方向。佛得角首次进入世界杯正赛，整体纪律性和身体对抗不能低估，但面对西班牙长时间控球和边路冲击，防线承压会比较明显。比分关注 2:0、3:0、2:1，整体总进球倾向 2-3 球。</p>
+          <p class="verdict-sub">西班牙整体实力、控球质量、前场创造力和大赛经验明显占优，本场赛前判断以<strong>西班牙胜</strong>为最清晰方向。佛得角首次进入世界杯正赛，身体对抗、纪律性和反击速度不能低估，但面对西班牙长时间控球、边路冲击和前场压迫，防线承压会比较明显。比分关注 3:0、4:0、3:1、2:0，整体总进球倾向 4球以上权重略高。</p>
 
           <div class="outcome-row" role="group" aria-label="胜平负判断">
             <div class="outcome-card is-pick" data-outcome="win-home"><div class="outcome-icon">胜</div><div class="outcome-text">西班牙胜</div><div class="outcome-hint">AI 最终判断</div></div>
@@ -1170,13 +1168,13 @@
 
         <div class="landing-meta">
           <div class="meta-chip">
-            <span class="label">参考比分</span><strong>2 : 0 / 3 : 0 / 2 : 1</strong>
+            <span class="label">参考比分</span><strong>3:0 / 4:0 / 3:1 / 2:0</strong>
           </div>
           <div class="meta-chip">
-            <span class="label">总进球</span><strong>2 - 3 球</strong>
+            <span class="label">总进球</span><strong>4球以上</strong>
           </div>
           <div class="meta-chip">
-            <span class="label">风险等级</span><strong>中等</strong>
+            <span class="label">风险等级</span><strong>中低</strong>
           </div>
         </div>
 
@@ -1191,7 +1189,7 @@
       </div>
 
       <footer class="disclaimer">
-        本报告仅作为足球赛前数据分析与娱乐参考，不构成任何决策建议或结果承诺，不保证赛果命中，赛果存在不确定性。
+        本报告仅作为足球数据分析与娱乐参考，不构成任何决策建议或结果承诺，不保证赛果命中，赛果存在不确定性。
       </footer>
     </main>
   </div>
@@ -1231,26 +1229,26 @@
           <h2 id="teams">对阵情报台</h2>
           <div class="line" aria-hidden="true"></div>
         </div>
-        <div class="board glass"><article class="team esp card"><div class="flag" aria-label="西班牙国旗"><img src="https://flagcdn.com/w320/es.png" alt="西班牙国旗" width="320" height="213" loading="lazy" decoding="async"><span class="flag-emoji" aria-hidden="true">🇪🇸</span></div><h3>西班牙 ESP</h3><p>西班牙整体控球能力、前场创造力和大赛经验更占优势。球队能够通过中场传控、边路突破和禁区前沿配合持续制造机会，面对新军时更容易掌握比赛节奏。需要注意的是首轮节奏可能偏谨慎，若早段效率不高，比分未必立刻拉开。</p></article><div class="vs-block" aria-hidden="true">VS</div><article class="team cpv card"><div class="flag" aria-label="佛得角国旗"><img src="https://flagcdn.com/w320/cv.png" alt="佛得角国旗" width="320" height="213" loading="lazy" decoding="async"><span class="flag-emoji" aria-hidden="true">🇨🇻</span></div><h3>佛得角 CPV</h3><p>佛得角首次参加世界杯，团队凝聚力和身体对抗会是重要支撑。球队更可能以紧凑防守、快速转换和定位球寻找机会，但面对西班牙持续控球压迫，防线横移、出球稳定性和禁区保护都会接受高强度考验。</p></article></div></section><section class="section-block reveal" id="probability" aria-labelledby="prob-title">
+        <div class="board glass"><article class="team esp card"><div class="flag" aria-label="西班牙国旗"><img src="https://flagcdn.com/w320/es.png" alt="西班牙国旗" width="320" height="213" loading="lazy" decoding="async"><span class="flag-emoji" aria-hidden="true">🇪🇸</span></div><h3>西班牙 ESP</h3><p>西班牙整体控球质量、阵容深度、前场创造力和大赛经验都明显占优。球队能够通过中场传控、边路突破和禁区前沿配合持续制造机会。面对世界杯新军，西班牙更可能长时间掌握比赛节奏，并通过持续压迫逐步扩大优势。需要注意的是，如果西班牙开局进入状态较慢，比分可能不会马上拉开，但整体主动权仍明显在西班牙一方。</p></article><div class="vs-block" aria-hidden="true">VS</div><article class="team cpv card"><div class="flag" aria-label="佛得角国旗"><img src="https://flagcdn.com/w320/cv.png" alt="佛得角国旗" width="320" height="213" loading="lazy" decoding="async"><span class="flag-emoji" aria-hidden="true">🇨🇻</span></div><h3>佛得角 CPV</h3><p>佛得角首次进入世界杯正赛，团队凝聚力、身体对抗和反击速度会是重要支撑。球队更可能以紧凑防守、快速转换和定位球寻找机会。不过面对西班牙持续控球和边路冲击，佛得角防线横移、出球稳定性和禁区保护都会承受较大压力。一旦早段失球，比赛很可能从低比分防守局转向西班牙扩大优势的路径。</p></article></div></section><section class="section-block reveal" id="probability" aria-labelledby="prob-title">
         <div class="section-title">
           <span class="num">02</span>
           <h2 id="prob-title">胜平负概率</h2>
           <div class="line" aria-hidden="true"></div>
         </div>
         <div class="grid prob-grid">
-<article class="stat-card glass card"><div class="big-number" data-count="72" data-suffix="%">72%</div><div class="card-title">西班牙胜</div><p class="muted">控球质量、阵容深度和前场创造力都明显占优。</p><div class="bar" style="--w: 72%" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" aria-label="西班牙胜 72%"><span></span></div></article>
-<article class="stat-card glass card"><div class="big-number" data-count="18" data-suffix="%">18%</div><div class="card-title">平局</div><p class="muted">若西班牙首轮进入状态较慢，佛得角有机会把比分拖入僵局。</p><div class="bar gold" style="--w: 18%" role="progressbar" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100" aria-label="平局 18%"><span></span></div></article>
-<article class="stat-card glass card"><div class="big-number" data-count="10" data-suffix="%">10%</div><div class="card-title">佛得角胜</div><p class="muted">需要防守韧性、转换效率和西班牙低效同时出现，属于低概率路径。</p><div class="bar red" style="--w: 10%" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" aria-label="佛得角胜 10%"><span></span></div></article>
+<article class="stat-card glass card"><div class="big-number" data-count="84" data-suffix="%">84%</div><div class="card-title">西班牙胜</div><p class="muted">控球质量、阵容深度、前场创造力和大赛经验都明显占优。</p><div class="bar" style="--w: 84%" role="progressbar" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100" aria-label="西班牙胜 84%"><span></span></div></article>
+<article class="stat-card glass card"><div class="big-number" data-count="11" data-suffix="%">11%</div><div class="card-title">平局</div><p class="muted">若西班牙首轮进入状态较慢，佛得角仍有机会把比分拖入僵局。</p><div class="bar gold" style="--w: 11%" role="progressbar" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100" aria-label="平局 11%"><span></span></div></article>
+<article class="stat-card glass card"><div class="big-number" data-count="5" data-suffix="%">5%</div><div class="card-title">佛得角胜</div><p class="muted">需要防守韧性、转换效率和西班牙低效同时出现，属于低概率风险路径。</p><div class="bar red" style="--w: 5%" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" aria-label="佛得角胜 5%"><span></span></div></article>
 </div></section><section class="section-block reveal" id="goals-section" aria-labelledby="goals">
         <div class="section-title">
           <span class="num">03</span>
           <h2 id="goals">总进球区间</h2>
           <div class="line" aria-hidden="true"></div>
         </div>
-        <div class="goal-layout"><article class="goal-visual glass"><div class="goal-copy"><span class="hero-kicker">GOAL MODEL</span><h3><span>主区间锁定</span><strong>2-3 球</strong></h3><p class="muted">西班牙掌握主动权，佛得角以防守反击为主，2-3 球是最均衡的赛前主区间。</p></div><div class="goal-summary" aria-label="2-3 球区间概率 52%"><span>主要倾向</span><strong>52%</strong><small>区间概率</small></div></article><div class="goal-stack">
-<article class="goal-card glass card"><div class="big-number" data-count="18" data-suffix="%">18%</div><div><div class="card-title">0-1球</div><p class="muted">若佛得角低位防守非常成功，比赛可能被压到极低比分。</p><div class="bar gold" style="--w: 18%" role="progressbar" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100" aria-label="0-1球 18%"><span></span></div></div></article>
-<article class="goal-card featured glass card"><div class="big-number" data-count="52" data-suffix="%">52%</div><div><span class="goal-badge">主要倾向</span><div class="card-title">2-3球</div><p class="muted">西班牙小胜或中等优势取胜最符合主模型。</p><div class="bar" style="--w: 52%" role="progressbar" aria-valuenow="52" aria-valuemin="0" aria-valuemax="100" aria-label="2-3球 52%"><span></span></div></div></article>
-<article class="goal-card glass card"><div class="big-number" data-count="30" data-suffix="%">30%</div><div><div class="card-title">4球以上</div><p class="muted">早段进球会迫使佛得角前压，比赛才更容易进入高比分。</p><div class="bar red" style="--w: 30%" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" aria-label="4球以上 30%"><span></span></div></div></article>
+        <div class="goal-layout"><article class="goal-visual glass"><div class="goal-copy"><span class="hero-kicker">GOAL MODEL</span><h3><span>主要倾向</span><strong>4球以上</strong></h3><p class="muted">西班牙进攻端优势明显，比赛存在被逐步拉开的可能。2-3球仍是相对稳健区间，但考虑到双方实力差距、西班牙持续压迫能力以及佛得角防线长时间承压的风险，4球以上应作为本场更高权重的观察区间。</p></div><div class="goal-summary" aria-label="4球以上区间概率 47%"><span>主要倾向</span><strong>47%</strong><small>区间概率</small></div></article><div class="goal-stack">
+<article class="goal-card glass card"><div class="big-number" data-count="10" data-suffix="%">10%</div><div><div class="card-title">0-1球</div><p class="muted">若佛得角低位防守非常成功，比赛可能被短暂压到极低比分。</p><div class="bar gold" style="--w: 10%" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" aria-label="0-1球 10%"><span></span></div></div></article>
+<article class="goal-card glass card"><div class="big-number" data-count="43" data-suffix="%">43%</div><div><div class="card-title">2-3球</div><p class="muted">2-3球仍是相对稳健区间，但不再作为唯一主区间。</p><div class="bar" style="--w: 43%" role="progressbar" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100" aria-label="2-3球 43%"><span></span></div></div></article>
+<article class="goal-card featured glass card"><div class="big-number" data-count="47" data-suffix="%">47%</div><div><span class="goal-badge">主要倾向</span><div class="card-title">4球以上</div><p class="muted">西班牙持续压迫和佛得角防线长时间承压，会抬高比赛被拉开的概率。</p><div class="bar red" style="--w: 47%" role="progressbar" aria-valuenow="47" aria-valuemin="0" aria-valuemax="100" aria-label="4球以上 47%"><span></span></div></div></article>
 </div></div></section><section class="section-block reveal" id="scores-section" aria-labelledby="scores">
         <div class="section-title">
           <span class="num">04</span>
@@ -1258,11 +1256,12 @@
           <div class="line" aria-hidden="true"></div>
         </div>
         <div class="grid score-grid">
-<article class="score-card glass card"><div class="score-line">2:0</div><p class="muted">概率 20%</p><span class="tag primary">首选稳胜</span></article>
-<article class="score-card glass card"><div class="score-line">3:0</div><p class="muted">概率 18%</p><span class="tag">扩大优势</span></article>
-<article class="score-card glass card"><div class="score-line">2:1</div><p class="muted">概率 13%</p><span class="tag">防失球</span></article>
-<article class="score-card glass card"><div class="score-line">1:0</div><p class="muted">概率 12%</p><span class="tag">保守路径</span></article>
-<article class="score-card glass card"><div class="score-line">3:1</div><p class="muted">概率 10%</p><span class="tag cool">次选进球</span></article>
+<article class="score-card glass card"><div class="score-line">3:0</div><p class="muted">概率 20%</p><span class="tag primary">首选路径</span></article>
+<article class="score-card glass card"><div class="score-line">4:0</div><p class="muted">概率 17%</p><span class="tag">扩大优势</span></article>
+<article class="score-card glass card"><div class="score-line">3:1</div><p class="muted">概率 14%</p><span class="tag">防失球路径</span></article>
+<article class="score-card glass card"><div class="score-line">2:0</div><p class="muted">概率 13%</p><span class="tag">稳胜路径</span></article>
+<article class="score-card glass card"><div class="score-line">4:1</div><p class="muted">概率 11%</p><span class="tag cool">大比分路径</span></article>
+<article class="score-card glass card"><div class="score-line">5:0</div><p class="muted">概率 8%</p><span class="tag cool">强势打开</span></article>
 </div></section><section class="section-block reveal" id="analysis-section" aria-labelledby="analysis">
         <div class="section-title">
           <span class="num">05</span>
@@ -1270,22 +1269,22 @@
           <div class="line" aria-hidden="true"></div>
         </div>
         <div class="grid note-grid">
-<article class="note-card glass card"><div class="note-index" aria-hidden="true">1</div><p class="muted">西班牙优势：控球稳定性、前场创造力和大赛经验明显更强。</p></article>
-<article class="note-card glass card"><div class="note-index" aria-hidden="true">2</div><p class="muted">西班牙路径：如果边路突破和禁区前沿配合打开，2:0 或 3:0 是主要方向。</p></article>
-<article class="note-card glass card"><div class="note-index" aria-hidden="true">3</div><p class="muted">佛得角优势：首次参赛的斗志、身体对抗和定位球有机会制造麻烦。</p></article>
-<article class="note-card glass card"><div class="note-index" aria-hidden="true">4</div><p class="muted">佛得角隐患：长时间被压制时，防线横移和出球质量会承受压力。</p></article>
-<article class="note-card glass card"><div class="note-index" aria-hidden="true">5</div><p class="muted">节奏判断：西班牙更可能掌握主动，比赛主区间倾向 2-3 球。</p></article>
+<article class="note-card glass card"><div class="note-index" aria-hidden="true">1</div><p class="muted">西班牙优势明显，控球质量、阵容深度和前场创造力都高于佛得角。</p></article>
+<article class="note-card glass card"><div class="note-index" aria-hidden="true">2</div><p class="muted">佛得角首次进入世界杯正赛，身体对抗和反击速度不能完全忽略。</p></article>
+<article class="note-card glass card"><div class="note-index" aria-hidden="true">3</div><p class="muted">如果西班牙早段打开局面，比赛会更容易进入 3球以上甚至 4球以上区间。</p></article>
+<article class="note-card glass card"><div class="note-index" aria-hidden="true">4</div><p class="muted">原本 2:0 路径偏保守，3:0 更适合作为本场第一比分。</p></article>
+<article class="note-card glass card"><div class="note-index" aria-hidden="true">5</div><p class="muted">佛得角若能通过反击或定位球制造威胁，3:1 或 4:1 比 2:1 更合理。</p></article>
 </div></section><section class="section-block reveal grid risk-service" id="risk" aria-label="风险提示">
         <article class="service-card risk glass card">
           <span class="label">Risk Map</span>
           <h2>风险提示</h2>
-          <ul class="list"><li>佛得角若低位阵型足够紧凑，西班牙需要耐心处理密集防守。</li><li>西班牙首轮如果进入状态偏慢，比分可能比纸面实力更接近。</li><li>早段进球会明显改变佛得角的比赛计划，并抬高总进球区间。</li><li>首轮心态、红牌、点球、首发和换人变化都会影响最终走势。</li></ul>
+          <ul class="list"><li>西班牙实力优势明显，但首轮比赛仍可能存在进入状态偏慢的问题。</li><li>佛得角如果低位阵型足够紧凑，西班牙需要耐心处理密集防守。</li><li>早段进球会明显改变佛得角比赛计划，并抬高总进球区间。</li><li>佛得角的反击速度和定位球可能带来失球风险，因此 3:1、4:1 需要保留。</li></ul>
         </article>
       </section><section class="section-block reveal service-card glass">
         <span class="label">Report Note</span>
         <h2>服务说明</h2>
-        <p class="muted">本页面为 AI 辅助生成的赛前数据分析报告，结合球队状态、比赛风格、概率倾向与风险因素进行整理。赛前判断为西班牙胜，比分关注 2:0 / 3:0 / 2:1 / 1:0，总进球倾向 2-3 球；报告内容用于球迷观赛前参考，不保证赛果命中。</p></section><footer class="disclaimer">
-        本报告仅作为足球赛前数据分析与娱乐参考，不构成任何决策建议或结果承诺，不保证赛果命中，赛果存在不确定性。
+        <p class="muted">本页面为 AI 辅助生成的赛前数据分析报告，结合球队状态、比赛风格、概率倾向与风险因素进行整理。赛前判断为西班牙胜，比分关注 3:0 / 4:0 / 3:1 / 2:0，总进球倾向 4球以上；报告内容用于球迷观赛前参考，不保证赛果命中。</p></section><footer class="disclaimer">
+        本报告仅作为足球数据分析与娱乐参考，不构成任何决策建议或结果承诺，不保证赛果命中，赛果存在不确定性。
       </footer>
     </main>
   </div>
@@ -1297,7 +1296,7 @@
       const VERDICT = {
         outcome: "win-home",
         label: "西班牙胜",
-        summary: "西班牙 vs 佛得角赛前判断：西班牙胜。参考比分 2:0 / 3:0 / 2:1 / 1:0，总进球 2-3 球，风险等级中等。"
+        summary: "西班牙 vs 佛得角赛前判断：西班牙胜。参考比分 3:0 / 4:0 / 3:1 / 2:0，总进球倾向 4球以上，风险等级中低。"
       };
 
       const pageHome = document.getElementById("page-home");
