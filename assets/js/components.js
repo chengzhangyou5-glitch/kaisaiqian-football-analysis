@@ -56,15 +56,15 @@ export function detailPage(id) {
       <div class="detail-primary">
         <section class="detail-panel conclusion-panel"><h2>${icon("line-chart-line")}本场结论</h2><p>${match.conclusion}</p></section>
         ${trendPanel("胜平负趋势", ["主胜", "平局", "客胜"], match.trend, "主路径更明确，但平局仍然需要留意。")}
-        ${trendPanel("让胜平负趋势", ["让胜", "让平", "让负"], match.handicap, "优势存在，但未必能明显拉开。")}
+        ${match.handicap ? trendPanel("让胜平负趋势", ["让胜", "让平", "让负"], match.handicap, "优势存在，但未必能明显拉开。") : ""}
         <section class="detail-panel score-panel"><h2>比分路径</h2><div class="score-main"><span>首选</span><strong>${match.scores[0]}</strong>${icon("star-line")}</div><div class="score-alt"><div><span>次选</span><b>${match.scores[1]}</b></div><div><span>延伸</span><b>${match.scores[2]}</b></div></div></section>
       </div>
       <aside class="detail-secondary">
         <section class="detail-panel goals-panel"><h2>总进球区间</h2><div class="goals-value"><strong>${match.goals}</strong><div><span>低进球：存在</span><span>高进球：一般</span></div></div><div class="goal-scale"><i></i><i class="active"></i><i class="active"></i><i></i><i></i></div><p>双方都有进球空间，但比赛未必会大开大合。</p></section>
-        <section class="detail-panel halftime-panel"><h2>半全场路径</h2><div class="path-line"><b>${match.halftime[0]}</b><span>●</span><em>${match.halftime[1]}</em></div><p>上半场可能不会太快打开局面。</p></section>
+        ${match.halftime ? `<section class="detail-panel halftime-panel"><h2>半全场路径</h2><div class="path-line"><b>${match.halftime[0]}</b><span>●</span><em>${match.halftime[1]}</em></div><p>上半场可能不会太快打开局面。</p></section>` : `<section class="detail-panel halftime-panel"><h2>半全场路径</h2><div class="path-line"><b>暂未单列</b></div><p>原始模型报告未设置独立半全场路径，本页不补造数据。</p></section>`}
         <section class="detail-panel risk-panel"><h2>${icon("shield-line")}风险提醒（${match.risk}）</h2><ul>${match.riskNotes.map(note => `<li>${icon("alarm-warning-line")}${note}</li>`).join("")}</ul></section>
         <section class="detail-panel why-panel"><h2>${icon("brain-line")}为什么这样看</h2><p>${match.why}</p></section>
-        <button class="primary-button report-button" type="button" data-action="open-report">${icon("file-chart-line")}获取本场模型分析</button>
+        <button class="primary-button report-button" type="button" data-original="${match.href}">${icon("file-chart-line")}获取本场模型分析</button>
       </aside>
     </div>
   </div>`;
@@ -75,14 +75,14 @@ function historyCard(record) {
     <div class="history-card-head"><div><span>${record.competition} · ${record.date}</span><h3>${record.match}</h3></div><b class="validation-pill ${record.status}">${record.status === "hit" ? "方向一致" : "未一致"}</b></div>
     <div class="history-core"><div><span>实际结果</span><strong>${record.result}</strong></div><div><span>赛前方向</span><strong>${record.direction}</strong></div><div><span>比分路径</span><strong>${record.scores}</strong></div><div><span>进球区间</span><strong>${record.goals}</strong></div></div>
     <div class="tag-row">${record.tags.map(tag => `<span class="${tag.includes("未") ? "miss" : ""}">${tag}</span>`).join("")}</div>
-    <div class="history-expand" hidden><p>${record.review}</p><button class="outline-button" type="button" data-original="${record.id}">查看原分析 ${icon("arrow-right-line")}</button></div>
+    <div class="history-expand" hidden><p>${record.review}</p><button class="outline-button" type="button" data-original="${record.href}">查看原分析 ${icon("arrow-right-line")}</button></div>
   </article>`;
 }
 
 export function historyPage() {
   return `<div class="page page-history">
-    ${pageIntro("VERIFICATION CENTER", "历史验证中心", "近 30 场赛前分析表现 · 持续更新")}
-    <section class="metric-hero"><div class="metric-main"><span>近 30 场胜平负方向一致率</span><strong>${metrics.direction}%</strong><small>基于已完赛场次统计</small></div><div class="metric-grid"><div><span>比分路径参考率</span><b>${metrics.score}%</b></div><div><span>总进球区间参考率</span><b>${metrics.goals}%</b></div><div><span>半全场路径参考率</span><b>${metrics.halftime}%</b></div></div></section>
+    ${pageIntro("VERIFICATION CENTER", "历史验证中心", `近 ${historyRecords.length} 场赛前分析表现 · 持续更新`)}
+    <section class="metric-hero"><div class="metric-main"><span>近 ${historyRecords.length} 场胜平负方向一致率</span><strong>${metrics.direction}%</strong><small>基于已完赛场次统计</small></div><div class="metric-grid"><div><span>比分路径参考率</span><b>${metrics.score}%</b></div><div><span>总进球区间参考率</span><b>${metrics.goals}%</b></div><div><span>半全场路径参考率</span><b>${metrics.halftime == null ? "—" : `${metrics.halftime}%`}</b></div></div></section>
     <section class="history-section"><div class="section-heading"><div><p class="eyebrow">RECORDS</p><h2>历史场次明细</h2></div><span>${historyRecords.length} 场记录</span></div><div class="history-list">${historyRecords.map(historyCard).join("")}</div></section>
   </div>`;
 }
@@ -98,7 +98,7 @@ export function searchPage(query = "") {
       <div class="search-result-top"><div><span>${record.competition} · ${record.date}</span><h2>${record.match}</h2></div><b class="validation-pill ${record.status}">${record.status === "hit" ? "方向一致" : "未一致"}</b></div>
       <div class="result-flow"><div><span>赛前方向</span><strong>${record.direction}</strong></div>${icon("arrow-right-line")}<div><span>实际结果</span><strong>${record.result}</strong></div></div>
       <div class="tag-row">${record.tags.map(tag => `<span class="${tag.includes("未") ? "miss" : ""}">${tag}</span>`).join("")}</div>
-      <p>${record.review}</p><button class="outline-button" type="button" data-original="${record.id}">查看原分析 ${icon("arrow-right-line")}</button>
+      <p>${record.review}</p><button class="outline-button" type="button" data-original="${record.href}">查看原分析 ${icon("arrow-right-line")}</button>
     </article>`).join("") : `<div class="empty-state">${icon("history-line")}<h2>没有找到相关场次</h2><p>换一个球队名、赛事或日期试试。</p></div>`}</div>
   </div>`;
 }

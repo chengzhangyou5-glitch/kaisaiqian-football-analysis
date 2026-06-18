@@ -1,5 +1,4 @@
 import { upcomingPage, detailPage, historyPage, searchPage, reportModal, noticeModal, shareModal } from "./components.js";
-import { matches } from "./data.js";
 
 const app = document.querySelector("#app");
 const modalLayer = document.querySelector("#modal-layer");
@@ -61,9 +60,7 @@ document.addEventListener("click", async (event) => {
   if (matchTarget) { event.stopPropagation(); openMatch(matchTarget.dataset.openMatch); return; }
   const original = event.target.closest("[data-original]");
   if (original) {
-    const id = original.dataset.original;
-    if (matches.some(match => match.id === id)) openMatch(id);
-    else showToast("这场历史分析正在归档中");
+    location.href = original.dataset.original;
     return;
   }
   const historyCard = event.target.closest(".history-card");
