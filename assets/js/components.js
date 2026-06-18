@@ -2,6 +2,17 @@ import { matches, historyRecords, metrics } from "./data.js";
 
 const flag = (team) => `<img class="team-flag" src="https://flagcdn.com/w160/${team.code}.png" alt="${team.name}队旗" width="80" height="54">`;
 const icon = (name) => `<i class="ri-${name}" aria-hidden="true"></i>`;
+const teamCodes = {
+  "墨西哥":"mx", "南非":"za", "韩国":"kr", "捷克":"cz", "加拿大":"ca", "波黑":"ba",
+  "卡塔尔":"qa", "瑞士":"ch", "美国":"us", "巴拉圭":"py", "巴西":"br", "摩洛哥":"ma",
+  "海地":"ht", "苏格兰":"gb-sct", "澳大利亚":"au", "土耳其":"tr", "德国":"de", "库拉索":"cw",
+  "荷兰":"nl", "日本":"jp", "科特迪瓦":"ci", "厄瓜多尔":"ec", "瑞典":"se", "突尼斯":"tn",
+  "西班牙":"es", "佛得角":"cv", "比利时":"be", "埃及":"eg", "沙特阿拉伯":"sa", "乌拉圭":"uy",
+  "伊朗":"ir", "新西兰":"nz", "法国":"fr", "塞内加尔":"sn", "伊拉克":"iq", "挪威":"no",
+  "阿根廷":"ar", "阿尔及利亚":"dz", "奥地利":"at", "约旦":"jo", "加纳":"gh", "巴拿马":"pa",
+  "英格兰":"gb-eng", "克罗地亚":"hr", "葡萄牙":"pt", "刚果（金）":"cd", "乌兹别克斯坦":"uz", "哥伦比亚":"co"
+};
+const pdfLink = (id, label) => `<a class="icon-button download-button" href="output/pdf/${id}-analysis.pdf" download="${label}-分析.pdf" aria-label="下载${label} PDF">${icon("file-download-line")}<span>下载 PDF</span></a>`;
 
 export function pageIntro(kicker, title, description, aside = "") {
   return `<header class="page-intro">
@@ -46,7 +57,7 @@ export function upcomingPage() {
 export function detailPage(id) {
   const match = matches.find((item) => item.id === id) || matches[0];
   return `<div class="page page-detail">
-    <div class="detail-toolbar"><button class="text-button" type="button" data-action="back">${icon("arrow-left-line")}返回待赛</button><span>比赛详情</span><button class="icon-button" type="button" data-action="share" aria-label="分享分析">${icon("share-line")}</button></div>
+    <div class="detail-toolbar"><button class="text-button" type="button" data-action="back">${icon("arrow-left-line")}返回待赛</button><span>比赛详情</span>${pdfLink(match.id, `${match.home.name}-${match.away.name}`)}</div>
     <section class="match-hero">
       <div class="card-topline"><span class="competition-pill">${icon("football-line")}${match.competition}</span><span class="risk-inline ${match.riskTone}">${icon("alarm-warning-line")}风险 ${match.risk}</span></div>
       <div class="teams-row large"><div class="team">${flag(match.home)}<strong>${match.home.name}</strong></div><div class="versus"><b>VS</b><small>${match.time}</small></div><div class="team">${flag(match.away)}<strong>${match.away.name}</strong></div></div>
@@ -64,7 +75,35 @@ export function detailPage(id) {
         ${match.halftime ? `<section class="detail-panel halftime-panel"><h2>半全场路径</h2><div class="path-line"><b>${match.halftime[0]}</b><span>●</span><em>${match.halftime[1]}</em></div><p>上半场可能不会太快打开局面。</p></section>` : `<section class="detail-panel halftime-panel"><h2>半全场路径</h2><div class="path-line"><b>暂未单列</b></div><p>原始模型报告未设置独立半全场路径，本页不补造数据。</p></section>`}
         <section class="detail-panel risk-panel"><h2>${icon("shield-line")}风险提醒（${match.risk}）</h2><ul>${match.riskNotes.map(note => `<li>${icon("alarm-warning-line")}${note}</li>`).join("")}</ul></section>
         <section class="detail-panel why-panel"><h2>${icon("brain-line")}为什么这样看</h2><p>${match.why}</p></section>
-        <button class="primary-button report-button" type="button" data-original="${match.href}">${icon("file-chart-line")}获取本场模型分析</button>
+      </aside>
+    </div>
+  </div>`;
+}
+
+export function historyDetailPage(id) {
+  const record = historyRecords.find((item) => item.id === id) || historyRecords[0];
+  const names = record.match.split(" vs ");
+  const home = { name: names[0], code: teamCodes[names[0]] || "un" };
+  const away = { name: names[1], code: teamCodes[names[1]] || "un" };
+  const scorePaths = record.scores.split("/").map(item => item.trim());
+  const actualGoals = record.result.split("-").map(Number).reduce((sum, value) => sum + value, 0);
+  return `<div class="page page-detail page-history-detail">
+    <div class="detail-toolbar"><button class="text-button" type="button" data-action="back-history">${icon("arrow-left-line")}返回准确率</button><span>历史验证详情</span>${pdfLink(record.id, `${home.name}-${away.name}`)}</div>
+    <section class="match-hero history-match-hero">
+      <div class="card-topline"><span class="competition-pill">${icon("football-line")}${record.competition}</span><b class="validation-pill ${record.status}">${record.status === "hit" ? "方向一致" : "未一致"}</b></div>
+      <div class="teams-row large"><div class="team">${flag(home)}<strong>${home.name}</strong></div><div class="versus history-result"><b>${record.result}</b><small>实际结果</small></div><div class="team">${flag(away)}<strong>${away.name}</strong></div></div>
+      <p class="updated-line">${icon("shield-check-line")}赛前记录已锁定 · ${record.date}</p>
+    </section>
+    <div class="detail-layout">
+      <div class="detail-primary">
+        <section class="detail-panel conclusion-panel"><h2>${icon("line-chart-line")}本场验证</h2><p>${record.review}</p></section>
+        <section class="detail-panel verification-panel"><h2>方向验证</h2><div class="verification-flow"><div><span>赛前方向</span><strong>${record.direction}</strong></div>${icon("arrow-right-line")}<div><span>实际结果</span><strong>${record.result}</strong></div></div><div class="tag-row">${record.tags.map(tag => `<span class="${tag.includes("未") ? "miss" : ""}">${tag}</span>`).join("")}</div></section>
+        <section class="detail-panel score-panel"><h2>比分路径验证</h2><div class="score-main"><span>实际</span><strong>${record.result}</strong>${icon(record.tags.some(tag => tag === "比分命中") ? "check-line" : "close-line")}</div><div class="score-alt">${scorePaths.map((score, index) => `<div><span>${index === 0 ? "赛前首选" : "赛前次选"}</span><b>${score}</b></div>`).join("")}</div></section>
+      </div>
+      <aside class="detail-secondary">
+        <section class="detail-panel goals-panel"><h2>总进球区间验证</h2><div class="goals-value"><strong>${record.goals}</strong><div><span>实际进球：${actualGoals} 球</span><span>${record.tags.includes("进球命中") ? "区间得到验证" : "区间未覆盖"}</span></div></div><div class="goal-scale"><i></i><i class="active"></i><i class="active"></i><i></i><i></i></div></section>
+        <section class="detail-panel validation-summary"><h2>${icon("shield-check-line")}验证标签</h2><div class="tag-row large-tags">${record.tags.map(tag => `<span class="${tag.includes("未") ? "miss" : ""}">${tag}</span>`).join("")}</div></section>
+        <section class="detail-panel why-panel"><h2>${icon("brain-line")}复盘说明</h2><p>本页只展示开赛前已经记录的方向、比分路径和进球区间，并与实际结果进行验证；不补写赛后判断，也不引用其他网站页面。</p></section>
       </aside>
     </div>
   </div>`;
@@ -75,7 +114,7 @@ function historyCard(record) {
     <div class="history-card-head"><div><span>${record.competition} · ${record.date}</span><h3>${record.match}</h3></div><b class="validation-pill ${record.status}">${record.status === "hit" ? "方向一致" : "未一致"}</b></div>
     <div class="history-core"><div><span>实际结果</span><strong>${record.result}</strong></div><div><span>赛前方向</span><strong>${record.direction}</strong></div><div><span>比分路径</span><strong>${record.scores}</strong></div><div><span>进球区间</span><strong>${record.goals}</strong></div></div>
     <div class="tag-row">${record.tags.map(tag => `<span class="${tag.includes("未") ? "miss" : ""}">${tag}</span>`).join("")}</div>
-    <div class="history-expand" hidden><p>${record.review}</p><button class="outline-button" type="button" data-original="${record.href}">查看原分析 ${icon("arrow-right-line")}</button></div>
+    <div class="history-expand" hidden><p>${record.review}</p><button class="outline-button" type="button" data-open-history="${record.id}">查看验证详情 ${icon("arrow-right-line")}</button></div>
   </article>`;
 }
 
@@ -98,19 +137,11 @@ export function searchPage(query = "") {
       <div class="search-result-top"><div><span>${record.competition} · ${record.date}</span><h2>${record.match}</h2></div><b class="validation-pill ${record.status}">${record.status === "hit" ? "方向一致" : "未一致"}</b></div>
       <div class="result-flow"><div><span>赛前方向</span><strong>${record.direction}</strong></div>${icon("arrow-right-line")}<div><span>实际结果</span><strong>${record.result}</strong></div></div>
       <div class="tag-row">${record.tags.map(tag => `<span class="${tag.includes("未") ? "miss" : ""}">${tag}</span>`).join("")}</div>
-      <p>${record.review}</p><button class="outline-button" type="button" data-original="${record.href}">查看原分析 ${icon("arrow-right-line")}</button>
+      <p>${record.review}</p><button class="outline-button" type="button" data-open-history="${record.id}">查看验证详情 ${icon("arrow-right-line")}</button>
     </article>`).join("") : `<div class="empty-state">${icon("history-line")}<h2>没有找到相关场次</h2><p>换一个球队名、赛事或日期试试。</p></div>`}</div>
   </div>`;
 }
 
-export function reportModal() {
-  return `<div class="modal-icon">${icon("file-chart-line")}</div><p class="eyebrow">MODEL REPORT</p><h2 id="modal-title">本场模型分析已就绪</h2><p>完整分析包含方向分布、三条比分路径、进球区间与风险说明。当前页面已展示全部核心信息。</p><button class="primary-button" type="button" data-action="close-modal">我知道了</button>`;
-}
-
 export function noticeModal() {
   return `<div class="modal-icon">${icon("notification-3-line")}</div><p class="eyebrow">LIVE UPDATE</p><h2 id="modal-title">开赛前持续更新</h2><p>待赛场次会根据最新公开足球情报更新模型时间。比赛开始后，分析内容将锁定并进入历史验证。</p><button class="primary-button" type="button" data-action="close-modal">明白</button>`;
-}
-
-export function shareModal() {
-  return `<div class="modal-icon">${icon("check-line")}</div><p class="eyebrow">SHARE</p><h2 id="modal-title">链接已复制</h2><p>可以把当前比赛详情分享给朋友，一起做观赛参考。</p><button class="primary-button" type="button" data-action="close-modal">完成</button>`;
 }

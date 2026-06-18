@@ -1,0 +1,155 @@
+import json
+import subprocess
+from pathlib import Path
+
+from reportlab.lib import colors
+from reportlab.lib.enums import TA_CENTER
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
+from reportlab.lib.units import mm
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.platypus import KeepTogether, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+
+
+ROOT = Path(__file__).resolve().parents[1]
+OUTPUT = ROOT / "output" / "pdf"
+OUTPUT.mkdir(parents=True, exist_ok=True)
+
+pdfmetrics.registerFont(TTFont("Deng", r"C:\Windows\Fonts\Deng.ttf"))
+pdfmetrics.registerFont(TTFont("DengBold", r"C:\Windows\Fonts\Dengb.ttf"))
+
+LIME = colors.HexColor("#82F600")
+INK = colors.HexColor("#111713")
+MUTED = colors.HexColor("#5F6A61")
+PANEL = colors.HexColor("#F2F6EF")
+LINE = colors.HexColor("#D8E2D5")
+RISK = colors.HexColor("#C95E45")
+
+base = getSampleStyleSheet()
+BODY = ParagraphStyle("CNBody", parent=base["BodyText"], fontName="Deng", fontSize=10.5, leading=17, textColor=INK)
+MUTED_TEXT = ParagraphStyle("CNMuted", parent=BODY, fontSize=8.5, leading=13, textColor=MUTED)
+TITLE = ParagraphStyle("CNTitle", parent=BODY, fontName="DengBold", fontSize=24, leading=30, alignment=TA_CENTER)
+SECTION = ParagraphStyle("CNSection", parent=BODY, fontName="DengBold", fontSize=13, leading=18, spaceBefore=4, spaceAfter=7)
+
+
+def load_site_data():
+    script = """
+      import { matches, historyRecords } from './assets/js/data.js';
+      console.log(JSON.stringify({matches, historyRecords}));
+    """
+    result = subprocess.run(
+        ["node", "--input-type=module", "-e", script], cwd=ROOT,
+        check=True, capture_output=True, text=True, encoding="utf-8"
+    )
+    def normalize(value):
+        if isinstance(value, str):
+            return value.replace("–", "-").replace("—", "-").replace("‑", "-")
+        if isinstance(value, list):
+            return [normalize(item) for item in value]
+        if isinstance(value, dict):
+            return {key: normalize(item) for key, item in value.items()}
+        return value
+    return normalize(json.loads(result.stdout))
+
+
+def frame(canvas, doc):
+    width, height = A4
+    canvas.saveState()
+    canvas.setFillColor(INK)
+    canvas.rect(0, height - 16 * mm, width, 16 * mm, fill=1, stroke=0)
+    canvas.setFillColor(LIME)
+    canvas.setFont("DengBold", 12)
+    canvas.drawString(18 * mm, height - 10.5 * mm, "开赛前")
+    canvas.setFillColor(colors.HexColor("#A8B2AA"))
+    canvas.setFont("Deng", 7.5)
+    canvas.drawRightString(width - 18 * mm, height - 10.5 * mm, "PRE-MATCH MODEL REPORT")
+    canvas.setStrokeColor(LINE)
+    canvas.line(18 * mm, 13 * mm, width - 18 * mm, 13 * mm)
+    canvas.setFillColor(MUTED)
+    canvas.drawString(18 * mm, 8 * mm, "赛前分析 · 观赛参考 · 开赛后锁定验证")
+    canvas.drawRightString(width - 18 * mm, 8 * mm, f"第 {doc.page} 页")
+    canvas.restoreState()
+
+
+def panel(title, text, accent=False):
+    bg = colors.HexColor("#ECFBD9") if accent else PANEL
+    return KeepTogether([
+        Paragraph(title, SECTION),
+        Table([[Paragraph(text, BODY)]], colWidths=[174 * mm], style=TableStyle([
+            ("BACKGROUND", (0, 0), (-1, -1), bg),
+            ("BOX", (0, 0), (-1, -1), 0.7, LINE),
+            ("LEFTPADDING", (0, 0), (-1, -1), 12),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 12),
+            ("TOPPADDING", (0, 0), (-1, -1), 10),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 10),
+        ])), Spacer(1, 4 * mm)
+    ])
+
+
+def facts_table(items):
+    cells = [Paragraph(f"<font size='8'>{label}</font><br/><font size='16'><b>{value}</b></font>", BODY) for label, value in items]
+    table = Table([cells], colWidths=[174 * mm / len(cells)] * len(cells), rowHeights=[23 * mm])
+    table.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, -1), PANEL),
+        ("BOX", (0, 0), (-1, -1), 0.7, LINE),
+        ("INNERGRID", (0, 0), (-1, -1), 0.5, LINE),
+        ("ALIGN", (0, 0), (-1, -1), "CENTER"),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+    ]))
+    return table
+
+
+def build_upcoming(match):
+    story = [
+        Paragraph(match["competition"], MUTED_TEXT), Spacer(1, 3 * mm),
+        Paragraph(f"{match['home']['name']}  VS  {match['away']['name']}", TITLE),
+        Paragraph(match["time"], ParagraphStyle("Time", parent=MUTED_TEXT, alignment=TA_CENTER)), Spacer(1, 7 * mm),
+        panel("本场结论", match["conclusion"], True),
+        Paragraph("胜平负趋势", SECTION),
+        facts_table([("主胜", f"{match['trend'][0]}%"), ("平局", f"{match['trend'][1]}%"), ("客胜", f"{match['trend'][2]}%")]), Spacer(1, 5 * mm),
+        Paragraph("核心路径", SECTION),
+        facts_table([("首选比分", match["scores"][0]), ("次选比分", match["scores"][1]), ("总进球区间", f"{match['goals']} 球"), ("风险等级", match["risk"])]), Spacer(1, 5 * mm),
+        panel("风险提醒", "<br/>".join(f"- {item}" for item in match["riskNotes"])),
+        panel("为什么这样看", match["why"]),
+    ]
+    return story
+
+
+def build_history(record):
+    tags = " / ".join(record["tags"])
+    story = [
+        Paragraph(record["competition"], MUTED_TEXT), Spacer(1, 3 * mm),
+        Paragraph(record["match"], TITLE),
+        Paragraph(f"历史验证 · {record['date']}", ParagraphStyle("HistoryTime", parent=MUTED_TEXT, alignment=TA_CENTER)), Spacer(1, 7 * mm),
+        panel("本场验证", record["review"], True),
+        Paragraph("方向与结果", SECTION),
+        facts_table([("赛前方向", record["direction"]), ("实际结果", record["result"])]), Spacer(1, 5 * mm),
+        Paragraph("路径验证", SECTION),
+        facts_table([("比分路径", record["scores"]), ("总进球区间", record["goals"])]), Spacer(1, 5 * mm),
+        panel("验证标签", tags),
+        panel("复盘说明", "本页只展示开赛前已经记录的方向、比分路径和进球区间，并与实际结果进行验证；不补写赛后判断，也不引用其他网站页面。"),
+    ]
+    return story
+
+
+def write_pdf(item, history=False):
+    path = OUTPUT / f"{item['id']}-analysis.pdf"
+    title = item["match"] if history else f"{item['home']['name']} vs {item['away']['name']}"
+    doc = SimpleDocTemplate(
+        str(path), pagesize=A4, leftMargin=18 * mm, rightMargin=18 * mm,
+        topMargin=24 * mm, bottomMargin=18 * mm, title=f"{title} 分析", author="开赛前"
+    )
+    story = build_history(item) if history else build_upcoming(item)
+    story.append(Spacer(1, 3 * mm))
+    story.append(Paragraph("说明：本报告用于足球情报整理与观赛参考，比赛结果存在不确定性。", MUTED_TEXT))
+    doc.build(story, onFirstPage=frame, onLaterPages=frame)
+    print(path)
+
+
+if __name__ == "__main__":
+    data = load_site_data()
+    for match in data["matches"]:
+        write_pdf(match)
+    for record in data["historyRecords"]:
+        write_pdf(record, history=True)
