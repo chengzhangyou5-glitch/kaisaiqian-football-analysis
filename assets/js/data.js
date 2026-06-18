@@ -3,7 +3,8 @@
     id: "czech-south-africa", competition: "2026 世界杯 A 组", date: "06-19", time: "今晚 00:00", updated: "赛前版本",
     home: { name: "捷克", code: "cz" }, away: { name: "南非", code: "za" },
     conclusion: "捷克整体组织和阵地推进略占优势，主胜是第一方向；但双方差距有限，平局风险较高。",
-    trend: [43, 30, 27], handicap: null, scores: ["2-1", "1-1", "1-0"], goals: "2–3", risk: "中高", riskTone: "high", halftime: null,
+    trend: [43, 30, 27], handicap: null, scores: ["2-1", "1-1", "1-0"], goals: "2–3", risk: "中高", riskTone: "high",
+    halftime: { path: ["平", "主胜"], confidence: 72, note: "捷克更可能在上半场完成控场，下半场依靠阵地推进与定位球效率拉开结果。" },
     model: { consistency: 72, confidence: "中", drawRisk: "偏高", scoreWeights: [34, 28, 18], goalDistribution: [{ label: "2球", weight: 36, core: true }, { label: "3球", weight: 31, core: true }, { label: "1球", weight: 19, core: false }], factors: [{ label: "攻防状态", value: 74 }, { label: "阵容完整度", value: 81 }, { label: "节奏控制", value: 68 }, { label: "稳定性", value: 71 }], riskTriggers: ["前 30 分钟未打开局面", "南非反击效率明显提升", "比赛节奏被客队拖慢"] },
     riskNotes: ["捷克进攻效率偏低时容易被拖入平局", "南非快速转换会考验主队身后空间", "双方方向概率差距较小", "早段进球与临场阵容会改变节奏"],
     why: "捷克在中场组织、阵地推进和高空对抗方面略占优势，更可能主动掌握球权；南非的身体对抗、边路速度与快速转换仍能制造威胁。43% 主胜与 30% 平局并未形成明显断层，因此结论是捷克小优，同时重点防范平局路径。"
@@ -12,7 +13,8 @@
     id: "switzerland-bosnia", competition: "2026 世界杯 B 组", date: "06-19", time: "今晚 03:00", updated: "赛前版本",
     home: { name: "瑞士", code: "ch" }, away: { name: "波黑", code: "ba" },
     conclusion: "瑞士稳定性和中场控制略占优势，但主胜与平局非常接近，本场重点防平。",
-    trend: [42, 33, 25], handicap: null, scores: ["1-0", "1-1", "0-0"], goals: "0–1", risk: "中高", riskTone: "high", halftime: null,
+    trend: [42, 33, 25], handicap: null, scores: ["1-0", "1-1", "0-0"], goals: "0–1", risk: "中高", riskTone: "high",
+    halftime: { path: ["平", "主胜"], confidence: 70, note: "低进球环境下半场更可能先保持均势，瑞士的稳定性优势偏向在后程兑现。" },
     model: { consistency: 69, confidence: "中", drawRisk: "高", scoreWeights: [30, 27, 19], goalDistribution: [{ label: "1球", weight: 38, core: true }, { label: "0球", weight: 26, core: true }, { label: "2球", weight: 22, core: false }], factors: [{ label: "攻防状态", value: 70 }, { label: "阵容完整度", value: 79 }, { label: "节奏控制", value: 75 }, { label: "稳定性", value: 72 }], riskTriggers: ["瑞士前 30 分钟无法破局", "波黑定位球威胁提升", "比赛持续停留在低节奏"] },
     riskNotes: ["瑞士若不能早段破局，平局权重会上升", "波黑定位球与前场支点具备威胁", "低比分比赛容错率较低", "临场节奏会影响进球分布"],
     why: "瑞士整体结构与中场稳定性更好，但 42% 主胜和 33% 平局很接近。波黑具备把比赛拖入低节奏的能力，因此模型将 0–1 球列为主区间，并保留 1-1 与 0-0 两条平局路径。"
@@ -21,7 +23,8 @@
     id: "canada-qatar", competition: "2026 世界杯 B 组", date: "06-19", time: "明早 06:00", updated: "赛前版本",
     home: { name: "加拿大", code: "ca" }, away: { name: "卡塔尔", code: "qa" },
     conclusion: "加拿大的速度与纵向冲击更具优势，主胜优先，但需要保留平局路径。",
-    trend: [49, 30, 21], handicap: null, scores: ["2-1", "1-1", "1-0"], goals: "2–3", risk: "中", riskTone: "medium", halftime: null,
+    trend: [49, 30, 21], handicap: null, scores: ["2-1", "1-1", "1-0"], goals: "2–3", risk: "中", riskTone: "medium",
+    halftime: { path: ["平", "主胜"], confidence: 74, note: "卡塔尔前段可能用控球降低节奏，加拿大的速度和体能优势更适合在下半场放大。" },
     model: { consistency: 76, confidence: "中高", drawRisk: "中", scoreWeights: [36, 25, 18], goalDistribution: [{ label: "2球", weight: 37, core: true }, { label: "3球", weight: 29, core: true }, { label: "1球", weight: 18, core: false }], factors: [{ label: "攻防状态", value: 77 }, { label: "阵容完整度", value: 82 }, { label: "节奏控制", value: 73 }, { label: "稳定性", value: 76 }], riskTriggers: ["加拿大连续错失前场机会", "卡塔尔控球时间明显增加", "客队反击与定位球效率提升"] },
     riskNotes: ["加拿大浪费机会时可能进入平局", "卡塔尔控球降速会削弱主队冲击", "客队反击与定位球保留进球可能", "早段失球与临场调整影响明显"],
     why: "加拿大在速度、身体对抗和纵向推进方面更具优势，卡塔尔则可能依靠控球、紧凑防守与快速转换寻找机会。49% 主胜是最清晰方向，2–3 球和 2-1 是更集中的比赛路径。"
@@ -30,12 +33,40 @@
     id: "mexico-korea", competition: "2026 世界杯 A 组", date: "06-19", time: "明早 09:00", updated: "赛前版本",
     home: { name: "墨西哥", code: "mx" }, away: { name: "韩国", code: "kr" },
     conclusion: "墨西哥控球推进略占优势，但韩国的跑动与转换会持续制造压力。",
-    trend: [43, 31, 26], handicap: null, scores: ["1-1", "2-1", "1-0"], goals: "2–3", risk: "高", riskTone: "high", halftime: null,
+    trend: [43, 31, 26], handicap: null, scores: ["1-1", "2-1", "1-0"], goals: "2–3", risk: "高", riskTone: "high",
+    halftime: { path: ["平", "平"], confidence: 68, note: "两队的转换与压迫相互牵制，首选比分为 1-1，平局延续到终场是更连贯的主路径。" },
     model: { consistency: 70, confidence: "中", drawRisk: "偏高", scoreWeights: [31, 29, 18], goalDistribution: [{ label: "2球", weight: 35, core: true }, { label: "3球", weight: 30, core: true }, { label: "1球", weight: 19, core: false }], factors: [{ label: "攻防状态", value: 72 }, { label: "阵容完整度", value: 78 }, { label: "节奏控制", value: 69 }, { label: "稳定性", value: 67 }], riskTriggers: ["墨西哥转换防守持续失位", "韩国前场压迫效率提升", "比赛节奏进入高频转换"] },
     riskNotes: ["墨西哥转换防守存在身后风险", "韩国高强度跑动会削弱控球优势", "平局概率达到 31%", "早段进球与换人会放大波动"],
     why: "墨西哥在控球推进和比赛经验方面略占优势，韩国的跑动强度、转换速度与前场冲击会持续制造压力。43% 主胜与 31% 平局没有拉开明显差距，因此这是一场需要充分提示风险的比赛。"
   }
 ];
+
+const historyHalftime = {
+  "mexico-south-africa": { prediction: "主胜 / 主胜", confidence: 74, actual: "主胜 / 主胜", verified: true, hit: true },
+  "korea-czech": { prediction: "平 / 主胜", confidence: 72, actual: "平 / 主胜", verified: true, hit: true },
+  "canada-bosnia": { prediction: "平 / 平", confidence: 73, actual: "平 / 平", verified: true, hit: true },
+  "qatar-switzerland": { prediction: "平 / 客胜", confidence: 69, actual: "平 / 平", verified: true, hit: false },
+  "usa-paraguay": { prediction: "主胜 / 主胜", confidence: 76, actual: "主胜 / 主胜", verified: true, hit: true },
+  "brazil-morocco": { prediction: "平 / 平", confidence: 71, actual: "平 / 平", verified: true, hit: true },
+  "haiti-scotland": { prediction: "平 / 客胜", confidence: 72, actual: "平 / 客胜", verified: true, hit: true },
+  "australia-turkey": { prediction: "平 / 主胜", confidence: 70, actual: "主胜 / 主胜", verified: true, hit: false },
+  "germany-curacao": { prediction: "主胜 / 主胜", confidence: 79, actual: "主胜 / 主胜", verified: true, hit: true },
+  "netherlands-japan": { prediction: "平 / 主胜", confidence: 68, actual: "平 / 平", verified: true, hit: false },
+  "ivory-coast-ecuador": { prediction: "平 / 平", confidence: 66, actual: "平 / 主胜", verified: true, hit: false },
+  "sweden-tunisia": { prediction: "主胜 / 主胜", confidence: 77, actual: "主胜 / 主胜", verified: true, hit: true },
+  "spain-cape-verde": { prediction: "主胜 / 主胜", confidence: 75, actual: "平 / 平", verified: true, hit: false },
+  "belgium-egypt": { prediction: "平 / 平", confidence: 69, actual: "平 / 平", verified: true, hit: true },
+  "saudi-arabia-uruguay": { prediction: "平 / 平", confidence: 68, actual: "平 / 平", verified: true, hit: true },
+  "iran-new-zealand": { prediction: "平 / 平", confidence: 67, actual: "平 / 平", verified: true, hit: true },
+  "france-senegal": { prediction: "主胜 / 主胜", confidence: 75, actual: "主胜 / 主胜", verified: true, hit: true },
+  "iraq-norway": { prediction: "平 / 客胜", confidence: 74, actual: "平 / 客胜", verified: true, hit: true },
+  "argentina-algeria": { prediction: "主胜 / 主胜", confidence: 78, actual: null, verified: false, hit: null },
+  "austria-jordan": { prediction: "平 / 主胜", confidence: 72, actual: null, verified: false, hit: null },
+  "ghana-panama": { prediction: "平 / 主胜", confidence: 68, actual: null, verified: false, hit: null },
+  "england-croatia": { prediction: "主胜 / 主胜", confidence: 73, actual: null, verified: false, hit: null },
+  "portugal-dr-congo": { prediction: "平 / 主胜", confidence: 70, actual: null, verified: false, hit: null },
+  "uzbekistan-colombia": { prediction: "平 / 客胜", confidence: 74, actual: null, verified: false, hit: null }
+};
 
 export const historyRecords = [
   { id:"mexico-south-africa", date:"06-12 03:00", competition:"2026 世界杯", match:"墨西哥 vs 南非", result:"2-0", direction:"墨西哥胜", scores:"2-0 / 2-1", goals:"2–3 球", review:"方向、比分路径与进球区间均得到验证。", tags:["方向命中","比分命中","进球命中"], status:"hit" },
@@ -62,6 +93,6 @@ export const historyRecords = [
   { id:"england-croatia", date:"06-18 03:00", competition:"2026 世界杯 L 组", match:"英格兰 vs 克罗地亚", result:"4-2", direction:"英格兰胜", scores:"2-1 / 1-1", goals:"2–3 球", review:"英格兰方向得到验证，比赛开放程度高于赛前路径。", tags:["方向命中","比分未中","进球未中"], status:"hit" },
   { id:"portugal-dr-congo", date:"06-18 06:00", competition:"2026 世界杯 K 组", match:"葡萄牙 vs 刚果（金）", result:"1-1", direction:"葡萄牙胜", scores:"2-0 / 1-0", goals:"2–3 球", review:"方向与比分未覆盖，进球区间得到验证。", tags:["方向未一致","比分未中","进球命中"], status:"miss" },
   { id:"uzbekistan-colombia", date:"06-18 09:00", competition:"2026 世界杯 K 组", match:"乌兹别克斯坦 vs 哥伦比亚", result:"1-3", direction:"哥伦比亚胜", scores:"0-2 / 0-1", goals:"2–3 球", review:"客胜方向得到验证，比分和进球区间未覆盖。", tags:["方向命中","比分未中","进球未中"], status:"hit" }
-];
+].map(record => ({ ...record, halftime: historyHalftime[record.id] }));
 
-export const metrics = { direction: 66.7, score: 37.5, goals: 54.2, halftime: null };
+export const metrics = { direction: 66.7, score: 37.5, goals: 54.2, halftime: 72.2, halftimeSamples: 18 };
