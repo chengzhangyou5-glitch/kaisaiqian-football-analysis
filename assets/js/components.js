@@ -46,6 +46,34 @@ function trendPanel(title, labels, values, note) {
     <p class="panel-note">${note}</p></section>`;
 }
 
+function directionMeta(match) {
+  const directions = [
+    { label: `${match.home.name}胜`, short: "主胜", value: match.trend[0] },
+    { label: "平局", short: "平局", value: match.trend[1] },
+    { label: `${match.away.name}胜`, short: "客胜", value: match.trend[2] }
+  ].sort((a, b) => b.value - a.value);
+  return { main: directions[0], second: directions[1], lead: directions[0].value - directions[1].value };
+}
+
+function directionSummary(match) {
+  const direction = directionMeta(match);
+  const coreGoals = match.model.goalDistribution.filter(item => item.core).map(item => item.label).join("、");
+  return `<section class="direction-summary" aria-label="本场核心摘要">
+    <div class="direction-main"><span>${icon("focus-3-line")}本场主方向</span><strong>${direction.main.label}</strong><small>${direction.main.value}% · 当前最高权重</small></div>
+    <div class="summary-item"><span>方向置信度</span><b>${match.model.confidence}</b><small>平局风险 ${match.model.drawRisk}</small></div>
+    <div class="summary-item"><span>领先幅度</span><b>${direction.lead}%</b><small>${direction.main.short}领先${direction.second.short}</small></div>
+    <div class="summary-item"><span>比分主路径</span><b>${match.scores[0]}</b><small>权重 ${match.model.scoreWeights[0]}%</small></div>
+    <div class="summary-item"><span>总进球区间</span><b>${match.goals}</b><small>${coreGoals}为核心</small></div>
+    <div class="summary-item risk"><span>风险等级</span><b>${match.risk}</b><small>${match.model.riskTriggers[0]}</small></div>
+  </section>`;
+}
+
+function modelEvidencePanel(match) {
+  return `<section class="detail-panel model-evidence-panel"><div class="model-panel-head"><div><span>MODEL CONSENSUS</span><h2>模型一致度</h2></div><strong>${match.model.consistency}%</strong></div>
+    <div class="factor-list">${match.model.factors.map(item => `<div class="factor-row"><div><span>${item.label}</span><b>${item.value}</b></div><div class="factor-track"><i style="width:${item.value}%"></i></div></div>`).join("")}</div>
+  </section>`;
+}
+
 export function upcomingPage() {
   return `<div class="page page-upcoming">
     ${pageIntro("MATCH INTELLIGENCE", "待赛分析", "已更新 ${matches.length} 场 · 开赛前持续更新", `<div class="update-chip">${icon("pulse-line")}模型状态正常</div>`)}
@@ -63,17 +91,19 @@ export function detailPage(id) {
       <div class="teams-row large"><div class="team">${flag(match.home)}<strong>${match.home.name}</strong></div><div class="versus"><b>VS</b><small>${match.time}</small></div><div class="team">${flag(match.away)}<strong>${match.away.name}</strong></div></div>
       <p class="updated-line">${icon("refresh-line")}模型更新：${match.updated}</p>
     </section>
+    ${directionSummary(match)}
     <div class="detail-layout">
       <div class="detail-primary">
         <section class="detail-panel conclusion-panel"><h2>${icon("line-chart-line")}本场结论</h2><p>${match.conclusion}</p></section>
         ${trendPanel("胜平负趋势", ["主胜", "平局", "客胜"], match.trend, "主路径更明确，但平局仍然需要留意。")}
-        ${match.handicap ? trendPanel("让胜平负趋势", ["让胜", "让平", "让负"], match.handicap, "优势存在，但未必能明显拉开。") : ""}
-        <section class="detail-panel score-panel"><h2>比分路径</h2><div class="score-main"><span>首选</span><strong>${match.scores[0]}</strong>${icon("star-line")}</div><div class="score-alt"><div><span>次选</span><b>${match.scores[1]}</b></div><div><span>延伸</span><b>${match.scores[2]}</b></div></div></section>
+        ${match.handicap ? trendPanel("让胜平负趋势", ["让胜", "让平", "让负"], match.handicap, "优势存在，但未必能明显拉开。") : `<section class="detail-panel trend-panel unavailable-panel"><h2>让胜平负趋势</h2><div class="unavailable-stat"><b>暂未单列</b><span>原始模型没有独立输出该组数据</span></div><p class="panel-note">为避免制造虚假精度，本页只展示已有模型结果。</p></section>`}
+        ${modelEvidencePanel(match)}
+        <section class="detail-panel score-panel"><h2>比分路径</h2><div class="score-main"><span>首选</span><strong>${match.scores[0]}</strong>${icon("star-line")}</div><div class="score-alt"><div><span>次选</span><b>${match.scores[1]}</b></div><div><span>延伸</span><b>${match.scores[2]}</b></div></div><div class="path-weights">${match.scores.map((score, index) => `<span class="${index === 0 ? "active" : ""}">${score} · ${match.model.scoreWeights[index]}%</span>`).join("")}</div></section>
       </div>
       <aside class="detail-secondary">
-        <section class="detail-panel goals-panel"><h2>总进球区间</h2><div class="goals-value"><strong>${match.goals}</strong><div><span>低进球：存在</span><span>高进球：一般</span></div></div><div class="goal-scale"><i></i><i class="active"></i><i class="active"></i><i></i><i></i></div><p>双方都有进球空间，但比赛未必会大开大合。</p></section>
+        <section class="detail-panel goals-panel"><h2>总进球区间</h2><div class="goals-value"><strong>${match.goals}</strong><div><span>低进球：存在</span><span>高进球：一般</span></div></div><div class="goal-scale"><i></i><i class="active"></i><i class="active"></i><i></i><i></i></div><div class="goal-distribution">${match.model.goalDistribution.map(item => `<span class="${item.core ? "core" : ""}"><b>${item.label}</b><small>${item.weight}%${item.core ? " · 核心" : ""}</small></span>`).join("")}</div><p>双方都有进球空间，但比赛未必会大开大合。</p></section>
         ${match.halftime ? `<section class="detail-panel halftime-panel"><h2>半全场路径</h2><div class="path-line"><b>${match.halftime[0]}</b><span>●</span><em>${match.halftime[1]}</em></div><p>上半场可能不会太快打开局面。</p></section>` : `<section class="detail-panel halftime-panel"><h2>半全场路径</h2><div class="path-line"><b>暂未单列</b></div><p>原始模型报告未设置独立半全场路径，本页不补造数据。</p></section>`}
-        <section class="detail-panel risk-panel"><h2>${icon("shield-line")}风险提醒（${match.risk}）</h2><ul>${match.riskNotes.map(note => `<li>${icon("alarm-warning-line")}${note}</li>`).join("")}</ul></section>
+        <section class="detail-panel risk-panel"><h2>${icon("shield-line")}风险触发条件（${match.risk}）</h2><ul>${match.model.riskTriggers.map(note => `<li>${icon("alarm-warning-line")}${note}</li>`).join("")}</ul></section>
         <section class="detail-panel why-panel"><h2>${icon("brain-line")}为什么这样看</h2><p>${match.why}</p></section>
       </aside>
     </div>
