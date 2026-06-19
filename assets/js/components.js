@@ -121,10 +121,10 @@ export function detailPage(id) {
     <div class="detail-layout">
       <div class="detail-primary">
         <section class="detail-panel conclusion-panel"><h2>${icon("line-chart-line")}本场结论</h2><p>${match.conclusion}</p></section>
+        ${scorePathPanel(match)}
         ${trendPanel("胜平负趋势", ["主胜", "平局", "客胜"], match.trend, "主路径更明确，但平局仍然需要留意。")}
         ${trendPanel(`让胜平负趋势 · 主队 ${match.handicap.line > 0 ? "+" : ""}${match.handicap.line}`, ["让胜", "让平", "让负"], match.handicap.trend, "模型让球线采用主队视角，用于比较穿线、走到让平或未穿线的结果路径。")}
         ${modelEvidencePanel(match)}
-        ${scorePathPanel(match)}
       </div>
       <aside class="detail-secondary">
         <section class="detail-panel goals-panel"><h2>总进球区间</h2><div class="goals-value"><strong>${match.goals}</strong><div><span>低进球：存在</span><span>高进球：一般</span></div></div><div class="goal-scale"><i></i><i class="active"></i><i class="active"></i><i></i><i></i></div><div class="goal-distribution">${match.model.goalDistribution.map(item => `<span class="${item.core ? "core" : ""}"><b>${item.label}</b><small>${item.weight}%${item.core ? " · 核心" : ""}</small></span>`).join("")}</div><p>双方都有进球空间，但比赛未必会大开大合。</p></section>
