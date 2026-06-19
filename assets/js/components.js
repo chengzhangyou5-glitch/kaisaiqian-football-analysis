@@ -96,6 +96,19 @@ function historyTags(record) {
   return [...record.tags, record.handicap.hit ? "让球命中" : "让球未中"];
 }
 
+function historyValidationItems(record) {
+  return [
+    { key: "direction", label: "赛前方向", value: record.direction, hit: record.status === "hit" },
+    { key: "score", label: "比分路径", value: record.scores, hit: record.tags.includes("比分命中") },
+    { key: "goals", label: "进球区间", value: record.goals, hit: record.tags.includes("进球命中") },
+    { key: "handicap", label: `让胜平负 · 主队 ${record.handicap.line > 0 ? "+" : ""}${record.handicap.line}`, value: record.handicap.prediction, detail: `实际 ${record.handicap.actual}`, hit: record.handicap.hit }
+  ];
+}
+
+function historyValidationCell(item) {
+  return `<div class="history-data-cell is-${item.hit ? "hit" : "miss"}"><span>${item.label}<em>${item.hit ? "中" : "未中"}</em></span><strong>${item.value}</strong>${item.detail ? `<small>${item.detail}</small>` : ""}</div>`;
+}
+
 function renderTags(tags, extraClass = "") {
   return `<div class="tag-row ${extraClass}">${tags.map(tag => `<span class="${tag.includes("未") ? "miss" : tag.includes("待") ? "pending" : ""}">${tag}</span>`).join("")}</div>`;
 }
@@ -168,9 +181,12 @@ export function historyDetailPage(id) {
 }
 
 function historyCard(record) {
-  return `<article class="history-card" data-history-id="${record.id}">
-    <div class="history-card-head"><div><span>${record.competition} · ${record.date}</span><h3>${record.match}</h3></div><b class="history-record-pill">已完赛</b></div>
-    <div class="history-core"><div><span>实际结果</span><strong>${record.result}</strong></div><div><span>赛前方向</span><strong>${record.direction}</strong></div><div><span>比分路径</span><strong>${record.scores}</strong></div><div><span>进球区间</span><strong>${record.goals}</strong></div><div><span>让胜平负 · 主队 ${record.handicap.line > 0 ? "+" : ""}${record.handicap.line}</span><strong>${record.handicap.prediction}</strong><small>实际 ${record.handicap.actual}</small></div></div>
+  const validation = historyValidationItems(record);
+  const hits = validation.filter(item => item.hit).length;
+  const overall = hits === validation.length ? "perfect" : hits <= 1 ? "low" : "mixed";
+  return `<article class="history-card is-${overall}" data-history-id="${record.id}">
+    <div class="history-card-head"><div><span>${record.competition} · ${record.date}</span><h3>${record.match}</h3></div><div class="history-hit-summary is-${overall}"><span>命中</span><b>${hits}/${validation.length}</b><div aria-label="四项验证中 ${hits} 项命中">${validation.map(item => `<i class="${item.hit ? "hit" : "miss"}"></i>`).join("")}</div></div></div>
+    <div class="history-core"><div class="history-data-cell actual"><span>实际结果</span><strong>${record.result}</strong></div>${validation.map(historyValidationCell).join("")}</div>
     <div class="history-expand" hidden><p>${record.report.conclusion}</p><button class="outline-button" type="button" data-open-history="${record.id}">查看完整报告 ${icon("arrow-right-line")}</button></div>
   </article>`;
 }
@@ -179,7 +195,7 @@ export function historyPage() {
   return `<div class="page page-history">
     ${pageIntro("VERIFICATION CENTER", "历史验证中心", `近 ${historyRecords.length} 场赛前分析表现 · 持续更新`)}
     <section class="metric-hero"><div class="metric-main"><span>近 ${historyRecords.length} 场胜平负方向一致率</span><strong>${metrics.direction}%</strong><small>基于已完赛场次统计</small></div><div class="metric-grid"><div><span>比分路径参考率</span><b>${metrics.score}%</b></div><div><span>总进球区间参考率</span><b>${metrics.goals}%</b></div><div><span>让胜平负参考率</span><b>${metrics.handicap}%</b><small>${metrics.handicapSamples} 场模型让球样本</small></div></div></section>
-    <section class="history-section"><div class="section-heading"><div><p class="eyebrow">RECORDS</p><h2>历史场次明细</h2></div><span>${historyRecords.length} 场记录</span></div><div class="history-list">${historyRecords.map(historyCard).join("")}</div></section>
+    <section class="history-section"><div class="section-heading"><div><p class="eyebrow">RECORDS</p><h2>历史场次明细</h2></div><div class="history-heading-meta"><div class="history-legend"><span><i class="hit"></i>命中</span><span><i class="miss"></i>未中</span></div><span>${historyRecords.length} 场记录</span></div></div><div class="history-list">${historyRecords.map(historyCard).join("")}</div></section>
   </div>`;
 }
 

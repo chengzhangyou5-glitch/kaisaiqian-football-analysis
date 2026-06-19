@@ -2,11 +2,11 @@
   {
     id: "czech-south-africa", competition: "2026 世界杯 A 组", date: "06-19", time: "今晚 00:00", updated: "赛前版本",
     home: { name: "捷克", code: "cz" }, away: { name: "南非", code: "za" },
-    conclusion: "捷克整体组织和阵地推进略占优势，主胜是第一方向；但双方差距有限，平局风险较高。",
-    trend: [43, 30, 27], handicap: { line: -1, trend: [24, 32, 44] }, scores: ["2-1", "1-1", "1-0", "2-0", "2-2", "0-1"], goals: "2–3", risk: "中高", riskTone: "high",
-    model: { consistency: 72, confidence: "中", drawRisk: "偏高", scoreWeights: [18, 16, 13, 10, 8, 7], scoreNotes: ["捷克小胜", "首选防平", "保守路径", "零封路径", "开放平局", "放冷路径"], goalDistribution: [{ label: "2球", weight: 36, core: true }, { label: "3球", weight: 31, core: true }, { label: "1球", weight: 19, core: false }], factors: [{ label: "攻防状态", value: 74 }, { label: "阵容完整度", value: 81 }, { label: "节奏控制", value: 68 }, { label: "稳定性", value: 71 }], riskTriggers: ["前 30 分钟未打开局面", "南非反击效率明显提升", "比赛节奏被客队拖慢"] },
+    conclusion: "双方差距有限，平局是第一方向；捷克组织与阵地推进略占优势，因此同时保留捷克小胜路径。",
+    trend: [34, 39, 27], handicap: { line: -1, trend: [24, 32, 44] }, scores: ["1-1", "2-1", "1-0", "2-0", "2-2", "0-1"], goals: "2–3", risk: "中高", riskTone: "high",
+    model: { consistency: 72, confidence: "中", drawRisk: "高", scoreWeights: [19, 16, 12, 10, 8, 7], scoreNotes: ["首选平局", "捷克小胜", "保守路径", "零封路径", "开放平局", "放冷路径"], goalDistribution: [{ label: "2球", weight: 36, core: true }, { label: "3球", weight: 31, core: true }, { label: "1球", weight: 19, core: false }], factors: [{ label: "攻防状态", value: 74 }, { label: "阵容完整度", value: 81 }, { label: "节奏控制", value: 68 }, { label: "稳定性", value: 71 }], riskTriggers: ["前 30 分钟未打开局面", "南非反击效率明显提升", "比赛节奏被客队拖慢"] },
     riskNotes: ["捷克进攻效率偏低时容易被拖入平局", "南非快速转换会考验主队身后空间", "双方方向概率差距较小", "早段进球与临场阵容会改变节奏"],
-    why: "捷克在中场组织、阵地推进和高空对抗方面略占优势，更可能主动掌握球权；南非的身体对抗、边路速度与快速转换仍能制造威胁。43% 主胜与 30% 平局并未形成明显断层，因此结论是捷克小优，同时重点防范平局路径。"
+    why: "捷克在中场组织、阵地推进和高空对抗方面略占优势，南非的身体对抗、边路速度与快速转换仍能制造威胁。两队优势难以形成明显断层，39% 平局高于 34% 主胜，因此以 1-1 为首选，同时保留捷克 2-1 小胜路径。"
   },
   {
     id: "switzerland-bosnia", competition: "2026 世界杯 B 组", date: "06-19", time: "今晚 03:00", updated: "赛前版本",
