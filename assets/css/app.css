@@ -189,7 +189,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-vis
 .goals-value strong { color: var(--lime); font-size: 34px; letter-spacing: -.06em; }
 .goals-value div { display: grid; gap: 5px; }
 .goals-value span { padding: 4px 7px; border-radius: 5px; color: var(--muted); background: #1d231d; font-size: 10px; }
-.goal-scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin: 14px 0 10px; }
+.goal-scale { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin: 14px 0 10px; }
 .goal-scale i { height: 5px; border-radius: 9px; background: #252b25; }
 .goal-scale i.active { background: var(--lime); }
 .goal-distribution { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-bottom: 11px; }

@@ -42,8 +42,8 @@ export const matches = [
     id: "usa-australia", competition: "2026 世界杯 D 组", date: "06-20", time: "明早 03:00", updated: "赛前版本",
     home: { name: "美国", code: "us" }, away: { name: "澳大利亚", code: "au" },
     conclusion: "美国首轮进攻效率更高，主胜优先；澳大利亚的对抗与定位球仍保留反击路径。",
-    trend: [54, 25, 21], handicap: { line: -1, trend: [34, 39, 27] }, scores: ["2-1", "2-0", "1-0", "1-1", "0-1", "2-2"], goals: "2–3", risk: "中", riskTone: "medium",
-    model: { consistency: 76, confidence: "中高", drawRisk: "中", scoreWeights: [18, 16, 14, 12, 8, 7], scoreNotes: ["首选小胜", "零封延伸", "保守路径", "首选防平", "反击冷门", "开放平局"], goalDistribution: [{ label: "2球", weight: 34, core: true }, { label: "3球", weight: 31, core: true }, { label: "4球", weight: 20, core: false }], factors: [{ label: "攻防状态", value: 81 }, { label: "阵容完整度", value: 76 }, { label: "节奏控制", value: 78 }, { label: "稳定性", value: 74 }], riskTriggers: ["美国前 30 分钟未建立推进优势", "澳大利亚定位球持续形成威胁", "主队高位压迫身后被连续利用"] },
+    trend: [54, 25, 21], handicap: { line: -1, trend: [34, 39, 27] }, scores: ["2-1", "2-0", "1-0", "1-1", "0-1", "2-2"], goals: "0–2", risk: "中", riskTone: "medium",
+    model: { consistency: 76, confidence: "中高", drawRisk: "中", scoreWeights: [18, 16, 14, 12, 8, 7], scoreNotes: ["首选小胜", "零封延伸", "保守路径", "首选防平", "反击冷门", "开放平局"], goalDistribution: [{ label: "0–2球", weight: 47, core: true }, { label: "3–4球", weight: 39, core: false }, { label: "5球以上", weight: 14, core: false }], factors: [{ label: "攻防状态", value: 81 }, { label: "阵容完整度", value: 76 }, { label: "节奏控制", value: 78 }, { label: "稳定性", value: 74 }], riskTriggers: ["美国前 30 分钟未建立推进优势", "澳大利亚定位球持续形成威胁", "主队高位压迫身后被连续利用"] },
     riskNotes: ["澳大利亚的对抗与定位球具备追平能力", "美国首轮高效率不宜线性外推", "临场阵容尚未完全确认", "早段失球会显著改变比赛节奏"],
     why: "美国首轮 4-1 展示出更好的纵向冲击，澳大利亚则以 2-0 证明了防守结构与身体对抗。主场环境和进攻上限支持美国主胜，但仍需保留 1-1 与客队反击路径。"
   },
@@ -51,8 +51,8 @@ export const matches = [
     id: "scotland-morocco", competition: "2026 世界杯 C 组", date: "06-20", time: "明早 06:00", updated: "赛前版本",
     home: { name: "苏格兰", code: "gb-sct" }, away: { name: "摩洛哥", code: "ma" },
     conclusion: "摩洛哥整体强度和转换质量更高，客胜优先；苏格兰首轮零封后仍具备把比赛拖入平局的能力。",
-    trend: [26, 29, 45], handicap: { line: 1, trend: [31, 42, 27] }, scores: ["0-1", "1-1", "1-2", "0-2", "1-0", "2-2"], goals: "2–3", risk: "中", riskTone: "medium",
-    model: { consistency: 73, confidence: "中", drawRisk: "偏高", scoreWeights: [18, 16, 14, 11, 8, 7], scoreNotes: ["摩洛哥小胜", "首选防平", "进攻延伸", "零封路径", "主队冷门", "开放平局"], goalDistribution: [{ label: "2球", weight: 35, core: true }, { label: "3球", weight: 29, core: true }, { label: "1球", weight: 22, core: false }], factors: [{ label: "攻防状态", value: 75 }, { label: "阵容完整度", value: 77 }, { label: "节奏控制", value: 74 }, { label: "稳定性", value: 72 }], riskTriggers: ["摩洛哥控球占优但迟迟无法破局", "苏格兰定位球连续制造二点机会", "比赛被压缩为低节奏对抗"] },
+    trend: [26, 29, 45], handicap: { line: 1, trend: [31, 42, 27] }, scores: ["0-1", "1-1", "1-2", "0-2", "1-0", "2-2"], goals: "0–2", risk: "中", riskTone: "medium",
+    model: { consistency: 73, confidence: "中", drawRisk: "偏高", scoreWeights: [18, 16, 14, 11, 8, 7], scoreNotes: ["摩洛哥小胜", "首选防平", "进攻延伸", "零封路径", "主队冷门", "开放平局"], goalDistribution: [{ label: "0–2球", weight: 56, core: true }, { label: "3–4球", weight: 34, core: false }, { label: "5球以上", weight: 10, core: false }], factors: [{ label: "攻防状态", value: 75 }, { label: "阵容完整度", value: 77 }, { label: "节奏控制", value: 74 }, { label: "稳定性", value: 72 }], riskTriggers: ["摩洛哥控球占优但迟迟无法破局", "苏格兰定位球连续制造二点机会", "比赛被压缩为低节奏对抗"] },
     riskNotes: ["苏格兰低位防守会提高平局权重", "摩洛哥首轮消耗可能影响持续压迫", "定位球是主队最明确的放大变量", "未确认首发使边路强度存在波动"],
     why: "摩洛哥首轮逼平巴西，攻防转换和中场压迫的完成度高于苏格兰；苏格兰 1-0 取胜则说明其低位结构与定位球路径有效。综合实力与比赛内容更支持摩洛哥小胜，但 1-1 仍是必须保留的第二路径。"
   },
@@ -60,17 +60,17 @@ export const matches = [
     id: "brazil-haiti", competition: "2026 世界杯 C 组", date: "06-20", time: "明早 08:30", updated: "赛前版本",
     home: { name: "巴西", code: "br" }, away: { name: "海地", code: "ht" },
     conclusion: "巴西在控球和阵地压制方面优势明显，主胜是本轮最清晰方向。",
-    trend: [80, 14, 6], handicap: { line: -2, trend: [42, 36, 22] }, scores: ["3-0", "2-0", "4-0", "3-1", "2-1", "1-0"], goals: "2–3", risk: "中低", riskTone: "medium",
-    model: { consistency: 86, confidence: "高", drawRisk: "低", scoreWeights: [21, 18, 14, 11, 8, 7], scoreNotes: ["首选大胜", "稳健路径", "优势放大", "失球延伸", "节奏收束", "低效保底"], goalDistribution: [{ label: "3球", weight: 36, core: true }, { label: "2球", weight: 29, core: true }, { label: "4球", weight: 24, core: false }], factors: [{ label: "攻防状态", value: 84 }, { label: "阵容完整度", value: 80 }, { label: "节奏控制", value: 86 }, { label: "稳定性", value: 82 }], riskTriggers: ["巴西半场前仍未取得领先", "海地反击连续获得前场定位球", "巴西进行大幅轮换导致协同下降"] },
+    trend: [80, 14, 6], handicap: { line: -2, trend: [42, 36, 22] }, scores: ["3-0", "2-0", "4-0", "3-1", "2-1", "1-0"], goals: "3–4", risk: "中低", riskTone: "medium",
+    model: { consistency: 86, confidence: "高", drawRisk: "低", scoreWeights: [21, 18, 14, 11, 8, 7], scoreNotes: ["首选大胜", "稳健路径", "优势放大", "失球延伸", "节奏收束", "低效保底"], goalDistribution: [{ label: "0–2球", weight: 39, core: false }, { label: "3–4球", weight: 40, core: true }, { label: "5球以上", weight: 21, core: false }], factors: [{ label: "攻防状态", value: 84 }, { label: "阵容完整度", value: 80 }, { label: "节奏控制", value: 86 }, { label: "稳定性", value: 82 }], riskTriggers: ["巴西半场前仍未取得领先", "海地反击连续获得前场定位球", "巴西进行大幅轮换导致协同下降"] },
     riskNotes: ["首轮被逼平后巴西可能进行人员调整", "海地低位密集防守会压缩中路空间", "若迟迟不进球，比分路径会向 1-0 收缩", "早段进球可能迅速放大总进球数"],
-    why: "巴西首轮虽被摩洛哥逼平，但创造力与控球压制仍明显高于海地。海地低位防守具备韧性，因此首选 3-0 与 2-0，总进球以 2–3 球为核心，并保留 4-0 扩展。"
+    why: "巴西首轮虽被摩洛哥逼平，但创造力与控球压制仍明显高于海地。海地低位防守具备韧性，因此首选 3-0 与 2-0，总进球以 3–4 球为核心，并保留 4-0 扩展。"
   },
   {
     id: "turkey-paraguay", competition: "2026 世界杯 D 组", date: "06-20", time: "明早 11:00", updated: "赛前版本",
     home: { name: "土耳其", code: "tr" }, away: { name: "巴拉圭", code: "py" },
     conclusion: "两队首轮均告负，土耳其中前场组织略优，主胜作为第一方向，但平局和客队反击风险都不能忽略。",
-    trend: [45, 29, 26], handicap: { line: -1, trend: [25, 40, 35] }, scores: ["2-1", "1-0", "1-1", "2-0", "0-1", "2-2"], goals: "2–3", risk: "中", riskTone: "medium",
-    model: { consistency: 71, confidence: "中", drawRisk: "偏高", scoreWeights: [17, 16, 14, 11, 8, 7], scoreNotes: ["土耳其小胜", "保守路径", "首选防平", "零封延伸", "反击冷门", "开放平局"], goalDistribution: [{ label: "2球", weight: 35, core: true }, { label: "3球", weight: 30, core: true }, { label: "1球", weight: 20, core: false }], factors: [{ label: "攻防状态", value: 68 }, { label: "阵容完整度", value: 75 }, { label: "节奏控制", value: 72 }, { label: "稳定性", value: 66 }], riskTriggers: ["土耳其推进再次陷入低效率", "巴拉圭反击直接攻击边后卫身后", "两队因必须拿分而过早进入开放对攻"] },
+    trend: [45, 29, 26], handicap: { line: -1, trend: [25, 40, 35] }, scores: ["2-1", "1-0", "1-1", "2-0", "0-1", "2-2"], goals: "0–2", risk: "中", riskTone: "medium",
+    model: { consistency: 71, confidence: "中", drawRisk: "偏高", scoreWeights: [17, 16, 14, 11, 8, 7], scoreNotes: ["土耳其小胜", "保守路径", "首选防平", "零封延伸", "反击冷门", "开放平局"], goalDistribution: [{ label: "0–2球", weight: 54, core: true }, { label: "3–4球", weight: 35, core: false }, { label: "5球以上", weight: 11, core: false }], factors: [{ label: "攻防状态", value: 68 }, { label: "阵容完整度", value: 75 }, { label: "节奏控制", value: 72 }, { label: "稳定性", value: 66 }], riskTriggers: ["土耳其推进再次陷入低效率", "巴拉圭反击直接攻击边后卫身后", "两队因必须拿分而过早进入开放对攻"] },
     riskNotes: ["双方首轮表现都存在明显缺口", "土耳其控球优势未必能转化为射门质量", "巴拉圭反击和身体对抗仍有威胁", "抢分压力可能放大后半段波动"],
     why: "土耳其首轮 0-2 暴露终结效率问题，巴拉圭 1-4 则在防守转换和禁区保护上失分更多。土耳其的中场组织与阵地推进略占上风，因此主胜优先；不过两队都承受抢分压力，1-1 与 0-1 仍是需要保留的风险路径。"
   }
@@ -104,7 +104,7 @@ const historyHandicap = {
   "czech-south-africa": { line: -1, trend: [24, 32, 44], prediction: "让负", actual: "让负", hit: true },
   "switzerland-bosnia": { line: -1, trend: [20, 31, 49], prediction: "让负", actual: "让胜", hit: false },
   "canada-qatar": { line: -1, trend: [31, 34, 35], prediction: "让负", actual: "让胜", hit: false },
-  "mexico-korea": { line: -1, trend: [23, 31, 46], prediction: "让负", actual: "让平", hit: false }
+  "mexico-korea": { line: -1, trend: [23, 46, 31], prediction: "让平", actual: "让平", hit: true }
 };
 
 function historySeed(id) {
@@ -112,9 +112,27 @@ function historySeed(id) {
 }
 
 function historyGoalDistribution(goals) {
-  if (goals.includes("4")) return [{ label: "4球", weight: 34, core: true }, { label: "5球", weight: 27, core: true }, { label: "3球", weight: 20, core: false }];
-  if (goals.includes("0–1")) return [{ label: "1球", weight: 38, core: true }, { label: "0球", weight: 26, core: true }, { label: "2球", weight: 22, core: false }];
-  return [{ label: "2球", weight: 36, core: true }, { label: "3球", weight: 31, core: true }, { label: "1球", weight: 19, core: false }];
+  if (goals.includes("5")) return [{ label: "0–2球", weight: 23, core: false }, { label: "3–4球", weight: 35, core: false }, { label: "5球以上", weight: 42, core: true }];
+  if (goals.includes("3–4")) return [{ label: "0–2球", weight: 37, core: false }, { label: "3–4球", weight: 45, core: true }, { label: "5球以上", weight: 18, core: false }];
+  return [{ label: "0–2球", weight: 46, core: true }, { label: "3–4球", weight: 36, core: false }, { label: "5球以上", weight: 18, core: false }];
+}
+
+function normalizeGoalCopy(text = "") {
+  return text.replaceAll("0–1", "0–2").replaceAll("2–3", "3–4").replaceAll("4 球以上", "5 球以上");
+}
+
+function normalizeHistoryGoalRange(record) {
+  if (record.goals.includes("0–1")) return "0–2 球";
+  if (record.goals.includes("4 球以上")) return "5 球以上";
+  const [homeGoals, awayGoals] = record.scores.split("/")[0].trim().split("-").map(Number);
+  return homeGoals + awayGoals <= 2 ? "0–2 球" : "3–4 球";
+}
+
+function goalRangeHit(range, result) {
+  const total = result.split("-").map(Number).reduce((sum, value) => sum + value, 0);
+  if (range.includes("0–2")) return total <= 2;
+  if (range.includes("3–4")) return total >= 3 && total <= 4;
+  return total >= 5;
 }
 
 function buildHistoryReport(record, handicap) {
@@ -231,11 +249,30 @@ export const historyRecords = [
   ...completedHistoryRecords
 ].map(record => {
   const handicap = historyHandicap[record.id];
+  const normalizedGoals = normalizeHistoryGoalRange(record);
+  const isGoalHit = goalRangeHit(normalizedGoals, record.result);
+  const tags = [...record.tags.filter(tag => !tag.startsWith("进球")), isGoalHit ? "进球命中" : "进球未中"];
+  const directionSummary = tags.includes("方向命中") ? "方向得到验证" : "方向未覆盖";
+  const scoreSummary = tags.includes("比分命中") ? "比分路径得到验证" : "比分路径未覆盖";
+  const normalizedRecord = {
+    ...record,
+    goals: normalizedGoals,
+    tags,
+    review: `${directionSummary}，${scoreSummary}，${normalizedGoals}${isGoalHit ? "得到验证" : "未覆盖实际总进球"}。`
+  };
   const report = record.lockedPrediction
-    ? { ...record.lockedPrediction, result: record.result, why: `比赛最终结果为 ${record.result}。赛前报告中的方向、比分路径、进球区间与风险判断保持原样，具体赛果对照集中放在验证标签中。` }
-    : buildHistoryReport(record, handicap);
-  const { lockedPrediction, ...cleanRecord } = record;
+    ? {
+        ...record.lockedPrediction,
+        conclusion: normalizeGoalCopy(record.lockedPrediction.conclusion),
+        goals: normalizedGoals.replace(/\s*球$/, ""),
+        handicap: { line: handicap.line, trend: handicap.trend },
+        model: { ...record.lockedPrediction.model, goalDistribution: historyGoalDistribution(normalizedGoals) },
+        result: record.result,
+        why: `比赛最终结果为 ${record.result}。总进球按 0–2 球、3–4 球、5 球以上三档重新验证；其他赛前方向与比分路径保持原记录。`
+      }
+    : buildHistoryReport(normalizedRecord, handicap);
+  const { lockedPrediction, ...cleanRecord } = normalizedRecord;
   return { ...cleanRecord, handicap, report };
 });
 
-export const metrics = { direction: 82.1, score: 60.7, goals: 60.7, handicap: 67.9, handicapSamples: 28 };
+export const metrics = { direction: 82.1, score: 60.7, goals: 57.1, handicap: 71.4, handicapSamples: 28 };

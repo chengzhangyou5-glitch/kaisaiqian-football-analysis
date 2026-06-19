@@ -1,4 +1,4 @@
-import { matches, historyRecords, metrics } from "./data.js?v=20260620-daily";
+import { matches, historyRecords, metrics } from "./data.js?v=20260620-goals-v2";
 
 const flag = (team) => `<img class="team-flag" src="https://flagcdn.com/w160/${team.code}.png" alt="${team.name}队旗" width="80" height="54">`;
 const icon = (name) => `<i class="ri-${name}" aria-hidden="true"></i>`;
@@ -140,7 +140,7 @@ export function detailPage(id) {
         ${modelEvidencePanel(match)}
       </div>
       <aside class="detail-secondary">
-        <section class="detail-panel goals-panel"><h2>总进球区间</h2><div class="goals-value"><strong>${match.goals}</strong><div><span>低进球：存在</span><span>高进球：一般</span></div></div><div class="goal-scale"><i></i><i class="active"></i><i class="active"></i><i></i><i></i></div><div class="goal-distribution">${match.model.goalDistribution.map(item => `<span class="${item.core ? "core" : ""}"><b>${item.label}</b><small>${item.weight}%${item.core ? " · 核心" : ""}</small></span>`).join("")}</div><p>双方都有进球空间，但比赛未必会大开大合。</p></section>
+        <section class="detail-panel goals-panel"><h2>总进球区间</h2><div class="goals-value"><strong>${match.goals}</strong><div><span>三档区间：已启用</span><span>概率分布：已重算</span></div></div><div class="goal-scale">${match.model.goalDistribution.map(item => `<i class="${item.core ? "active" : ""}"></i>`).join("")}</div><div class="goal-distribution">${match.model.goalDistribution.map(item => `<span class="${item.core ? "core" : ""}"><b>${item.label}</b><small>${item.weight}%${item.core ? " · 核心" : ""}</small></span>`).join("")}</div><p>三档概率用于展示比赛总进球的主要分布与延伸风险。</p></section>
         <section class="detail-panel risk-panel"><h2>${icon("shield-line")}风险触发条件（${match.risk}）</h2><ul>${match.model.riskTriggers.map(note => `<li>${icon("alarm-warning-line")}${note}</li>`).join("")}</ul></section>
         <section class="detail-panel why-panel"><h2>${icon("brain-line")}为什么这样看</h2><p>${match.why}</p></section>
       </aside>
@@ -172,7 +172,7 @@ export function historyDetailPage(id) {
         ${modelEvidencePanel(report, true)}
       </div>
       <aside class="detail-secondary">
-        <section class="detail-panel goals-panel"><h2>总进球区间</h2><div class="goals-value"><strong>${report.goals}</strong><div><span>赛前核心区间</span><span>实际进球：${actualGoals} 球</span></div></div><div class="goal-scale"><i></i><i class="active"></i><i class="active"></i><i></i><i></i></div><div class="goal-distribution">${report.model.goalDistribution.map(item => `<span class="${item.core ? "core" : ""}"><b>${item.label}</b><small>${item.weight}%${item.core ? " · 核心" : ""}</small></span>`).join("")}</div><p>实际赛果为 ${record.result}，具体对照结果统一查看验证标签。</p></section>
+        <section class="detail-panel goals-panel"><h2>总进球区间</h2><div class="goals-value"><strong>${report.goals}</strong><div><span>赛前三档核心区间</span><span>实际进球：${actualGoals} 球</span></div></div><div class="goal-scale">${report.model.goalDistribution.map(item => `<i class="${item.core ? "active" : ""}"></i>`).join("")}</div><div class="goal-distribution">${report.model.goalDistribution.map(item => `<span class="${item.core ? "core" : ""}"><b>${item.label}</b><small>${item.weight}%${item.core ? " · 核心" : ""}</small></span>`).join("")}</div><p>实际赛果为 ${record.result}，具体对照结果统一查看验证标签。</p></section>
         <section class="detail-panel validation-summary"><h2>${icon("shield-check-line")}验证标签</h2>${renderTags(tags, "large-tags")}</section>
         <section class="detail-panel why-panel"><h2>${icon("brain-line")}复盘说明</h2><p>${report.why}</p></section>
       </aside>
