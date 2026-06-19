@@ -29,11 +29,11 @@
   {
     id: "mexico-korea", competition: "2026 世界杯 A 组", date: "06-19", time: "明早 09:00", updated: "赛前版本",
     home: { name: "墨西哥", code: "mx" }, away: { name: "韩国", code: "kr" },
-    conclusion: "墨西哥控球推进略占优势，但韩国的跑动与转换会持续制造压力。",
-    trend: [43, 31, 26], handicap: { line: -1, trend: [23, 31, 46] }, scores: ["2-1", "1-1", "1-0", "2-2", "0-1", "1-2"], goals: "2–3", risk: "高", riskTone: "high",
-    model: { consistency: 70, confidence: "中", drawRisk: "偏高", scoreWeights: [17, 16, 12, 10, 8, 7], scoreNotes: ["墨西哥小胜", "首选防平", "保守路径", "开放平局", "放冷路径", "反击冷门"], goalDistribution: [{ label: "2球", weight: 35, core: true }, { label: "3球", weight: 30, core: true }, { label: "1球", weight: 19, core: false }], factors: [{ label: "攻防状态", value: 72 }, { label: "阵容完整度", value: 78 }, { label: "节奏控制", value: 69 }, { label: "稳定性", value: 67 }], riskTriggers: ["墨西哥转换防守持续失位", "韩国前场压迫效率提升", "比赛节奏进入高频转换"] },
-    riskNotes: ["墨西哥转换防守存在身后风险", "韩国高强度跑动会削弱控球优势", "平局概率达到 31%", "早段进球与换人会放大波动"],
-    why: "墨西哥在控球推进和比赛经验方面略占优势，韩国的跑动强度、转换速度与前场冲击会持续制造压力。43% 主胜与 31% 平局没有拉开明显差距，因此这是一场需要充分提示风险的比赛。"
+    conclusion: "墨西哥控球推进略占优势，首选 1-0 小胜，比赛整体更偏向低比分路径。",
+    trend: [43, 31, 26], handicap: { line: -1, trend: [23, 31, 46] }, scores: ["1-0", "2-1", "1-1", "2-2", "0-1", "1-2"], goals: "0–1", risk: "高", riskTone: "high",
+    model: { consistency: 70, confidence: "中", drawRisk: "偏高", scoreWeights: [17, 16, 12, 10, 8, 7], scoreNotes: ["首选小胜", "进攻延伸", "首选防平", "开放平局", "放冷路径", "反击冷门"], goalDistribution: [{ label: "1球", weight: 43, core: true }, { label: "0球", weight: 24, core: true }, { label: "2球", weight: 18, core: false }], factors: [{ label: "攻防状态", value: 72 }, { label: "阵容完整度", value: 78 }, { label: "节奏控制", value: 69 }, { label: "稳定性", value: 67 }], riskTriggers: ["前 30 分钟仍未形成有效射门", "韩国前场压迫效率提升", "墨西哥转换防守持续失位"] },
+    riskNotes: ["低比分路径对首粒进球较敏感", "韩国高强度跑动会削弱控球优势", "平局概率达到 31%", "早段意外进球可能改变比赛结构"],
+    why: "墨西哥在控球推进和比赛经验方面略占优势，但双方主要矛盾集中在中场控制与转换限制，持续形成高质量机会的把握有限。首选 1-0，总进球核心区间调整为 0–1 球；同时保留 2-1 与 1-1 作为节奏被打开或久攻不下时的延伸路径。"
   }
 ];
 
