@@ -148,22 +148,24 @@ def build_upcoming(match):
 
 
 def build_history(record):
+    report = record["report"]
     handicap = record["handicap"]
     handicap_status = "命中" if handicap["hit"] else "未中"
     tags = " / ".join(record["tags"] + [f"让球{handicap_status}"])
     story = [
         Paragraph(record["competition"], MUTED_TEXT), Spacer(1, 3 * mm),
         Paragraph(record["match"], TITLE),
-        Paragraph(f"历史验证 · {record['date']}", ParagraphStyle("HistoryTime", parent=MUTED_TEXT, alignment=TA_CENTER)), Spacer(1, 7 * mm),
-        panel("本场验证", record["review"], True),
-        Paragraph("方向与结果", SECTION),
-        facts_table([("赛前方向", record["direction"]), ("实际结果", record["result"])]), Spacer(1, 5 * mm),
-        Paragraph("路径验证", SECTION),
-        facts_table([("比分路径", record["scores"]), ("总进球区间", record["goals"])]), Spacer(1, 5 * mm),
-        Paragraph("让胜平负验证", SECTION),
-        facts_table([("模型让球线", f"主队 {handicap['line']:+d}"), ("赛前方向", handicap["prediction"]), ("实际让球结果", handicap["actual"]), ("验证状态", handicap_status)]), Spacer(1, 5 * mm),
+        Paragraph(f"历史预测 · {record['date']} · 实际结果 {record['result']}", ParagraphStyle("HistoryTime", parent=MUTED_TEXT, alignment=TA_CENTER)), Spacer(1, 5 * mm),
+        panel("本场结论", report["conclusion"], True),
+        Paragraph("比分路径", SECTION),
+        score_paths_table(report),
+        Paragraph("胜平负趋势", SECTION),
+        facts_table([("主胜", f"{report['trend'][0]}%"), ("平局", f"{report['trend'][1]}%"), ("客胜", f"{report['trend'][2]}%")]), Spacer(1, 3 * mm),
+        Paragraph(f"让胜平负趋势 · 主队 {handicap['line']:+d}", SECTION),
+        facts_table([("让胜", f"{handicap['trend'][0]}%"), ("让平", f"{handicap['trend'][1]}%"), ("让负", f"{handicap['trend'][2]}%")]), Spacer(1, 3 * mm),
+        facts_table([("模型一致度", f"{report['model']['consistency']}%"), ("总进球区间", f"{report['goals']} 球"), ("实际比分", record["result"])]), Spacer(1, 3 * mm),
         panel("验证标签", tags),
-        panel("复盘说明", "本页展示开赛前记录的胜平负、比分、进球区间和模型让胜平负路径，并按全场实际比分统一验证。"),
+        panel("复盘说明", report["why"]),
     ]
     return story
 

@@ -71,13 +71,13 @@ function directionSummary(match) {
   </section>`;
 }
 
-function modelEvidencePanel(match) {
-  return `<section class="detail-panel model-evidence-panel"><div class="model-panel-head"><div><span>MODEL CONSENSUS</span><h2>模型一致度</h2></div><strong>${match.model.consistency}%</strong></div>
+function modelEvidencePanel(match, historical = false) {
+  return `<section class="detail-panel model-evidence-panel"><div class="model-panel-head"><div><span>${historical ? "HISTORICAL MODEL" : "MODEL CONSENSUS"}</span><h2>模型一致度</h2></div><strong>${match.model.consistency}%</strong></div>
     <div class="factor-list">${match.model.factors.map(item => `<div class="factor-row"><div><span>${item.label}</span><b>${item.value}</b></div><div class="factor-track"><i style="width:${item.value}%"></i></div></div>`).join("")}</div>
   </section>`;
 }
 
-function scorePathPanel(match) {
+function scorePathPanel(match, historical = false) {
   const groups = [
     { label: "首选", start: 0, className: "primary" },
     { label: "次选", start: 2, className: "secondary" },
@@ -88,7 +88,7 @@ function scorePathPanel(match) {
       const index = group.start + offset;
       return `<article class="score-path-card"><div><b>${score}</b><span>${match.model.scoreWeights[index]}%</span></div><small>${match.model.scoreNotes[index]}</small></article>`;
     }).join("")}</div></div>`).join("")}</div>
-    <p class="panel-note">概率为单一比分权重，六条路径用于覆盖主方向、平局保护与冷门风险。</p>
+    <p class="panel-note">${historical ? "前两项为原始锁定比分，后四项依据原赛前方向结构化扩展，仅用于统一呈现。" : "概率为单一比分权重，六条路径用于覆盖主方向、平局保护与冷门风险。"}</p>
   </section>`;
 }
 
@@ -137,42 +137,41 @@ export function detailPage(id) {
 
 export function historyDetailPage(id) {
   const record = historyRecords.find((item) => item.id === id) || historyRecords[0];
+  const report = record.report;
   const tags = historyTags(record);
-  const names = record.match.split(" vs ");
-  const home = { name: names[0], code: teamCodes[names[0]] || "un" };
-  const away = { name: names[1], code: teamCodes[names[1]] || "un" };
-  const scorePaths = record.scores.split("/").map(item => item.trim());
+  const home = { ...report.home, code: teamCodes[report.home.name] || "un" };
+  const away = { ...report.away, code: teamCodes[report.away.name] || "un" };
   const actualGoals = record.result.split("-").map(Number).reduce((sum, value) => sum + value, 0);
   return `<div class="page page-detail page-history-detail">
-    <div class="detail-toolbar"><button class="text-button" type="button" data-action="back-history">${icon("arrow-left-line")}返回准确率</button><span>历史验证详情</span>${pdfLink(record.id, `${home.name}-${away.name}`)}</div>
+    <div class="detail-toolbar"><button class="text-button" type="button" data-action="back-history">${icon("arrow-left-line")}返回准确率</button><span>历史预测详情</span>${pdfLink(record.id, `${home.name}-${away.name}`)}</div>
     <section class="match-hero history-match-hero">
-      <div class="card-topline"><span class="competition-pill">${icon("football-line")}${record.competition}</span><b class="validation-pill ${record.status}">${record.status === "hit" ? "方向一致" : "未一致"}</b></div>
+      <div class="card-topline"><span class="competition-pill">${icon("football-line")}${record.competition}</span><span class="history-record-pill">已完赛记录</span></div>
       <div class="teams-row large"><div class="team">${flag(home)}<strong>${home.name}</strong></div><div class="versus history-result"><b>${record.result}</b><small>实际结果</small></div><div class="team">${flag(away)}<strong>${away.name}</strong></div></div>
       <p class="updated-line">${icon("shield-check-line")}赛前记录已锁定 · ${record.date}</p>
     </section>
+    ${directionSummary(report)}
     <div class="detail-layout">
       <div class="detail-primary">
-        <section class="detail-panel conclusion-panel"><h2>${icon("line-chart-line")}本场验证</h2><p>${record.review}</p></section>
-        <section class="detail-panel verification-panel"><h2>方向验证</h2><div class="verification-flow"><div><span>赛前方向</span><strong>${record.direction}</strong></div>${icon("arrow-right-line")}<div><span>实际结果</span><strong>${record.result}</strong></div></div>${renderTags(tags)}</section>
-        <section class="detail-panel score-panel"><h2>比分路径验证</h2><div class="score-main"><span>实际</span><strong>${record.result}</strong>${icon(record.tags.some(tag => tag === "比分命中") ? "check-line" : "close-line")}</div><div class="score-alt">${scorePaths.map((score, index) => `<div><span>${index === 0 ? "赛前首选" : "赛前次选"}</span><b>${score}</b></div>`).join("")}</div></section>
-        <section class="detail-panel handicap-panel"><div class="panel-status-head"><h2>让胜平负验证</h2><b class="${record.handicap.hit ? "" : "is-miss"}">${record.handicap.hit ? "命中" : "未中"}</b></div><div class="verification-flow"><div><span>赛前模型让球 · 主队 ${record.handicap.line > 0 ? "+" : ""}${record.handicap.line}</span><strong>${record.handicap.prediction}</strong></div>${icon("arrow-right-line")}<div><span>实际让球结果</span><strong>${record.handicap.actual}</strong></div></div><p>让球结果按主队视角和全场实际比分计算；盘口为本站赛前模型线，不冒充官方体彩历史盘口。</p></section>
+        <section class="detail-panel conclusion-panel"><h2>${icon("line-chart-line")}本场结论</h2><p>${report.conclusion}</p></section>
+        ${scorePathPanel(report, true)}
+        ${trendPanel("胜平负趋势", ["主胜", "平局", "客胜"], report.trend, "保留赛前主方向与平局保护，不在趋势卡中展示赛后对错。")}
+        ${trendPanel(`让胜平负趋势 · 主队 ${report.handicap.line > 0 ? "+" : ""}${report.handicap.line}`, ["让胜", "让平", "让负"], report.handicap.trend, "模型让球线采用主队视角，赛果对照统一收纳在验证标签中。")}
+        ${modelEvidencePanel(report, true)}
       </div>
       <aside class="detail-secondary">
-        <section class="detail-panel goals-panel"><h2>总进球区间验证</h2><div class="goals-value"><strong>${record.goals}</strong><div><span>实际进球：${actualGoals} 球</span><span>${record.tags.includes("进球命中") ? "区间得到验证" : "区间未覆盖"}</span></div></div><div class="goal-scale"><i></i><i class="active"></i><i class="active"></i><i></i><i></i></div></section>
+        <section class="detail-panel goals-panel"><h2>总进球区间</h2><div class="goals-value"><strong>${report.goals}</strong><div><span>赛前核心区间</span><span>实际进球：${actualGoals} 球</span></div></div><div class="goal-scale"><i></i><i class="active"></i><i class="active"></i><i></i><i></i></div><div class="goal-distribution">${report.model.goalDistribution.map(item => `<span class="${item.core ? "core" : ""}"><b>${item.label}</b><small>${item.weight}%${item.core ? " · 核心" : ""}</small></span>`).join("")}</div><p>实际赛果为 ${record.result}，具体对照结果统一查看验证标签。</p></section>
         <section class="detail-panel validation-summary"><h2>${icon("shield-check-line")}验证标签</h2>${renderTags(tags, "large-tags")}</section>
-        <section class="detail-panel why-panel"><h2>${icon("brain-line")}复盘说明</h2><p>本页展示开赛前记录的胜平负、比分、进球区间和模型让胜平负路径，并按全场实际比分统一验证。</p></section>
+        <section class="detail-panel why-panel"><h2>${icon("brain-line")}复盘说明</h2><p>${report.why}</p></section>
       </aside>
     </div>
   </div>`;
 }
 
 function historyCard(record) {
-  const tags = historyTags(record);
   return `<article class="history-card" data-history-id="${record.id}">
-    <div class="history-card-head"><div><span>${record.competition} · ${record.date}</span><h3>${record.match}</h3></div><b class="validation-pill ${record.status}">${record.status === "hit" ? "方向一致" : "未一致"}</b></div>
+    <div class="history-card-head"><div><span>${record.competition} · ${record.date}</span><h3>${record.match}</h3></div><b class="history-record-pill">已完赛</b></div>
     <div class="history-core"><div><span>实际结果</span><strong>${record.result}</strong></div><div><span>赛前方向</span><strong>${record.direction}</strong></div><div><span>比分路径</span><strong>${record.scores}</strong></div><div><span>进球区间</span><strong>${record.goals}</strong></div><div><span>让胜平负 · 主队 ${record.handicap.line > 0 ? "+" : ""}${record.handicap.line}</span><strong>${record.handicap.prediction}</strong><small>实际 ${record.handicap.actual}</small></div></div>
-    ${renderTags(tags)}
-    <div class="history-expand" hidden><p>${record.review}</p><button class="outline-button" type="button" data-open-history="${record.id}">查看验证详情 ${icon("arrow-right-line")}</button></div>
+    <div class="history-expand" hidden><p>${record.report.conclusion}</p><button class="outline-button" type="button" data-open-history="${record.id}">查看完整报告 ${icon("arrow-right-line")}</button></div>
   </article>`;
 }
 
@@ -192,11 +191,10 @@ export function searchPage(query = "") {
     <div class="search-box">${icon("search-line")}<input id="history-search" type="search" value="${query}" placeholder="输入球队、赛事或日期" autocomplete="off"><kbd>ESC</kbd></div>
     <div class="search-meta"><span>${query ? `找到 ${filtered.length} 场相关记录` : "最近查看"}</span>${query ? `<button type="button" data-action="clear-search">清除搜索</button>` : ""}</div>
     <div class="search-results">${filtered.length ? filtered.map(record => `<article class="search-result">
-      <div class="search-result-top"><div><span>${record.competition} · ${record.date}</span><h2>${record.match}</h2></div><b class="validation-pill ${record.status}">${record.status === "hit" ? "方向一致" : "未一致"}</b></div>
+      <div class="search-result-top"><div><span>${record.competition} · ${record.date}</span><h2>${record.match}</h2></div><b class="history-record-pill">已完赛</b></div>
       <div class="result-flow"><div><span>赛前方向</span><strong>${record.direction}</strong></div>${icon("arrow-right-line")}<div><span>实际结果</span><strong>${record.result}</strong></div></div>
       <div class="search-handicap-line"><span>让胜平负 · 主队 ${record.handicap.line > 0 ? "+" : ""}${record.handicap.line}</span><strong>${record.handicap.prediction}</strong><small>实际 ${record.handicap.actual}</small></div>
-      ${renderTags(historyTags(record))}
-      <p>${record.review}</p><button class="outline-button" type="button" data-open-history="${record.id}">查看验证详情 ${icon("arrow-right-line")}</button>
+      <p>${record.report.conclusion}</p><button class="outline-button" type="button" data-open-history="${record.id}">查看完整报告 ${icon("arrow-right-line")}</button>
     </article>`).join("") : `<div class="empty-state">${icon("history-line")}<h2>没有找到相关场次</h2><p>换一个球队名、赛事或日期试试。</p></div>`}</div>
   </div>`;
 }

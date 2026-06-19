@@ -240,6 +240,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-vis
 .history-card-head h3, .search-result-top h2 { margin: 5px 0 0; font-size: 17px; }
 .validation-pill { align-self: start; flex: none; padding: 6px 12px; border-radius: 99px; color: #101706; background: var(--lime); font-size: 11px; font-weight: 800; }
 .validation-pill.miss { border: 1px solid #703838; color: #ffaaa2; background: #2d1719; }
+.history-record-pill { align-self: start; flex: none; padding: 6px 11px; border: 1px solid #394436; border-radius: 99px; color: var(--muted); background: #171d16; font-size: 10px; font-weight: 800; }
 .history-core { display: grid; grid-template-columns: .65fr .72fr 1.1fr .72fr 1fr; gap: 1px; margin: 15px 0 12px; border: 1px solid #252a27; border-radius: 11px; background: #252a27; overflow: hidden; }
 .history-core div { display: grid; gap: 4px; min-width: 0; padding: 11px 12px; background: #101411; }
 .history-core span { color: var(--subtle); font-size: 10px; }
