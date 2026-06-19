@@ -32,7 +32,7 @@ export function matchCard(match, featured = false) {
       <div class="trend-labels"><span>主胜 <b>${match.trend[0]}%</b></span><span>平 <b>${match.trend[1]}%</b></span><span>客胜 <b>${match.trend[2]}%</b></span></div>
       <div class="stacked-bar"><i style="width:${match.trend[0]}%"></i><i style="width:${match.trend[1]}%"></i><i style="width:${match.trend[2]}%"></i></div>
     </div>
-    <div class="quick-stats"><div><span>比分路径</span><strong>${match.scores.join(" / ")}</strong></div><div><span>总进球区间</span><strong>${match.goals} 球</strong></div></div>
+    <div class="quick-stats"><div><span>首选比分路径</span><strong>${match.scores.slice(0, 2).join(" / ")}</strong></div><div><span>总进球区间</span><strong>${match.goals} 球</strong></div></div>
     <div class="conclusion-line">${icon("lightbulb-flash-line")}<p>${match.conclusion}</p></div>
     <div class="risk-line"><span>风险等级</span><b class="risk-badge ${match.riskTone}">${match.risk}<i></i></b></div>
     <button class="primary-button card-button" type="button" data-open-match="${match.id}">查看完整分析 ${icon("arrow-right-line")}</button>
@@ -64,7 +64,7 @@ function directionSummary(match) {
     <div class="direction-main"><span>${icon("focus-3-line")}本场主方向</span><strong>${direction.main.label}</strong><small>${direction.main.value}% · 当前最高权重</small></div>
     <div class="summary-item"><span>方向置信度</span><b>${match.model.confidence}</b><small>平局风险 ${match.model.drawRisk}</small></div>
     <div class="summary-item"><span>领先幅度</span><b>${direction.lead}%</b><small>${direction.main.short}领先${direction.second.short}</small></div>
-    <div class="summary-item"><span>比分主路径</span><b>${match.scores[0]}</b><small>权重 ${match.model.scoreWeights[0]}%</small></div>
+    <div class="summary-item"><span>比分主路径</span><b>${match.scores.slice(0, 2).join(" / ")}</b><small>首选双路径</small></div>
     <div class="summary-item"><span>总进球区间</span><b>${match.goals}</b><small>${coreGoals}为核心</small></div>
     <div class="summary-item"><span>让胜平负</span><b>${handicapDirection}</b><small>主队 ${match.handicap.line > 0 ? "+" : ""}${match.handicap.line} 球 · ${handicapMax}%</small></div>
     <div class="summary-item risk"><span>风险等级</span><b>${match.risk}</b><small>${match.model.riskTriggers[0]}</small></div>
@@ -74,6 +74,21 @@ function directionSummary(match) {
 function modelEvidencePanel(match) {
   return `<section class="detail-panel model-evidence-panel"><div class="model-panel-head"><div><span>MODEL CONSENSUS</span><h2>模型一致度</h2></div><strong>${match.model.consistency}%</strong></div>
     <div class="factor-list">${match.model.factors.map(item => `<div class="factor-row"><div><span>${item.label}</span><b>${item.value}</b></div><div class="factor-track"><i style="width:${item.value}%"></i></div></div>`).join("")}</div>
+  </section>`;
+}
+
+function scorePathPanel(match) {
+  const groups = [
+    { label: "首选", start: 0, className: "primary" },
+    { label: "次选", start: 2, className: "secondary" },
+    { label: "延伸", start: 4, className: "extension" }
+  ];
+  return `<section class="detail-panel score-panel score-path-panel"><div class="score-panel-head"><div><span>6 条模型路径</span><h2>比分路径</h2></div><small>首选 2 · 次选 2 · 延伸 2</small></div>
+    <div class="score-path-groups">${groups.map(group => `<div class="score-path-group ${group.className}"><strong>${group.label}</strong><div>${match.scores.slice(group.start, group.start + 2).map((score, offset) => {
+      const index = group.start + offset;
+      return `<article class="score-path-card"><div><b>${score}</b><span>${match.model.scoreWeights[index]}%</span></div><small>${match.model.scoreNotes[index]}</small></article>`;
+    }).join("")}</div></div>`).join("")}</div>
+    <p class="panel-note">概率为单一比分权重，六条路径用于覆盖主方向、平局保护与冷门风险。</p>
   </section>`;
 }
 
@@ -109,7 +124,7 @@ export function detailPage(id) {
         ${trendPanel("胜平负趋势", ["主胜", "平局", "客胜"], match.trend, "主路径更明确，但平局仍然需要留意。")}
         ${trendPanel(`让胜平负趋势 · 主队 ${match.handicap.line > 0 ? "+" : ""}${match.handicap.line}`, ["让胜", "让平", "让负"], match.handicap.trend, "模型让球线采用主队视角，用于比较穿线、走到让平或未穿线的结果路径。")}
         ${modelEvidencePanel(match)}
-        <section class="detail-panel score-panel"><h2>比分路径</h2><div class="score-main"><span>首选</span><strong>${match.scores[0]}</strong>${icon("star-line")}</div><div class="score-alt"><div><span>次选</span><b>${match.scores[1]}</b></div><div><span>延伸</span><b>${match.scores[2]}</b></div></div><div class="path-weights">${match.scores.map((score, index) => `<span class="${index === 0 ? "active" : ""}">${score} · ${match.model.scoreWeights[index]}%</span>`).join("")}</div></section>
+        ${scorePathPanel(match)}
       </div>
       <aside class="detail-secondary">
         <section class="detail-panel goals-panel"><h2>总进球区间</h2><div class="goals-value"><strong>${match.goals}</strong><div><span>低进球：存在</span><span>高进球：一般</span></div></div><div class="goal-scale"><i></i><i class="active"></i><i class="active"></i><i></i><i></i></div><div class="goal-distribution">${match.model.goalDistribution.map(item => `<span class="${item.core ? "core" : ""}"><b>${item.label}</b><small>${item.weight}%${item.core ? " · 核心" : ""}</small></span>`).join("")}</div><p>双方都有进球空间，但比赛未必会大开大合。</p></section>

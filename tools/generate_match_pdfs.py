@@ -31,6 +31,7 @@ BODY = ParagraphStyle("CNBody", parent=base["BodyText"], fontName="Deng", fontSi
 MUTED_TEXT = ParagraphStyle("CNMuted", parent=BODY, fontSize=8.5, leading=13, textColor=MUTED)
 TITLE = ParagraphStyle("CNTitle", parent=BODY, fontName="DengBold", fontSize=24, leading=30, alignment=TA_CENTER)
 SECTION = ParagraphStyle("CNSection", parent=BODY, fontName="DengBold", fontSize=13, leading=18, spaceBefore=4, spaceAfter=7)
+SCORE_TEXT = ParagraphStyle("CNScore", parent=BODY, fontSize=8.5, leading=10.5)
 
 
 def load_site_data():
@@ -100,19 +101,46 @@ def facts_table(items):
     return table
 
 
+def score_paths_table(match):
+    cells = []
+    for label, start in (("首选", 0), ("次选", 2), ("延伸", 4)):
+        rows = []
+        for index in (start, start + 1):
+            rows.append(
+                f"<font size='10'><b>{match['scores'][index]} · {match['model']['scoreWeights'][index]}%</b></font>"
+                f"<br/><font size='7'>{match['model']['scoreNotes'][index]}</font>"
+            )
+        cells.append(Paragraph(f"<font size='7'>{label}</font><br/>{'<br/>'.join(rows)}", SCORE_TEXT))
+    cells.append(Paragraph(
+        f"<font size='7'>比赛区间</font><br/><font size='10'><b>{match['goals']} 球</b></font>"
+        f"<br/><font size='7'>风险等级</font><br/><font size='10'><b>{match['risk']}</b></font>",
+        SCORE_TEXT
+    ))
+    table = Table([cells], colWidths=[43.5 * mm] * 4, rowHeights=[25 * mm])
+    table.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, -1), PANEL),
+        ("BOX", (0, 0), (-1, -1), 0.7, LINE),
+        ("INNERGRID", (0, 0), (-1, -1), 0.5, LINE),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+        ("LEFTPADDING", (0, 0), (-1, -1), 9),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 7),
+    ]))
+    return table
+
+
 def build_upcoming(match):
     handicap = match["handicap"]
     story = [
         Paragraph(match["competition"], MUTED_TEXT), Spacer(1, 3 * mm),
         Paragraph(f"{match['home']['name']}  VS  {match['away']['name']}", TITLE),
-        Paragraph(match["time"], ParagraphStyle("Time", parent=MUTED_TEXT, alignment=TA_CENTER)), Spacer(1, 7 * mm),
+        Paragraph(match["time"], ParagraphStyle("Time", parent=MUTED_TEXT, alignment=TA_CENTER)), Spacer(1, 5 * mm),
         panel("本场结论", match["conclusion"], True),
         Paragraph("胜平负趋势", SECTION),
         facts_table([("主胜", f"{match['trend'][0]}%"), ("平局", f"{match['trend'][1]}%"), ("客胜", f"{match['trend'][2]}%")]), Spacer(1, 4 * mm),
         Paragraph(f"让胜平负趋势 · 主队 {handicap['line']:+d}", SECTION),
         facts_table([("让胜", f"{handicap['trend'][0]}%"), ("让平", f"{handicap['trend'][1]}%"), ("让负", f"{handicap['trend'][2]}%")]), Spacer(1, 4 * mm),
-        Paragraph("核心路径", SECTION),
-        facts_table([("首选比分", match["scores"][0]), ("次选比分", match["scores"][1]), ("总进球区间", f"{match['goals']} 球"), ("风险等级", match["risk"])]), Spacer(1, 4 * mm),
+        Paragraph("比分路径", SECTION),
+        score_paths_table(match),
         panel("风险提醒", "<br/>".join(f"- {item}" for item in match["riskNotes"])),
         panel("为什么这样看", match["why"]),
     ]
