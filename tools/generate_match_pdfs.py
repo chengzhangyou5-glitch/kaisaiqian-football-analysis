@@ -101,6 +101,10 @@ def facts_table(items):
     return table
 
 
+def goal_range_label(value):
+    return value if "球" in value else f"{value} 球"
+
+
 def score_paths_table(match):
     cells = []
     for label, start in (("首选", 0), ("次选", 2), ("延伸", 4)):
@@ -112,7 +116,7 @@ def score_paths_table(match):
             )
         cells.append(Paragraph(f"<font size='7'>{label}</font><br/>{'<br/>'.join(rows)}", SCORE_TEXT))
     cells.append(Paragraph(
-        f"<font size='7'>比赛区间</font><br/><font size='10'><b>{match['goals']} 球</b></font>"
+        f"<font size='7'>比赛区间</font><br/><font size='10'><b>{goal_range_label(match['goals'])}</b></font>"
         f"<br/><font size='7'>风险等级</font><br/><font size='10'><b>{match['risk']}</b></font>",
         SCORE_TEXT
     ))
@@ -163,7 +167,7 @@ def build_history(record):
         facts_table([("主胜", f"{report['trend'][0]}%"), ("平局", f"{report['trend'][1]}%"), ("客胜", f"{report['trend'][2]}%")]), Spacer(1, 3 * mm),
         Paragraph(f"让胜平负趋势 · 主队 {handicap['line']:+d}", SECTION),
         facts_table([("让胜", f"{handicap['trend'][0]}%"), ("让平", f"{handicap['trend'][1]}%"), ("让负", f"{handicap['trend'][2]}%")]), Spacer(1, 3 * mm),
-        facts_table([("模型一致度", f"{report['model']['consistency']}%"), ("总进球区间", f"{report['goals']} 球"), ("实际比分", record["result"])]), Spacer(1, 3 * mm),
+        facts_table([("模型一致度", f"{report['model']['consistency']}%"), ("总进球区间", goal_range_label(report['goals'])), ("实际比分", record["result"])]), Spacer(1, 3 * mm),
         panel("验证标签", tags),
         panel("复盘说明", report["why"]),
     ]

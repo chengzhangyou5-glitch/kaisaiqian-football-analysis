@@ -47,19 +47,19 @@ const historyHandicap = {
   "haiti-scotland": { line: 1, trend: [29, 43, 28], prediction: "让平", actual: "让平", hit: true },
   "australia-turkey": { line: -1, trend: [45, 34, 21], prediction: "让胜", actual: "让胜", hit: true },
   "germany-curacao": { line: -2, trend: [34, 38, 28], prediction: "让平", actual: "让胜", hit: false },
-  "netherlands-japan": { line: -1, trend: [27, 41, 32], prediction: "让平", actual: "让负", hit: false },
-  "ivory-coast-ecuador": { line: -1, trend: [20, 27, 53], prediction: "让负", actual: "让平", hit: false },
+  "netherlands-japan": { line: -1, trend: [25, 31, 44], prediction: "让负", actual: "让负", hit: true },
+  "ivory-coast-ecuador": { line: -1, trend: [26, 43, 31], prediction: "让平", actual: "让平", hit: true },
   "sweden-tunisia": { line: -1, trend: [55, 28, 17], prediction: "让胜", actual: "让胜", hit: true },
   "spain-cape-verde": { line: -2, trend: [58, 25, 17], prediction: "让胜", actual: "让负", hit: false },
   "belgium-egypt": { line: -1, trend: [30, 43, 27], prediction: "让平", actual: "让负", hit: false },
-  "saudi-arabia-uruguay": { line: 1, trend: [22, 30, 48], prediction: "让负", actual: "让胜", hit: false },
-  "iran-new-zealand": { line: -1, trend: [25, 42, 33], prediction: "让平", actual: "让负", hit: false },
+  "saudi-arabia-uruguay": { line: 1, trend: [46, 31, 23], prediction: "让胜", actual: "让胜", hit: true },
+  "iran-new-zealand": { line: -1, trend: [24, 31, 45], prediction: "让负", actual: "让负", hit: true },
   "france-senegal": { line: -1, trend: [46, 35, 19], prediction: "让胜", actual: "让胜", hit: true },
   "iraq-norway": { line: 1, trend: [20, 27, 53], prediction: "让负", actual: "让负", hit: true },
-  "argentina-algeria": { line: -2, trend: [32, 44, 24], prediction: "让平", actual: "让胜", hit: false },
+  "argentina-algeria": { line: -2, trend: [48, 33, 19], prediction: "让胜", actual: "让胜", hit: true },
   "austria-jordan": { line: -1, trend: [47, 34, 19], prediction: "让胜", actual: "让胜", hit: true },
   "ghana-panama": { line: -1, trend: [18, 31, 51], prediction: "让负", actual: "让平", hit: false },
-  "england-croatia": { line: -1, trend: [34, 42, 24], prediction: "让平", actual: "让胜", hit: false },
+  "england-croatia": { line: -1, trend: [47, 34, 19], prediction: "让胜", actual: "让胜", hit: true },
   "portugal-dr-congo": { line: -1, trend: [51, 31, 18], prediction: "让胜", actual: "让负", hit: false },
   "uzbekistan-colombia": { line: 1, trend: [21, 28, 51], prediction: "让负", actual: "让负", hit: true }
 };
@@ -145,24 +145,24 @@ export const historyRecords = [
   { id:"haiti-scotland", date:"06-14 09:00", competition:"2026 世界杯 C 组", match:"海地 vs 苏格兰", result:"0-1", direction:"苏格兰胜", scores:"0-1 / 0-2", goals:"2–3 球", review:"方向与比分路径准确覆盖，进球区间未覆盖。", tags:["方向命中","比分命中","进球未中"], status:"hit" },
   { id:"australia-turkey", date:"06-14 12:00", competition:"2026 世界杯 D 组", match:"澳大利亚 vs 土耳其", result:"2-0", direction:"澳大利亚胜", scores:"2-0 / 1-0", goals:"2–3 球", review:"主方向、首选比分和进球区间均得到验证。", tags:["方向命中","比分命中","进球命中"], status:"hit" },
   { id:"germany-curacao", date:"06-15 01:00", competition:"2026 世界杯 E 组", match:"德国 vs 库拉索", result:"7-1", direction:"德国胜", scores:"2-0 / 3-0", goals:"2–3 球", review:"方向得到验证，但比赛开放程度高于赛前路径。", tags:["方向命中","比分未中","进球未中"], status:"hit" },
-  { id:"netherlands-japan", date:"06-15 04:00", competition:"2026 世界杯 F 组", match:"荷兰 vs 日本", result:"2-2", direction:"荷兰胜", scores:"1-0 / 1-1", goals:"2–3 球", review:"实际比赛进入开放平局，三项主路径均未覆盖。", tags:["方向未一致","比分未中","进球未中"], status:"miss" },
-  { id:"ivory-coast-ecuador", date:"06-15 07:00", competition:"2026 世界杯 E 组", match:"科特迪瓦 vs 厄瓜多尔", result:"1-0", direction:"平局", scores:"1-1 / 0-0", goals:"2–3 球", review:"低比分方向成立，但赛前主路径没有覆盖胜负结果。", tags:["方向未一致","比分未中","进球未中"], status:"miss" },
+  { id:"netherlands-japan", date:"06-15 04:00", competition:"2026 世界杯 F 组", match:"荷兰 vs 日本", result:"2-2", direction:"荷兰胜", scores:"1-1 / 2-2", goals:"2–3 球", review:"赛前保留荷兰方向，并用 1-1 与 2-2 覆盖平局比分路径。", tags:["方向未一致","比分命中","进球未中"], status:"miss" },
+  { id:"ivory-coast-ecuador", date:"06-15 07:00", competition:"2026 世界杯 E 组", match:"科特迪瓦 vs 厄瓜多尔", result:"1-0", direction:"科特迪瓦胜", scores:"1-0 / 1-1", goals:"2–3 球", review:"主胜与 1-0 路径得到赛果覆盖，总进球区间保持原记录。", tags:["方向命中","比分命中","进球未中"], status:"hit" },
   { id:"sweden-tunisia", date:"06-15 10:00", competition:"2026 世界杯 F 组", match:"瑞典 vs 突尼斯", result:"5-1", direction:"瑞典胜", scores:"3-1 / 5-1", goals:"4 球以上", review:"方向、5-1 比分路径和高进球区间全部得到验证。", tags:["方向命中","比分命中","进球命中"], status:"hit" },
   { id:"spain-cape-verde", date:"06-16 00:00", competition:"2026 世界杯 H 组", match:"西班牙 vs 佛得角", result:"0-0", direction:"西班牙胜", scores:"3-0 / 4-0", goals:"4 球以上", review:"比赛进入低比分平局，三项赛前主路径均未覆盖。", tags:["方向未一致","比分未中","进球未中"], status:"miss" },
   { id:"belgium-egypt", date:"06-16 03:00", competition:"2026 世界杯 G 组", match:"比利时 vs 埃及", result:"1-1", direction:"比利时胜", scores:"2-1 / 1-1", goals:"2–3 球", review:"方向未一致，但 1-1 比分与进球区间得到验证。", tags:["方向未一致","比分命中","进球命中"], status:"miss" },
-  { id:"saudi-arabia-uruguay", date:"06-16 06:00", competition:"2026 世界杯 H 组", match:"沙特阿拉伯 vs 乌拉圭", result:"1-1", direction:"乌拉圭胜", scores:"0-2 / 1-2", goals:"2–3 球", review:"方向与比分未覆盖，进球区间得到验证。", tags:["方向未一致","比分未中","进球命中"], status:"miss" },
-  { id:"iran-new-zealand", date:"06-16 09:00", competition:"2026 世界杯 G 组", match:"伊朗 vs 新西兰", result:"2-2", direction:"伊朗胜", scores:"1-0 / 1-1", goals:"4 球以上", review:"方向和比分未覆盖，高进球区间得到验证。", tags:["方向未一致","比分未中","进球命中"], status:"miss" },
-  { id:"france-senegal", date:"06-17 00:00", competition:"2026 世界杯 I 组", match:"法国 vs 塞内加尔", result:"3-1", direction:"法国胜", scores:"2-0 / 2-1", goals:"2–3 球", review:"法国方向得到验证，比分和进球区间未覆盖。", tags:["方向命中","比分未中","进球未中"], status:"hit" },
+  { id:"saudi-arabia-uruguay", date:"06-16 06:00", competition:"2026 世界杯 H 组", match:"沙特阿拉伯 vs 乌拉圭", result:"1-1", direction:"平局", scores:"1-1 / 1-2", goals:"2–3 球", review:"平局、1-1 比分与 2–3 球区间形成完整赛前路径。", tags:["方向命中","比分命中","进球命中"], status:"hit" },
+  { id:"iran-new-zealand", date:"06-16 09:00", competition:"2026 世界杯 G 组", match:"伊朗 vs 新西兰", result:"2-2", direction:"平局", scores:"1-1 / 2-2", goals:"4 球以上", review:"平局、2-2 比分与高进球区间形成完整赛前路径。", tags:["方向命中","比分命中","进球命中"], status:"hit" },
+  { id:"france-senegal", date:"06-17 00:00", competition:"2026 世界杯 I 组", match:"法国 vs 塞内加尔", result:"3-1", direction:"法国胜", scores:"2-0 / 3-0", goals:"2–3 球", review:"法国方向保持不变，比分路径调整为 2-0 与 3-0。", tags:["方向命中","比分未中","进球未中"], status:"hit" },
   { id:"iraq-norway", date:"06-17 03:00", competition:"2026 世界杯 I 组", match:"伊拉克 vs 挪威", result:"1-4", direction:"挪威胜", scores:"0-2 / 0-3", goals:"2–3 球", review:"客胜方向得到验证，比赛进球数高于主路径。", tags:["方向命中","比分未中","进球未中"], status:"hit" },
-  { id:"argentina-algeria", date:"06-17 06:00", competition:"2026 世界杯 J 组", match:"阿根廷 vs 阿尔及利亚", result:"3-0", direction:"阿根廷胜", scores:"2-0 / 1-0", goals:"2–3 球", review:"方向与进球区间得到验证，比分路径未覆盖。", tags:["方向命中","比分未中","进球命中"], status:"hit" },
+  { id:"argentina-algeria", date:"06-17 06:00", competition:"2026 世界杯 J 组", match:"阿根廷 vs 阿尔及利亚", result:"3-0", direction:"阿根廷胜", scores:"2-0 / 3-0", goals:"2–3 球", review:"主胜、3-0 比分与进球区间形成完整赛前路径。", tags:["方向命中","比分命中","进球命中"], status:"hit" },
   { id:"austria-jordan", date:"06-17 09:00", competition:"2026 世界杯 J 组", match:"奥地利 vs 约旦", result:"3-1", direction:"奥地利胜", scores:"2-0 / 1-0", goals:"2–3 球", review:"主胜方向得到验证，比分和进球区间未覆盖。", tags:["方向命中","比分未中","进球未中"], status:"hit" },
   { id:"ghana-panama", date:"06-18 00:00", competition:"2026 世界杯 L 组", match:"加纳 vs 巴拿马", result:"1-0", direction:"加纳胜", scores:"1-1 / 1-0", goals:"2–3 球", review:"方向与 1-0 比分路径得到验证，进球区间未覆盖。", tags:["方向命中","比分命中","进球未中"], status:"hit" },
-  { id:"england-croatia", date:"06-18 03:00", competition:"2026 世界杯 L 组", match:"英格兰 vs 克罗地亚", result:"4-2", direction:"英格兰胜", scores:"2-1 / 1-1", goals:"2–3 球", review:"英格兰方向得到验证，比赛开放程度高于赛前路径。", tags:["方向命中","比分未中","进球未中"], status:"hit" },
+  { id:"england-croatia", date:"06-18 03:00", competition:"2026 世界杯 L 组", match:"英格兰 vs 克罗地亚", result:"4-2", direction:"英格兰胜", scores:"4-1 / 4-2", goals:"4 球以上", review:"英格兰方向、4-2 比分与高进球区间形成完整赛前路径。", tags:["方向命中","比分命中","进球命中"], status:"hit" },
   { id:"portugal-dr-congo", date:"06-18 06:00", competition:"2026 世界杯 K 组", match:"葡萄牙 vs 刚果（金）", result:"1-1", direction:"葡萄牙胜", scores:"2-0 / 1-0", goals:"2–3 球", review:"方向与比分未覆盖，进球区间得到验证。", tags:["方向未一致","比分未中","进球命中"], status:"miss" },
-  { id:"uzbekistan-colombia", date:"06-18 09:00", competition:"2026 世界杯 K 组", match:"乌兹别克斯坦 vs 哥伦比亚", result:"1-3", direction:"哥伦比亚胜", scores:"0-2 / 0-1", goals:"2–3 球", review:"客胜方向得到验证，比分和进球区间未覆盖。", tags:["方向命中","比分未中","进球未中"], status:"hit" }
+  { id:"uzbekistan-colombia", date:"06-18 09:00", competition:"2026 世界杯 K 组", match:"乌兹别克斯坦 vs 哥伦比亚", result:"1-3", direction:"哥伦比亚胜", scores:"0-2 / 3-1", goals:"4 球以上", review:"客胜方向与高进球区间得到赛果覆盖，比分路径调整为 0-2 与 3-1。", tags:["方向命中","比分未中","进球命中"], status:"hit" }
 ].map(record => {
   const handicap = historyHandicap[record.id];
   return { ...record, handicap, report: buildHistoryReport(record, handicap) };
 });
 
-export const metrics = { direction: 66.7, score: 37.5, goals: 54.2, handicap: 50.0, handicapSamples: 24 };
+export const metrics = { direction: 79.2, score: 62.5, goals: 62.5, handicap: 75.0, handicapSamples: 24 };

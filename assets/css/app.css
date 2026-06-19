@@ -224,7 +224,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-vis
 .metric-main strong { color: var(--lime); font-size: clamp(70px, 9vw, 112px); line-height: 1; letter-spacing: -.08em; }
 .metric-main small { color: var(--muted); }
 .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.metric-grid > div { display: grid; place-items: center; align-content: center; gap: 9px; padding: 16px; border: 1px solid var(--line-green); border-radius: var(--radius-lg); background: #11170f; text-align: center; }
+.metric-grid > div { display: grid; grid-template-rows: minmax(32px, auto) auto 16px; place-items: center; align-content: center; gap: 9px; padding: 16px; border: 1px solid var(--line-green); border-radius: var(--radius-lg); background: #11170f; text-align: center; }
 .metric-grid span { color: var(--muted); font-size: 12px; }
 .metric-grid b { font-size: clamp(28px, 4vw, 46px); }
 .metric-grid small { color: var(--subtle); font-size: 9px; }

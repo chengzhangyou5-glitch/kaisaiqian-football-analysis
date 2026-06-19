@@ -194,7 +194,7 @@ function historyCard(record) {
 export function historyPage() {
   return `<div class="page page-history">
     ${pageIntro("VERIFICATION CENTER", "历史验证中心", `近 ${historyRecords.length} 场赛前分析表现 · 持续更新`)}
-    <section class="metric-hero"><div class="metric-main"><span>近 ${historyRecords.length} 场胜平负方向一致率</span><strong>${metrics.direction}%</strong><small>基于已完赛场次统计</small></div><div class="metric-grid"><div><span>比分路径参考率</span><b>${metrics.score}%</b></div><div><span>总进球区间参考率</span><b>${metrics.goals}%</b></div><div><span>让胜平负参考率</span><b>${metrics.handicap}%</b><small>${metrics.handicapSamples} 场模型让球样本</small></div></div></section>
+    <section class="metric-hero"><div class="metric-main"><span>近 ${historyRecords.length} 场胜平负方向一致率</span><strong>${metrics.direction}%</strong><small>基于已完赛场次统计</small></div><div class="metric-grid"><div><span>比分路径参考率</span><b>${metrics.score}%</b><small>${Math.round(metrics.score * historyRecords.length / 100)}/${historyRecords.length} 场比分覆盖</small></div><div><span>总进球区间参考率</span><b>${metrics.goals}%</b><small>${Math.round(metrics.goals * historyRecords.length / 100)}/${historyRecords.length} 场区间覆盖</small></div><div><span>让胜平负参考率</span><b>${metrics.handicap}%</b><small>${Math.round(metrics.handicap * metrics.handicapSamples / 100)}/${metrics.handicapSamples} 场方向覆盖</small></div></div></section>
     <section class="history-section"><div class="section-heading"><div><p class="eyebrow">RECORDS</p><h2>历史场次明细</h2></div><div class="history-heading-meta"><div class="history-legend"><span><i class="hit"></i>命中</span><span><i class="miss"></i>未中</span></div><span>${historyRecords.length} 场记录</span></div></div><div class="history-list">${historyRecords.map(historyCard).join("")}</div></section>
   </div>`;
 }

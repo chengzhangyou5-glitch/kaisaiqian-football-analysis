@@ -47,3 +47,14 @@ The comparison board confirms hit cells use lime chips, a green top rule, and a 
 - Czechia vs South Africa renders draw as the main direction, 1-1 as the first score, and 39% as the draw weight at all five widths.
 
 final result: passed
+
+## Historical data and metric-card update (2026-06-19)
+
+- Evidence: `output/design-qa/history-metrics-390.png`, `output/design-qa/history-metrics-1440.png`, and `output/design-qa/history-england-updated-1440.png`.
+- The three secondary metric cards now share the same title, percentage, and sample-coverage hierarchy.
+- Verified widths: 390, 430, 768, 1024, and 1440 px; no horizontal overflow.
+- Verified all eight edited history reports expose the requested direction, score paths, goal range, and handicap direction.
+- Aggregate display verified at 79.2% direction, 62.5% score, 62.5% goals, and 75% handicap.
+- All 28 PDFs remain one page; the eight affected historical PDFs were regenerated.
+
+final result: passed
