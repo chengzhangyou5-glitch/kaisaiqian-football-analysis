@@ -101,6 +101,7 @@ def facts_table(items):
 
 
 def build_upcoming(match):
+    handicap = match["handicap"]
     story = [
         Paragraph(match["competition"], MUTED_TEXT), Spacer(1, 3 * mm),
         Paragraph(f"{match['home']['name']}  VS  {match['away']['name']}", TITLE),
@@ -108,9 +109,10 @@ def build_upcoming(match):
         panel("本场结论", match["conclusion"], True),
         Paragraph("胜平负趋势", SECTION),
         facts_table([("主胜", f"{match['trend'][0]}%"), ("平局", f"{match['trend'][1]}%"), ("客胜", f"{match['trend'][2]}%")]), Spacer(1, 4 * mm),
+        Paragraph(f"让胜平负趋势 · 主队 {handicap['line']:+d}", SECTION),
+        facts_table([("让胜", f"{handicap['trend'][0]}%"), ("让平", f"{handicap['trend'][1]}%"), ("让负", f"{handicap['trend'][2]}%")]), Spacer(1, 4 * mm),
         Paragraph("核心路径", SECTION),
         facts_table([("首选比分", match["scores"][0]), ("次选比分", match["scores"][1]), ("总进球区间", f"{match['goals']} 球"), ("风险等级", match["risk"])]), Spacer(1, 4 * mm),
-        panel("半全场参考路径", f"<b>{' / '.join(match['halftime']['path'])}</b> · 路径置信度 {match['halftime']['confidence']}%<br/>{match['halftime']['note']}", True),
         panel("风险提醒", "<br/>".join(f"- {item}" for item in match["riskNotes"])),
         panel("为什么这样看", match["why"]),
     ]
@@ -118,9 +120,9 @@ def build_upcoming(match):
 
 
 def build_history(record):
-    halftime = record["halftime"]
-    halftime_status = "一致" if halftime["verified"] and halftime["hit"] else "未一致" if halftime["verified"] else "待核验"
-    tags = " / ".join(record["tags"] + [f"半全场{halftime_status}"])
+    handicap = record["handicap"]
+    handicap_status = "命中" if handicap["hit"] else "未中"
+    tags = " / ".join(record["tags"] + [f"让球{handicap_status}"])
     story = [
         Paragraph(record["competition"], MUTED_TEXT), Spacer(1, 3 * mm),
         Paragraph(record["match"], TITLE),
@@ -130,10 +132,10 @@ def build_history(record):
         facts_table([("赛前方向", record["direction"]), ("实际结果", record["result"])]), Spacer(1, 5 * mm),
         Paragraph("路径验证", SECTION),
         facts_table([("比分路径", record["scores"]), ("总进球区间", record["goals"])]), Spacer(1, 5 * mm),
-        Paragraph("半全场路径验证", SECTION),
-        facts_table([("赛前参考路径", halftime["prediction"]), ("路径置信度", f"{halftime['confidence']}%"), ("实际半全场路径", halftime["actual"] or "等待可靠记录"), ("验证状态", halftime_status)]), Spacer(1, 5 * mm),
+        Paragraph("让胜平负验证", SECTION),
+        facts_table([("模型让球线", f"主队 {handicap['line']:+d}"), ("赛前方向", handicap["prediction"]), ("实际让球结果", handicap["actual"]), ("验证状态", handicap_status)]), Spacer(1, 5 * mm),
         panel("验证标签", tags),
-        panel("复盘说明", "本页展示开赛前记录的方向、比分路径、进球区间和半全场参考路径，并与可核验结果进行对照；缺少可靠半场记录的场次不计入半全场参考率。"),
+        panel("复盘说明", "本页展示开赛前记录的胜平负、比分、进球区间和模型让胜平负路径，并按全场实际比分统一验证。"),
     ]
     return story
 
@@ -146,7 +148,6 @@ def write_pdf(item, history=False):
         topMargin=21 * mm, bottomMargin=18 * mm, title=f"{title} 分析", author="开赛前"
     )
     story = build_history(item) if history else build_upcoming(item)
-    story.append(Spacer(1, 3 * mm))
     story.append(Paragraph("说明：本报告用于足球情报整理与观赛参考，比赛结果存在不确定性。", MUTED_TEXT))
     doc.build(story, onFirstPage=frame, onLaterPages=frame)
     print(path)

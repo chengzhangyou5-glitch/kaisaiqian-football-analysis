@@ -58,13 +58,15 @@ function directionMeta(match) {
 function directionSummary(match) {
   const direction = directionMeta(match);
   const coreGoals = match.model.goalDistribution.filter(item => item.core).map(item => item.label).join("、");
+  const handicapMax = Math.max(...match.handicap.trend);
+  const handicapDirection = ["让胜", "让平", "让负"][match.handicap.trend.indexOf(handicapMax)];
   return `<section class="direction-summary" aria-label="本场核心摘要">
     <div class="direction-main"><span>${icon("focus-3-line")}本场主方向</span><strong>${direction.main.label}</strong><small>${direction.main.value}% · 当前最高权重</small></div>
     <div class="summary-item"><span>方向置信度</span><b>${match.model.confidence}</b><small>平局风险 ${match.model.drawRisk}</small></div>
     <div class="summary-item"><span>领先幅度</span><b>${direction.lead}%</b><small>${direction.main.short}领先${direction.second.short}</small></div>
     <div class="summary-item"><span>比分主路径</span><b>${match.scores[0]}</b><small>权重 ${match.model.scoreWeights[0]}%</small></div>
     <div class="summary-item"><span>总进球区间</span><b>${match.goals}</b><small>${coreGoals}为核心</small></div>
-    <div class="summary-item"><span>半全场主路径</span><b>${match.halftime.path.join(" / ")}</b><small>路径置信度 ${match.halftime.confidence}%</small></div>
+    <div class="summary-item"><span>让胜平负</span><b>${handicapDirection}</b><small>主队 ${match.handicap.line > 0 ? "+" : ""}${match.handicap.line} 球 · ${handicapMax}%</small></div>
     <div class="summary-item risk"><span>风险等级</span><b>${match.risk}</b><small>${match.model.riskTriggers[0]}</small></div>
   </section>`;
 }
@@ -76,8 +78,7 @@ function modelEvidencePanel(match) {
 }
 
 function historyTags(record) {
-  const halftimeTag = !record.halftime.verified ? "半全场待核验" : record.halftime.hit ? "半全场一致" : "半全场未一致";
-  return [...record.tags, halftimeTag];
+  return [...record.tags, record.handicap.hit ? "让球命中" : "让球未中"];
 }
 
 function renderTags(tags, extraClass = "") {
@@ -106,13 +107,12 @@ export function detailPage(id) {
       <div class="detail-primary">
         <section class="detail-panel conclusion-panel"><h2>${icon("line-chart-line")}本场结论</h2><p>${match.conclusion}</p></section>
         ${trendPanel("胜平负趋势", ["主胜", "平局", "客胜"], match.trend, "主路径更明确，但平局仍然需要留意。")}
-        ${match.handicap ? trendPanel("让胜平负趋势", ["让胜", "让平", "让负"], match.handicap, "优势存在，但未必能明显拉开。") : `<section class="detail-panel trend-panel unavailable-panel"><h2>让胜平负趋势</h2><div class="unavailable-stat"><b>暂未单列</b><span>原始模型没有独立输出该组数据</span></div><p class="panel-note">为避免制造虚假精度，本页只展示已有模型结果。</p></section>`}
+        ${trendPanel(`让胜平负趋势 · 主队 ${match.handicap.line > 0 ? "+" : ""}${match.handicap.line}`, ["让胜", "让平", "让负"], match.handicap.trend, "模型让球线采用主队视角，用于比较穿线、走到让平或未穿线的结果路径。")}
         ${modelEvidencePanel(match)}
         <section class="detail-panel score-panel"><h2>比分路径</h2><div class="score-main"><span>首选</span><strong>${match.scores[0]}</strong>${icon("star-line")}</div><div class="score-alt"><div><span>次选</span><b>${match.scores[1]}</b></div><div><span>延伸</span><b>${match.scores[2]}</b></div></div><div class="path-weights">${match.scores.map((score, index) => `<span class="${index === 0 ? "active" : ""}">${score} · ${match.model.scoreWeights[index]}%</span>`).join("")}</div></section>
       </div>
       <aside class="detail-secondary">
         <section class="detail-panel goals-panel"><h2>总进球区间</h2><div class="goals-value"><strong>${match.goals}</strong><div><span>低进球：存在</span><span>高进球：一般</span></div></div><div class="goal-scale"><i></i><i class="active"></i><i class="active"></i><i></i><i></i></div><div class="goal-distribution">${match.model.goalDistribution.map(item => `<span class="${item.core ? "core" : ""}"><b>${item.label}</b><small>${item.weight}%${item.core ? " · 核心" : ""}</small></span>`).join("")}</div><p>双方都有进球空间，但比赛未必会大开大合。</p></section>
-        <section class="detail-panel halftime-panel"><div class="halftime-panel-head"><h2>半全场参考路径</h2><b>${match.halftime.confidence}%</b></div><div class="path-line is-featured"><b>${match.halftime.path[0]}</b><span>${icon("arrow-right-line")}</span><em>${match.halftime.path[1]}</em></div><div class="path-confidence" aria-label="路径置信度 ${match.halftime.confidence}%"><i style="width:${match.halftime.confidence}%"></i></div><p>${match.halftime.note}</p></section>
         <section class="detail-panel risk-panel"><h2>${icon("shield-line")}风险触发条件（${match.risk}）</h2><ul>${match.model.riskTriggers.map(note => `<li>${icon("alarm-warning-line")}${note}</li>`).join("")}</ul></section>
         <section class="detail-panel why-panel"><h2>${icon("brain-line")}为什么这样看</h2><p>${match.why}</p></section>
       </aside>
@@ -140,12 +140,12 @@ export function historyDetailPage(id) {
         <section class="detail-panel conclusion-panel"><h2>${icon("line-chart-line")}本场验证</h2><p>${record.review}</p></section>
         <section class="detail-panel verification-panel"><h2>方向验证</h2><div class="verification-flow"><div><span>赛前方向</span><strong>${record.direction}</strong></div>${icon("arrow-right-line")}<div><span>实际结果</span><strong>${record.result}</strong></div></div>${renderTags(tags)}</section>
         <section class="detail-panel score-panel"><h2>比分路径验证</h2><div class="score-main"><span>实际</span><strong>${record.result}</strong>${icon(record.tags.some(tag => tag === "比分命中") ? "check-line" : "close-line")}</div><div class="score-alt">${scorePaths.map((score, index) => `<div><span>${index === 0 ? "赛前首选" : "赛前次选"}</span><b>${score}</b></div>`).join("")}</div></section>
-        <section class="detail-panel halftime-panel history-halftime-panel"><div class="halftime-panel-head"><h2>半全场路径验证</h2><b class="${record.halftime.verified && !record.halftime.hit ? "is-miss" : record.halftime.verified ? "" : "is-pending"}">${record.halftime.verified ? record.halftime.hit ? "一致" : "未一致" : "待核验"}</b></div><div class="verification-flow halftime-verification"><div><span>赛前参考路径 · ${record.halftime.confidence}%</span><strong>${record.halftime.prediction}</strong></div>${icon("arrow-right-line")}<div><span>实际半全场路径</span><strong>${record.halftime.actual || "等待可靠记录"}</strong></div></div><p>${record.halftime.verified ? record.halftime.hit ? "赛前半场节奏与终场方向均得到验证。" : "实际比赛的半场节奏或终场方向未完全覆盖赛前主路径。" : "赛前路径已保留；待获得可靠半场记录后再计入参考率。"}</p></section>
+        <section class="detail-panel handicap-panel"><div class="panel-status-head"><h2>让胜平负验证</h2><b class="${record.handicap.hit ? "" : "is-miss"}">${record.handicap.hit ? "命中" : "未中"}</b></div><div class="verification-flow"><div><span>赛前模型让球 · 主队 ${record.handicap.line > 0 ? "+" : ""}${record.handicap.line}</span><strong>${record.handicap.prediction}</strong></div>${icon("arrow-right-line")}<div><span>实际让球结果</span><strong>${record.handicap.actual}</strong></div></div><p>让球结果按主队视角和全场实际比分计算；盘口为本站赛前模型线，不冒充官方体彩历史盘口。</p></section>
       </div>
       <aside class="detail-secondary">
         <section class="detail-panel goals-panel"><h2>总进球区间验证</h2><div class="goals-value"><strong>${record.goals}</strong><div><span>实际进球：${actualGoals} 球</span><span>${record.tags.includes("进球命中") ? "区间得到验证" : "区间未覆盖"}</span></div></div><div class="goal-scale"><i></i><i class="active"></i><i class="active"></i><i></i><i></i></div></section>
         <section class="detail-panel validation-summary"><h2>${icon("shield-check-line")}验证标签</h2>${renderTags(tags, "large-tags")}</section>
-        <section class="detail-panel why-panel"><h2>${icon("brain-line")}复盘说明</h2><p>本页展示开赛前记录的方向、比分路径、进球区间和半全场参考路径，并与可核验结果进行对照；缺少可靠半场记录的场次不计入半全场参考率。</p></section>
+        <section class="detail-panel why-panel"><h2>${icon("brain-line")}复盘说明</h2><p>本页展示开赛前记录的胜平负、比分、进球区间和模型让胜平负路径，并按全场实际比分统一验证。</p></section>
       </aside>
     </div>
   </div>`;
@@ -155,7 +155,7 @@ function historyCard(record) {
   const tags = historyTags(record);
   return `<article class="history-card" data-history-id="${record.id}">
     <div class="history-card-head"><div><span>${record.competition} · ${record.date}</span><h3>${record.match}</h3></div><b class="validation-pill ${record.status}">${record.status === "hit" ? "方向一致" : "未一致"}</b></div>
-    <div class="history-core"><div><span>实际结果</span><strong>${record.result}</strong></div><div><span>赛前方向</span><strong>${record.direction}</strong></div><div><span>比分路径</span><strong>${record.scores}</strong></div><div><span>进球区间</span><strong>${record.goals}</strong></div><div><span>半全场路径 · ${record.halftime.confidence}%</span><strong>${record.halftime.prediction}</strong></div></div>
+    <div class="history-core"><div><span>实际结果</span><strong>${record.result}</strong></div><div><span>赛前方向</span><strong>${record.direction}</strong></div><div><span>比分路径</span><strong>${record.scores}</strong></div><div><span>进球区间</span><strong>${record.goals}</strong></div><div><span>让胜平负 · 主队 ${record.handicap.line > 0 ? "+" : ""}${record.handicap.line}</span><strong>${record.handicap.prediction}</strong><small>实际 ${record.handicap.actual}</small></div></div>
     ${renderTags(tags)}
     <div class="history-expand" hidden><p>${record.review}</p><button class="outline-button" type="button" data-open-history="${record.id}">查看验证详情 ${icon("arrow-right-line")}</button></div>
   </article>`;
@@ -164,7 +164,7 @@ function historyCard(record) {
 export function historyPage() {
   return `<div class="page page-history">
     ${pageIntro("VERIFICATION CENTER", "历史验证中心", `近 ${historyRecords.length} 场赛前分析表现 · 持续更新`)}
-    <section class="metric-hero"><div class="metric-main"><span>近 ${historyRecords.length} 场胜平负方向一致率</span><strong>${metrics.direction}%</strong><small>基于已完赛场次统计</small></div><div class="metric-grid"><div><span>比分路径参考率</span><b>${metrics.score}%</b></div><div><span>总进球区间参考率</span><b>${metrics.goals}%</b></div><div><span>半全场路径参考率</span><b>${metrics.halftime}%</b><small>${metrics.halftimeSamples} 场可核验样本</small></div></div></section>
+    <section class="metric-hero"><div class="metric-main"><span>近 ${historyRecords.length} 场胜平负方向一致率</span><strong>${metrics.direction}%</strong><small>基于已完赛场次统计</small></div><div class="metric-grid"><div><span>比分路径参考率</span><b>${metrics.score}%</b></div><div><span>总进球区间参考率</span><b>${metrics.goals}%</b></div><div><span>让胜平负参考率</span><b>${metrics.handicap}%</b><small>${metrics.handicapSamples} 场模型让球样本</small></div></div></section>
     <section class="history-section"><div class="section-heading"><div><p class="eyebrow">RECORDS</p><h2>历史场次明细</h2></div><span>${historyRecords.length} 场记录</span></div><div class="history-list">${historyRecords.map(historyCard).join("")}</div></section>
   </div>`;
 }
@@ -179,7 +179,7 @@ export function searchPage(query = "") {
     <div class="search-results">${filtered.length ? filtered.map(record => `<article class="search-result">
       <div class="search-result-top"><div><span>${record.competition} · ${record.date}</span><h2>${record.match}</h2></div><b class="validation-pill ${record.status}">${record.status === "hit" ? "方向一致" : "未一致"}</b></div>
       <div class="result-flow"><div><span>赛前方向</span><strong>${record.direction}</strong></div>${icon("arrow-right-line")}<div><span>实际结果</span><strong>${record.result}</strong></div></div>
-      <div class="search-halftime-line"><span>半全场参考</span><strong>${record.halftime.prediction}</strong><small>${record.halftime.confidence}%</small></div>
+      <div class="search-handicap-line"><span>让胜平负 · 主队 ${record.handicap.line > 0 ? "+" : ""}${record.handicap.line}</span><strong>${record.handicap.prediction}</strong><small>实际 ${record.handicap.actual}</small></div>
       ${renderTags(historyTags(record))}
       <p>${record.review}</p><button class="outline-button" type="button" data-open-history="${record.id}">查看验证详情 ${icon("arrow-right-line")}</button>
     </article>`).join("") : `<div class="empty-state">${icon("history-line")}<h2>没有找到相关场次</h2><p>换一个球队名、赛事或日期试试。</p></div>`}</div>
