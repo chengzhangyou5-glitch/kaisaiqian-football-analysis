@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#070b08">
+  <meta name="description" content="使用激活码创建开赛前客户账号">
+  <title>激活账号｜开赛前</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body class="auth-body" data-auth-page="activate">
+  <main class="auth-shell">
+    <a class="brand auth-brand" href="/login.html" aria-label="开赛前登录页">
+      <span class="brand-mark" aria-hidden="true"><i class="ri-football-line"></i></span>
+      <span>开赛前</span><small>PRE-MATCH</small>
+    </a>
+    <section class="auth-card" aria-labelledby="auth-title">
+      <p class="eyebrow">ACCOUNT ACTIVATION</p>
+      <h1 id="auth-title">激活账号</h1>
+      <p class="auth-intro">本站不开放自由注册，请使用已发放且有效的激活码。</p>
+      <div class="auth-message" id="auth-message" role="status" aria-live="polite" hidden></div>
+      <form id="auth-form" novalidate>
+        <label><span>激活码</span><div class="auth-input"><i class="ri-key-2-line"></i><input name="activationCode" type="text" autocomplete="one-time-code" required placeholder="KSQ-XXXXXXXXXXXX"></div></label>
+        <label><span>邮箱</span><div class="auth-input"><i class="ri-mail-line"></i><input name="email" type="email" autocomplete="username" required placeholder="name@example.com"></div></label>
+        <label><span>设置密码</span><div class="auth-input"><i class="ri-lock-password-line"></i><input name="password" type="password" minlength="8" autocomplete="new-password" required placeholder="至少 8 位"></div></label>
+        <button class="primary-button" type="submit"><span>创建账号</span><i class="ri-arrow-right-line"></i></button>
+      </form>
+      <p class="auth-switch">已经有账号？<a href="/login.html">返回登录</a></p>
+    </section>
+    <p class="auth-footnote"><i class="ri-shield-keyhole-line"></i> 每个激活码仅可使用一次</p>
+  </main>
+  <script src="assets/js/auth.js" defer></script>
+</body>
+</html>

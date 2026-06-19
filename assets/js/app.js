@@ -79,6 +79,14 @@ document.addEventListener("click", (event) => {
   if (action === "back") location.hash = "upcoming";
   if (action === "back-history") location.hash = "history";
   if (action === "notice") showModal(noticeModal());
+  if (action === "logout") {
+    fetch("/api/auth/logout", { method: "POST" })
+      .then((response) => {
+        if (!response.ok) throw new Error("logout_failed");
+        location.replace("/login.html");
+      })
+      .catch(() => showToast("退出失败，请稍后重试"));
+  }
   if (action === "close-modal") closeModal();
   if (action === "clear-search") { searchQuery = ""; render(); document.querySelector("#history-search")?.focus(); }
 });

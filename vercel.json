@@ -1,0 +1,16 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/protected.js": {
+      "includeFiles": "{index.html,detail.html,history.html,search.html,assets/js/components.js,assets/js/data.js,output/pdf/**}"
+    }
+  },
+  "routes": [
+    { "src": "^/$", "dest": "/api/protected?file=index" },
+    { "src": "^/(index|detail|history|search)\\.html$", "dest": "/api/protected?file=$1" },
+    { "src": "^/assets/js/(components|data)\\.js$", "dest": "/api/protected?file=$1" },
+    { "src": "^/output/pdf/([a-z0-9-]+-analysis\\.pdf)$", "dest": "/api/protected?file=pdf&path=$1" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "status": 404 }
+  ]
+}

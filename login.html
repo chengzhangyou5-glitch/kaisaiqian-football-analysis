@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#070b08">
+  <meta name="description" content="登录开赛前客户站">
+  <title>账号登录｜开赛前</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body class="auth-body" data-auth-page="login">
+  <main class="auth-shell">
+    <a class="brand auth-brand" href="/login.html" aria-label="开赛前登录页">
+      <span class="brand-mark" aria-hidden="true"><i class="ri-football-line"></i></span>
+      <span>开赛前</span><small>PRE-MATCH</small>
+    </a>
+    <section class="auth-card" aria-labelledby="auth-title">
+      <p class="eyebrow">CLIENT ACCESS</p>
+      <h1 id="auth-title">账号登录</h1>
+      <p class="auth-intro">登录后查看完整赛前分析与历史报告。</p>
+      <div class="auth-message" id="auth-message" role="status" aria-live="polite" hidden></div>
+      <form id="auth-form" novalidate>
+        <label><span>邮箱</span><div class="auth-input"><i class="ri-mail-line"></i><input name="email" type="email" autocomplete="username" required placeholder="name@example.com"></div></label>
+        <label><span>密码</span><div class="auth-input"><i class="ri-lock-password-line"></i><input name="password" type="password" autocomplete="current-password" required placeholder="输入密码"></div></label>
+        <button class="primary-button" type="submit"><span>登录</span><i class="ri-arrow-right-line"></i></button>
+      </form>
+      <p class="auth-switch">已有激活码？<a href="/activate.html">创建账号</a></p>
+    </section>
+    <p class="auth-footnote"><i class="ri-shield-check-line"></i> 客户专属访问 · 最多 2 台设备同时在线</p>
+  </main>
+  <script src="assets/js/auth.js" defer></script>
+</body>
+</html>
