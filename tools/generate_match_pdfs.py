@@ -179,7 +179,7 @@ def write_pdf(item, history=False):
     title = item["match"] if history else f"{item['home']['name']} vs {item['away']['name']}"
     doc = SimpleDocTemplate(
         str(path), pagesize=A4, leftMargin=18 * mm, rightMargin=18 * mm,
-        topMargin=21 * mm, bottomMargin=18 * mm, title=f"{title} 分析", author="开赛前"
+        topMargin=18 * mm, bottomMargin=18 * mm, title=f"{title} 分析", author="开赛前"
     )
     story = build_history(item) if history else build_upcoming(item)
     story.append(Paragraph("说明：本报告用于足球情报整理与观赛参考，比赛结果存在不确定性。", MUTED_TEXT))
