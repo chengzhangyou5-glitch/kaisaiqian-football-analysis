@@ -1,4 +1,4 @@
-import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260620-goals-v2";
+import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260621-rollover";
 
 const app = document.querySelector("#app");
 const modalLayer = document.querySelector("#modal-layer");

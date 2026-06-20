@@ -1,4 +1,4 @@
-import { matches, historyRecords, metrics } from "./data.js?v=20260620-goals-v2";
+import { matches, historyRecords, metrics } from "./data.js?v=20260621-rollover";
 
 const flag = (team) => `<img class="team-flag" src="https://flagcdn.com/w160/${team.code}.png" alt="${team.name}队旗" width="80" height="54">`;
 const icon = (name) => `<i class="ri-${name}" aria-hidden="true"></i>`;
@@ -115,7 +115,7 @@ function renderTags(tags, extraClass = "") {
 
 export function upcomingPage() {
   return `<div class="page page-upcoming">
-    ${pageIntro("MATCH INTELLIGENCE", "待赛分析", "已更新 ${matches.length} 场 · 开赛前持续更新", `<div class="update-chip">${icon("pulse-line")}模型状态正常</div>`)}
+    ${pageIntro("MATCH INTELLIGENCE", "待赛分析", `已更新 ${matches.length} 场 · 开赛前持续更新`, `<div class="update-chip">${icon("pulse-line")}模型状态正常</div>`)}
     <div class="match-grid">${matches.map((m, i) => matchCard(m, i === 0)).join("")}</div>
     <section class="trust-strip"><div>${icon("shield-check-line")}<span><b>只做赛前记录</b><small>开赛后锁定，历史可回看</small></span></div><div>${icon("focus-3-line")}<span><b>结论先行</b><small>不懂球也能快速扫读</small></span></div><div>${icon("database-2-line")}<span><b>模型持续更新</b><small>时间与版本清楚可见</small></span></div></section>
   </div>`;
