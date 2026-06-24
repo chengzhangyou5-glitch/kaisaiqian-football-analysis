@@ -268,6 +268,78 @@ export const matches = [
     model: { consistency: 79, confidence: "中高", drawRisk: "中", scoreWeights: [19, 16, 13, 11, 8, 7], scoreNotes: ["巴西小胜", "零封延伸", "重点防平", "失球客胜", "低效平局", "主队冷门"], goalDistribution: [{ label: "0–2球", weight: 62, core: true }, { label: "3–4球", weight: 31, core: false }, { label: "5球以上", weight: 7, core: false }], factors: [{ label: "攻防状态", value: 83 }, { label: "阵容完整度", value: 82 }, { label: "节奏控制", value: 84 }, { label: "稳定性", value: 78 }], riskTriggers: ["巴西持续围攻但禁区最后一传效率偏低", "苏格兰定位球获得前场二点机会", "巴西轮换导致边路压制下降"] },
     riskNotes: ["巴西方向更清晰，但苏格兰低位防守具备韧性", "苏格兰定位球是主要变量", "让胜平负更偏一球客胜的让平路径"],
     why: "巴西前两轮一平一胜，整体控球压制和个人能力仍在本组第一梯队。苏格兰此前能小胜海地、也只是一球小负摩洛哥，说明低位防守并不容易被快速打穿。因此客胜方向可以更明确，但比分仍按 0-1、0-2 的稳健路径处理。"
+  },
+  {
+    id: "czech-mexico", competition: "2026 世界杯 A 组", date: "06-25", time: "明早 09:00", updated: "赛前版本",
+    home: { name: "捷克", code: "cz" }, away: { name: "墨西哥", code: "mx" },
+    conclusion: "墨西哥控球与比赛经验略占优势，但捷克身体对抗和定位球足够制造阻力，本场首选防平。",
+    trend: [34, 30, 36], handicap: { line: 1, trend: [38, 42, 20] }, scores: ["1-1", "0-1", "1-0", "0-0", "1-2", "2-1"], goals: "0–2", risk: "高", riskTone: "high",
+    model: { consistency: 67, confidence: "中", drawRisk: "高", scoreWeights: [18, 16, 14, 11, 8, 7], scoreNotes: ["首选防平", "墨西哥小胜", "捷克冷门", "低效平局", "客胜延伸", "主队延伸"], goalDistribution: [{ label: "0–2球", weight: 61, core: true }, { label: "3–4球", weight: 31, core: false }, { label: "5球以上", weight: 8, core: false }], factors: [{ label: "攻防状态", value: 70 }, { label: "阵容完整度", value: 76 }, { label: "节奏控制", value: 72 }, { label: "稳定性", value: 68 }], riskTriggers: ["墨西哥控球占优但推进效率偏低", "捷克定位球连续制造二点机会", "双方谨慎导致比赛长时间停留低比分"] },
+    riskNotes: ["双方方向差距很小", "捷克主场身份提高对抗权重", "墨西哥更像小胜而非大胜路径"],
+    why: "这场是典型的窄分布比赛。墨西哥整体控球和经验略好，但捷克的高空球、身体对抗和定位球能把比赛拖入低节奏。模拟显示 1-1、0-1、1-0 都很接近，因此方向只给墨西哥微弱领先，首选比分放在 1-1。"
+  },
+  {
+    id: "south-africa-korea", competition: "2026 世界杯 A 组", date: "06-25", time: "明早 09:00", updated: "赛前版本",
+    home: { name: "南非", code: "za" }, away: { name: "韩国", code: "kr" },
+    conclusion: "韩国跑动强度、前场压迫和转换速度略占优势，客胜优先；南非身体对抗会让平局权重保持较高。",
+    trend: [29, 30, 41], handicap: { line: 1, trend: [39, 41, 20] }, scores: ["0-1", "1-1", "0-0", "1-0", "1-2", "0-2"], goals: "0–2", risk: "中高", riskTone: "high",
+    model: { consistency: 71, confidence: "中", drawRisk: "偏高", scoreWeights: [18, 17, 12, 10, 8, 7], scoreNotes: ["韩国小胜", "重点防平", "低效平局", "南非冷门", "失球客胜", "零封延伸"], goalDistribution: [{ label: "0–2球", weight: 64, core: true }, { label: "3–4球", weight: 30, core: false }, { label: "5球以上", weight: 6, core: false }], factors: [{ label: "攻防状态", value: 73 }, { label: "阵容完整度", value: 77 }, { label: "节奏控制", value: 70 }, { label: "稳定性", value: 69 }], riskTriggers: ["韩国压迫无法转化为前场射门", "南非身体对抗拖慢比赛节奏", "客队边路推进被主队强对抗打断"] },
+    riskNotes: ["韩国方向略清晰但领先幅度不大", "南非具备把比赛拖成低比分的能力", "让胜平负更偏一球客胜的让平路径"],
+    why: "韩国的跑动、前场逼抢和转换速度更有连续性，但南非对抗强度高，且容易把比赛拉到低节奏。0-1 是最稳的客胜路径，1-1 和 0-0 需要重点保留；整体总进球继续落在 0–2 球。"
+  },
+  {
+    id: "curacao-ivory-coast", competition: "2026 世界杯 E 组", date: "06-26", time: "后天 04:00", updated: "赛前版本",
+    home: { name: "库拉索", code: "cw" }, away: { name: "科特迪瓦", code: "ci" },
+    conclusion: "科特迪瓦身体强度、防守韧性和转换质量更好，客胜优先；库拉索低位收缩会压低比分上限。",
+    trend: [19, 30, 51], handicap: { line: 1, trend: [38, 42, 20] }, scores: ["0-1", "0-0", "1-1", "0-2", "1-0", "1-2"], goals: "0–2", risk: "中", riskTone: "medium",
+    model: { consistency: 74, confidence: "中", drawRisk: "偏高", scoreWeights: [19, 15, 12, 11, 8, 7], scoreNotes: ["科特迪瓦小胜", "低效防平", "开放平局", "零封延伸", "主队冷门", "失球客胜"], goalDistribution: [{ label: "0–2球", weight: 70, core: true }, { label: "3–4球", weight: 26, core: false }, { label: "5球以上", weight: 4, core: false }], factors: [{ label: "攻防状态", value: 75 }, { label: "阵容完整度", value: 78 }, { label: "节奏控制", value: 73 }, { label: "稳定性", value: 74 }], riskTriggers: ["科特迪瓦控球占优但禁区效率不足", "库拉索低位防守持续压缩空间", "客队领先后主动降低比赛节奏"] },
+    riskNotes: ["科特迪瓦方向较清晰，但比分更偏一球差", "库拉索防守收缩会提高 0-0 和 1-1 权重", "总进球主区间明显偏低"],
+    why: "库拉索前两轮进攻产出有限，科特迪瓦则具备更好的身体对抗和防守稳定性。客胜是第一方向，但考虑到库拉索会压低空间，本场不适合追高比分，0-1 是更稳的主路径。"
+  },
+  {
+    id: "ecuador-germany", competition: "2026 世界杯 E 组", date: "06-26", time: "后天 04:00", updated: "赛前版本",
+    home: { name: "厄瓜多尔", code: "ec" }, away: { name: "德国", code: "de" },
+    conclusion: "德国整体进攻层级和禁区效率更高，客胜优先；厄瓜多尔身体对抗会让一球差和防平路径保留。",
+    trend: [21, 25, 54], handicap: { line: 1, trend: [36, 42, 22] }, scores: ["0-1", "1-1", "0-2", "1-2", "0-0", "1-0"], goals: "0–2", risk: "中", riskTone: "medium",
+    model: { consistency: 77, confidence: "中高", drawRisk: "中", scoreWeights: [18, 16, 14, 12, 8, 7], scoreNotes: ["德国小胜", "重点防平", "零封延伸", "失球客胜", "低效平局", "主队冷门"], goalDistribution: [{ label: "0–2球", weight: 53, core: true }, { label: "3–4球", weight: 35, core: false }, { label: "5球以上", weight: 12, core: false }], factors: [{ label: "攻防状态", value: 82 }, { label: "阵容完整度", value: 81 }, { label: "节奏控制", value: 79 }, { label: "稳定性", value: 76 }], riskTriggers: ["德国轮换导致前场协同下降", "厄瓜多尔强对抗破坏客队推进节奏", "客队早段未破局导致比分收缩"] },
+    riskNotes: ["德国方向更强，但厄瓜多尔并非弱对抗球队", "让胜平负更偏德国一球客胜", "若德国早段进球，3–4 球区间会明显上升"],
+    why: "德国前两轮已经展示出更高的进攻上限，厄瓜多尔则更依赖身体对抗和防守韧性。综合看德国客胜更合理，但考虑到厄瓜多尔能拖慢节奏，首选 0-1，同时保留 1-1 防平和 0-2 延伸。"
+  },
+  {
+    id: "japan-sweden", competition: "2026 世界杯 F 组", date: "06-26", time: "后天 07:00", updated: "赛前版本",
+    home: { name: "日本", code: "jp" }, away: { name: "瑞典", code: "se" },
+    conclusion: "日本控球衔接和整体稳定性略优，主胜微弱优先；瑞典直接冲击和高空球使平局、客队进球路径必须保留。",
+    trend: [44, 26, 30], handicap: { line: -1, trend: [24, 36, 40] }, scores: ["1-1", "1-0", "2-1", "0-1", "2-0", "2-2"], goals: "0–2", risk: "中高", riskTone: "high",
+    model: { consistency: 70, confidence: "中", drawRisk: "偏高", scoreWeights: [18, 16, 14, 12, 8, 7], scoreNotes: ["首选防平", "日本小胜", "失球主胜", "瑞典冷门", "零封延伸", "开放平局"], goalDistribution: [{ label: "0–2球", weight: 51, core: true }, { label: "3–4球", weight: 37, core: false }, { label: "5球以上", weight: 12, core: false }], factors: [{ label: "攻防状态", value: 79 }, { label: "阵容完整度", value: 80 }, { label: "节奏控制", value: 82 }, { label: "稳定性", value: 75 }], riskTriggers: ["瑞典高空球连续冲击日本禁区", "日本控球占优但禁区触球不足", "双方早段进球把比赛带入开放节奏"] },
+    riskNotes: ["日本方向略优但优势不大", "瑞典进攻上限和波动都较大", "比分首选防平比强行主胜更稳"],
+    why: "日本前两轮稳定性更好，尤其组织和转换衔接优于瑞典；但瑞典的直接打法、高点和反击效率会制造明显风险。模型给日本微弱领先，但最高单一比分是 1-1，因此结论稳健处理为日本微优、首选防平。"
+  },
+  {
+    id: "tunisia-netherlands", competition: "2026 世界杯 F 组", date: "06-26", time: "后天 07:00", updated: "赛前版本",
+    home: { name: "突尼斯", code: "tn" }, away: { name: "荷兰", code: "nl" },
+    conclusion: "荷兰阵地压制和前场个人能力明显更强，客胜是第一方向；突尼斯低位防守会让比分偏向稳健小胜。",
+    trend: [14, 23, 63], handicap: { line: 1, trend: [33, 42, 25] }, scores: ["0-1", "0-2", "1-1", "1-2", "0-0", "0-3"], goals: "0–2", risk: "中", riskTone: "medium",
+    model: { consistency: 82, confidence: "中高", drawRisk: "中", scoreWeights: [19, 17, 13, 11, 8, 7], scoreNotes: ["荷兰小胜", "零封延伸", "重点防平", "失球客胜", "低效平局", "优势放大"], goalDistribution: [{ label: "0–2球", weight: 57, core: true }, { label: "3–4球", weight: 34, core: false }, { label: "5球以上", weight: 9, core: false }], factors: [{ label: "攻防状态", value: 84 }, { label: "阵容完整度", value: 81 }, { label: "节奏控制", value: 83 }, { label: "稳定性", value: 78 }], riskTriggers: ["荷兰久攻不下导致节奏被拖慢", "突尼斯定位球获得前场二点机会", "荷兰轮换使边路压迫下降"] },
+    riskNotes: ["荷兰方向清晰但不必强行大比分", "突尼斯会优先压低空间", "让胜平负更偏一球客胜的让平路径"],
+    why: "荷兰整体阵容、控球和前场创造力都高于突尼斯，客胜方向比较明确。不过突尼斯面对强队时大概率收缩防守，比赛会更像 0-1、0-2 的稳健路径，0–2 球仍是核心区间。"
+  },
+  {
+    id: "paraguay-australia", competition: "2026 世界杯 D 组", date: "06-26", time: "后天 10:00", updated: "赛前版本",
+    home: { name: "巴拉圭", code: "py" }, away: { name: "澳大利亚", code: "au" },
+    conclusion: "两队实力和状态非常接近，澳大利亚对抗和定位球略占优势，但本场更适合首选防平。",
+    trend: [34, 31, 35], handicap: { line: 1, trend: [42, 39, 19] }, scores: ["1-1", "0-1", "1-0", "0-0", "1-2", "2-1"], goals: "0–2", risk: "高", riskTone: "high",
+    model: { consistency: 66, confidence: "中", drawRisk: "高", scoreWeights: [18, 16, 14, 12, 8, 7], scoreNotes: ["首选防平", "澳洲小胜", "巴拉圭冷门", "低效平局", "客胜延伸", "主队延伸"], goalDistribution: [{ label: "0–2球", weight: 67, core: true }, { label: "3–4球", weight: 28, core: false }, { label: "5球以上", weight: 5, core: false }], factors: [{ label: "攻防状态", value: 69 }, { label: "阵容完整度", value: 76 }, { label: "节奏控制", value: 70 }, { label: "稳定性", value: 67 }], riskTriggers: ["双方中场缠斗导致有效射门偏少", "定位球成为主要破局方式", "任一方早段进球改变低比分结构"] },
+    riskNotes: ["三项方向差距极小", "澳大利亚略占对抗优势但不足以拉开", "低比分平局权重最高"],
+    why: "巴拉圭和澳大利亚都不是稳定压制型球队，比赛更可能集中在对抗、定位球和二点球。澳大利亚略有身体和定位球优势，但不足以形成断层，因此 1-1 放在首选，0-1 作为客队小胜延伸。"
+  },
+  {
+    id: "turkey-usa", competition: "2026 世界杯 D 组", date: "06-26", time: "后天 10:00", updated: "赛前版本",
+    home: { name: "土耳其", code: "tr" }, away: { name: "美国", code: "us" },
+    conclusion: "美国速度、转换和前场冲击略占优势，客胜优先；土耳其中场组织和定位球使平局风险仍然不低。",
+    trend: [29, 28, 43], handicap: { line: 1, trend: [38, 40, 22] }, scores: ["1-1", "0-1", "1-2", "0-0", "1-0", "0-2"], goals: "0–2", risk: "中高", riskTone: "high",
+    model: { consistency: 71, confidence: "中", drawRisk: "偏高", scoreWeights: [18, 17, 13, 11, 8, 7], scoreNotes: ["首选防平", "美国小胜", "失球客胜", "低效平局", "主队冷门", "零封延伸"], goalDistribution: [{ label: "0–2球", weight: 57, core: true }, { label: "3–4球", weight: 33, core: false }, { label: "5球以上", weight: 10, core: false }], factors: [{ label: "攻防状态", value: 74 }, { label: "阵容完整度", value: 78 }, { label: "节奏控制", value: 73 }, { label: "稳定性", value: 70 }], riskTriggers: ["美国转换优势被土耳其中场缠斗削弱", "土耳其定位球持续制造禁区混乱", "客队领先后主动降速导致比分停留一球差"] },
+    riskNotes: ["美国方向略优但仍需防平", "土耳其具备组织和定位球变量", "让胜平负偏向一球客胜的让平"],
+    why: "美国的速度和纵向冲击更适合制造高质量机会，但土耳其并不缺中场组织和定位球威胁。方向上美国略优，比分上先看 1-1 与 0-1 两条稳健路径，再保留 1-2 的客胜延伸。"
   }
 ];
 
