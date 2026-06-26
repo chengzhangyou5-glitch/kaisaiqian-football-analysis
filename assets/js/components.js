@@ -1,4 +1,4 @@
-import { matches, historyRecords, metrics } from "./data.js?v=20260627-rollover";
+import { matches, historyRecords, metrics } from "./data.js?v=20260627-xianyu-official";
 
 const flag = (team) => `<img class="team-flag" src="https://flagcdn.com/w160/${team.code}.png" alt="${team.name}队旗" width="80" height="54">`;
 const icon = (name) => `<i class="ri-${name}" aria-hidden="true"></i>`;
@@ -13,6 +13,23 @@ const teamCodes = {
   "英格兰":"gb-eng", "克罗地亚":"hr", "葡萄牙":"pt", "刚果（金）":"cd", "乌兹别克斯坦":"uz", "哥伦比亚":"co"
 };
 const pdfLink = (id, label) => `<a class="icon-button download-button" href="output/pdf/${id}-analysis.pdf" download="${label}-分析.pdf" aria-label="下载${label} PDF">${icon("file-download-line")}<span>下载 PDF</span></a>`;
+const officialAccount = {
+  platform: "闲鱼",
+  nickname: "草地赛事王",
+  member: "tb416734536",
+  intro: "专注世界杯赛前数据整理、概率分析与观赛报告"
+};
+
+function antiResaleBanner() {
+  return `<section class="anti-resale-banner" aria-label="官方渠道与防倒卖提示">
+    <div class="anti-resale-icon">${icon("shield-keyhole-line")}</div>
+    <div class="anti-resale-copy">
+      <strong>本网站不得倒卖，买错渠道请找卖家退款</strong>
+      <p>官方平台：${officialAccount.platform}　昵称：${officialAccount.nickname}　会员名：${officialAccount.member}</p>
+      <small>如并非通过以上闲鱼账号购买，请直接联系你付款的卖家或平台申请退款；倒卖版本可能面临不更新数据或关闭访问权限等风险，且没有售后保障。</small>
+    </div>
+  </section>`;
+}
 
 export function pageIntro(kicker, title, description, aside = "") {
   return `<header class="page-intro">
@@ -116,6 +133,7 @@ function renderTags(tags, extraClass = "") {
 export function upcomingPage() {
   return `<div class="page page-upcoming">
     ${pageIntro("MATCH INTELLIGENCE", "待赛分析", `已更新 ${matches.length} 场 · 开赛前持续更新`, `<div class="update-chip">${icon("pulse-line")}模型状态正常</div>`)}
+    ${antiResaleBanner()}
     <div class="match-grid">${matches.map((m, i) => matchCard(m, i === 0)).join("")}</div>
     <section class="trust-strip"><div>${icon("shield-check-line")}<span><b>只做赛前记录</b><small>开赛后锁定，历史可回看</small></span></div><div>${icon("focus-3-line")}<span><b>结论先行</b><small>不懂球也能快速扫读</small></span></div><div>${icon("database-2-line")}<span><b>模型持续更新</b><small>时间与版本清楚可见</small></span></div></section>
   </div>`;
@@ -125,6 +143,7 @@ export function detailPage(id) {
   const match = matches.find((item) => item.id === id) || matches[0];
   return `<div class="page page-detail">
     <div class="detail-toolbar"><button class="text-button" type="button" data-action="back">${icon("arrow-left-line")}返回待赛</button><span>比赛详情</span>${pdfLink(match.id, `${match.home.name}-${match.away.name}`)}</div>
+    ${antiResaleBanner()}
     <section class="match-hero">
       <div class="card-topline"><span class="competition-pill">${icon("football-line")}${match.competition}</span><span class="risk-inline ${match.riskTone}">${icon("alarm-warning-line")}风险 ${match.risk}</span></div>
       <div class="teams-row large"><div class="team">${flag(match.home)}<strong>${match.home.name}</strong></div><div class="versus"><b>VS</b><small>${match.time}</small></div><div class="team">${flag(match.away)}<strong>${match.away.name}</strong></div></div>
@@ -157,6 +176,7 @@ export function historyDetailPage(id) {
   const actualGoals = record.result.split("-").map(Number).reduce((sum, value) => sum + value, 0);
   return `<div class="page page-detail page-history-detail">
     <div class="detail-toolbar"><button class="text-button" type="button" data-action="back-history">${icon("arrow-left-line")}返回准确率</button><span>历史预测详情</span>${pdfLink(record.id, `${home.name}-${away.name}`)}</div>
+    ${antiResaleBanner()}
     <section class="match-hero history-match-hero">
       <div class="card-topline"><span class="competition-pill">${icon("football-line")}${record.competition}</span><span class="history-record-pill">已完赛记录</span></div>
       <div class="teams-row large"><div class="team">${flag(home)}<strong>${home.name}</strong></div><div class="versus history-result"><b>${record.result}</b><small>实际结果</small></div><div class="team">${flag(away)}<strong>${away.name}</strong></div></div>
@@ -194,6 +214,7 @@ function historyCard(record) {
 export function historyPage() {
   return `<div class="page page-history">
     ${pageIntro("VERIFICATION CENTER", "历史验证中心", `近 ${historyRecords.length} 场赛前分析表现 · 持续更新`)}
+    ${antiResaleBanner()}
     <section class="metric-hero"><div class="metric-main"><span>近 ${historyRecords.length} 场胜平负方向一致率</span><strong>${metrics.direction}%</strong><small>基于已完赛场次统计</small></div><div class="metric-grid"><div><span>比分路径参考率</span><b>${metrics.score}%</b><small>${Math.round(metrics.score * historyRecords.length / 100)}/${historyRecords.length} 场比分覆盖</small></div><div><span>总进球区间参考率</span><b>${metrics.goals}%</b><small>${Math.round(metrics.goals * historyRecords.length / 100)}/${historyRecords.length} 场区间覆盖</small></div><div><span>让胜平负参考率</span><b>${metrics.handicap}%</b><small>${Math.round(metrics.handicap * metrics.handicapSamples / 100)}/${metrics.handicapSamples} 场方向覆盖</small></div></div></section>
     <section class="history-section"><div class="section-heading"><div><p class="eyebrow">RECORDS</p><h2>历史场次明细</h2></div><div class="history-heading-meta"><div class="history-legend"><span><i class="hit"></i>命中</span><span><i class="miss"></i>未中</span></div><span>${historyRecords.length} 场记录</span></div></div><div class="history-list">${historyRecords.map(historyCard).join("")}</div></section>
   </div>`;
@@ -204,6 +225,7 @@ export function searchPage(query = "") {
   const filtered = normalized ? historyRecords.filter(r => `${r.match}${r.date}${r.competition}`.toLowerCase().includes(normalized)) : historyRecords.slice(0, 4);
   return `<div class="page page-search">
     ${pageIntro("MATCH ARCHIVE", "搜索历史场次", "输入球队、赛事或日期，回看当时的完整判断")}
+    ${antiResaleBanner()}
     <div class="search-box">${icon("search-line")}<input id="history-search" type="search" value="${query}" placeholder="输入球队、赛事或日期" autocomplete="off"><kbd>ESC</kbd></div>
     <div class="search-meta"><span>${query ? `找到 ${filtered.length} 场相关记录` : "最近查看"}</span>${query ? `<button type="button" data-action="clear-search">清除搜索</button>` : ""}</div>
     <div class="search-results">${filtered.length ? filtered.map(record => `<article class="search-result">
@@ -216,5 +238,21 @@ export function searchPage(query = "") {
 }
 
 export function noticeModal() {
-  return `<div class="modal-icon">${icon("notification-3-line")}</div><p class="eyebrow">LIVE UPDATE</p><h2 id="modal-title">开赛前持续更新</h2><p>待赛场次会根据最新公开足球情报更新模型时间。比赛开始后，分析内容将锁定并进入历史验证。</p><button class="primary-button" type="button" data-action="close-modal">明白</button>`;
+  return `<div class="official-modal" data-official-notice="true">
+    <div class="modal-icon warning">${icon("shield-keyhole-line")}</div>
+    <p class="eyebrow">OFFICIAL NOTICE</p>
+    <h2 id="modal-title">买错渠道请直接找卖家退款</h2>
+    <div class="official-account-card">
+      <div><span>平台</span><strong>${officialAccount.platform}</strong></div>
+      <div><span>昵称</span><strong>${officialAccount.nickname}</strong></div>
+      <div><span>会员名</span><strong>${officialAccount.member}</strong></div>
+      <p>${officialAccount.intro}</p>
+    </div>
+    <ul class="official-warning-list">
+      <li>${icon("error-warning-line")}本网站内容不得倒卖、转售或冒充官方渠道销售。</li>
+      <li>${icon("refund-2-line")}如果不是在以上闲鱼账号购买，请直接联系你付款的卖家退款，或在平台申请退款。</li>
+      <li>${icon("lock-line")}倒卖版本可能随时不更新数据或关闭访问权限，完全没有售后保障。</li>
+    </ul>
+    <button class="primary-button" type="button" data-action="close-modal">我知道了</button>
+  </div>`;
 }

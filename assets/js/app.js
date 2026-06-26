@@ -1,4 +1,4 @@
-import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260627-rollover";
+import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260627-xianyu-official";
 
 const app = document.querySelector("#app");
 const modalLayer = document.querySelector("#modal-layer");
@@ -8,6 +8,7 @@ let searchQuery = "";
 let toastTimer;
 let isComposing = false;
 let skipNextInput = false;
+const officialNoticeKey = "kaisaiqian-official-notice-seen-v2";
 
 function route() {
   const hash = location.hash.replace(/^#/, "") || "upcoming";
@@ -51,8 +52,21 @@ function showModal(content) {
 }
 
 function closeModal() {
+  if (modalContent.querySelector("[data-official-notice]")) {
+    try { sessionStorage.setItem(officialNoticeKey, "1"); } catch {}
+  }
   modalLayer.hidden = true;
   document.body.classList.remove("modal-open");
+}
+
+function showOfficialNoticeOnce() {
+  try {
+    if (sessionStorage.getItem(officialNoticeKey)) return;
+  } catch {}
+  window.setTimeout(() => {
+    if (!modalLayer.hidden) return;
+    showModal(noticeModal());
+  }, 420);
 }
 
 function showToast(message) {
@@ -120,3 +134,4 @@ document.addEventListener("compositionend", (event) => {
 
 window.addEventListener("hashchange", () => render());
 render();
+showOfficialNoticeOnce();
