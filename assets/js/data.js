@@ -232,7 +232,7 @@ const june24CompletedMatches = [
   }
 ];
 
-export const matches = [
+const june25CompletedMatches = [
   {
     id: "bosnia-qatar", competition: "2026 世界杯 B 组", date: "06-25", time: "明早 03:00", updated: "赛前版本",
     home: { name: "波黑", code: "ba" }, away: { name: "卡塔尔", code: "qa" },
@@ -343,6 +343,63 @@ export const matches = [
   }
 ];
 
+export const matches = [
+  {
+    id: "norway-france", competition: "2026 世界杯 I 组", date: "06-27", time: "明早 03:00", updated: "赛前版本",
+    home: { name: "挪威", code: "no" }, away: { name: "法国", code: "fr" },
+    conclusion: "法国整体阵容厚度和机会创造更优，客胜作为第一方向；挪威前场冲击力强，比分首选仍需防平。",
+    trend: [30, 25, 45], handicap: { line: 1, trend: [40, 38, 22] }, scores: ["1-1", "0-1", "1-2", "0-2", "1-0", "2-2"], goals: "0–2", risk: "中高", riskTone: "high",
+    model: { consistency: 72, confidence: "中", drawRisk: "偏高", scoreWeights: [18, 16, 14, 12, 8, 7], scoreNotes: ["首选防平", "法国小胜", "失球客胜", "零封延伸", "挪威冷门", "开放平局"], goalDistribution: [{ label: "0–2球", weight: 48, core: true }, { label: "3–4球", weight: 37, core: false }, { label: "5球以上", weight: 15, core: false }], factors: [{ label: "攻防状态", value: 80 }, { label: "阵容完整度", value: 82 }, { label: "节奏控制", value: 78 }, { label: "稳定性", value: 75 }], riskTriggers: ["法国轮换导致前场协同下降", "挪威高点和纵向冲击连续制造二点", "客队领先后主动控速导致比分收缩"] },
+    riskNotes: ["法国方向更优但挪威进攻上限不低", "平局单比分权重最高", "让胜平负更偏挪威受让不败路径"],
+    why: "法国前两轮进攻层级更完整，整体实力仍高于挪威；但挪威此前展现出很强的前场效率和高点冲击，单看比分分布 1-1 与 0-1 接近。因此本场方向给法国胜，但第一比分放在 1-1，属于客胜微优下的稳健处理。"
+  },
+  {
+    id: "senegal-iraq", competition: "2026 世界杯 I 组", date: "06-27", time: "明早 03:00", updated: "赛前版本",
+    home: { name: "塞内加尔", code: "sn" }, away: { name: "伊拉克", code: "iq" },
+    conclusion: "塞内加尔身体强度、边路冲击和防守回收更好，主胜优先；伊拉克反击路径需要保留但不宜高估。",
+    trend: [55, 26, 19], handicap: { line: -1, trend: [33, 42, 25] }, scores: ["1-0", "1-1", "2-0", "2-1", "0-0", "0-1"], goals: "0–2", risk: "中", riskTone: "medium",
+    model: { consistency: 76, confidence: "中高", drawRisk: "中", scoreWeights: [18, 16, 14, 12, 8, 7], scoreNotes: ["塞内加尔小胜", "重点防平", "零封延伸", "失球主胜", "低效平局", "伊拉克冷门"], goalDistribution: [{ label: "0–2球", weight: 58, core: true }, { label: "3–4球", weight: 33, core: false }, { label: "5球以上", weight: 9, core: false }], factors: [{ label: "攻防状态", value: 77 }, { label: "阵容完整度", value: 80 }, { label: "节奏控制", value: 75 }, { label: "稳定性", value: 74 }], riskTriggers: ["塞内加尔前场机会转化率偏低", "伊拉克反击获得连续前场定位球", "主队领先后过早降速"] },
+    riskNotes: ["塞内加尔方向更清晰，但首选仍是一球小胜", "伊拉克防线波动较大", "让平权重高于让胜"],
+    why: "塞内加尔虽前两轮结果压力不小，但对抗、速度和防守回收仍优于伊拉克。伊拉克此前被挪威打穿，防守转换是主要弱点。本场主胜优先，但更像 1-0、2-0 这种低比分主胜，不追大比分。"
+  },
+  {
+    id: "cape-verde-saudi-arabia", competition: "2026 世界杯 H 组", date: "06-27", time: "明早 08:00", updated: "赛前版本",
+    home: { name: "佛得角", code: "cv" }, away: { name: "沙特阿拉伯", code: "sa" },
+    conclusion: "佛得角防守组织和反击质量略占优势，但沙特控球韧性不错，本场更适合小比分防平。",
+    trend: [38, 31, 31], handicap: { line: -1, trend: [18, 34, 48] }, scores: ["1-0", "0-0", "1-1", "0-1", "2-0", "2-1"], goals: "0–2", risk: "高", riskTone: "high",
+    model: { consistency: 66, confidence: "中", drawRisk: "高", scoreWeights: [18, 16, 14, 12, 8, 7], scoreNotes: ["佛得角小胜", "低效防平", "开放平局", "沙特冷门", "零封延伸", "失球主胜"], goalDistribution: [{ label: "0–2球", weight: 69, core: true }, { label: "3–4球", weight: 26, core: false }, { label: "5球以上", weight: 5, core: false }], factors: [{ label: "攻防状态", value: 70 }, { label: "阵容完整度", value: 74 }, { label: "节奏控制", value: 72 }, { label: "稳定性", value: 69 }], riskTriggers: ["佛得角控球不足导致推进断续", "沙特中场控球时间明显增加", "双方持续低节奏使平局权重上升"] },
+    riskNotes: ["三项方向差距很小", "佛得角只具备微弱主方向", "总进球明显偏低"],
+    why: "佛得角前两轮防守韧性已经得到验证，沙特则有能力把比赛拖进控球消耗。双方都不是稳定高产型，本场最稳妥的路径是 1-0、0-0、1-1 三条低比分，主方向只给佛得角微弱优势。"
+  },
+  {
+    id: "uruguay-spain", competition: "2026 世界杯 H 组", date: "06-27", time: "明早 08:00", updated: "赛前版本",
+    home: { name: "乌拉圭", code: "uy" }, away: { name: "西班牙", code: "es" },
+    conclusion: "西班牙控球质量和压迫层级更好，客胜微弱优先；乌拉圭对抗和禁区冲击使平局风险偏高。",
+    trend: [29, 27, 44], handicap: { line: 1, trend: [39, 40, 21] }, scores: ["1-1", "0-1", "1-0", "0-0", "1-2", "0-2"], goals: "0–2", risk: "中高", riskTone: "high",
+    model: { consistency: 72, confidence: "中", drawRisk: "偏高", scoreWeights: [18, 17, 12, 11, 8, 7], scoreNotes: ["首选防平", "西班牙小胜", "乌拉圭冷门", "低效平局", "失球客胜", "零封延伸"], goalDistribution: [{ label: "0–2球", weight: 57, core: true }, { label: "3–4球", weight: 33, core: false }, { label: "5球以上", weight: 10, core: false }], factors: [{ label: "攻防状态", value: 78 }, { label: "阵容完整度", value: 82 }, { label: "节奏控制", value: 84 }, { label: "稳定性", value: 74 }], riskTriggers: ["西班牙控球占优但缺少禁区效率", "乌拉圭身体对抗持续破坏节奏", "双方谨慎导致比赛长期低比分"] },
+    riskNotes: ["西班牙方向更优但不是断层优势", "乌拉圭对抗会提高平局权重", "让胜平负更偏受让方保护"],
+    why: "西班牙前一场大胜修复了终结信心，但乌拉圭的对抗和禁区冲击并不容易处理。模型给西班牙客胜优势，但 1-1 是最高单一比分，因此本场更适合客胜微优、防平优先。"
+  },
+  {
+    id: "egypt-iran", competition: "2026 世界杯 G 组", date: "06-27", time: "明早 11:00", updated: "赛前版本",
+    home: { name: "埃及", code: "eg" }, away: { name: "伊朗", code: "ir" },
+    conclusion: "埃及转换效率和前场个人处理略占优势，主胜微弱优先；伊朗反击和韧性使平局必须重点保留。",
+    trend: [42, 29, 29], handicap: { line: -1, trend: [22, 35, 43] }, scores: ["1-1", "1-0", "0-0", "0-1", "2-0", "2-1"], goals: "0–2", risk: "中高", riskTone: "high",
+    model: { consistency: 69, confidence: "中", drawRisk: "偏高", scoreWeights: [18, 16, 13, 11, 8, 7], scoreNotes: ["首选防平", "埃及小胜", "低效平局", "伊朗冷门", "零封延伸", "失球主胜"], goalDistribution: [{ label: "0–2球", weight: 61, core: true }, { label: "3–4球", weight: 31, core: false }, { label: "5球以上", weight: 8, core: false }], factors: [{ label: "攻防状态", value: 74 }, { label: "阵容完整度", value: 78 }, { label: "节奏控制", value: 72 }, { label: "稳定性", value: 71 }], riskTriggers: ["埃及控球时间增加但射门质量不足", "伊朗反击连续形成禁区二点", "双方都以稳守优先导致节奏偏慢"] },
+    riskNotes: ["埃及方向微优但领先不大", "伊朗两场低比分说明防守韧性强", "让胜平负偏向主队不穿线"],
+    why: "埃及前两轮的转换效率更稳定，伊朗则连续把强度拉到低比分区域。主方向给埃及，但最稳的单一比分仍是 1-1，其次才是 1-0，小比分和防平是本场核心。"
+  },
+  {
+    id: "new-zealand-belgium", competition: "2026 世界杯 G 组", date: "06-27", time: "明早 11:00", updated: "赛前版本",
+    home: { name: "新西兰", code: "nz" }, away: { name: "比利时", code: "be" },
+    conclusion: "比利时个人能力和中前场上限更高，客胜优先；新西兰定位球和对抗会让比分更偏稳健。",
+    trend: [22, 26, 52], handicap: { line: 1, trend: [36, 42, 22] }, scores: ["0-1", "1-1", "0-2", "0-0", "1-2", "1-0"], goals: "0–2", risk: "中", riskTone: "medium",
+    model: { consistency: 75, confidence: "中", drawRisk: "偏高", scoreWeights: [18, 16, 14, 11, 8, 7], scoreNotes: ["比利时小胜", "重点防平", "零封延伸", "低效平局", "失球客胜", "主队冷门"], goalDistribution: [{ label: "0–2球", weight: 59, core: true }, { label: "3–4球", weight: 32, core: false }, { label: "5球以上", weight: 9, core: false }], factors: [{ label: "攻防状态", value: 77 }, { label: "阵容完整度", value: 80 }, { label: "节奏控制", value: 74 }, { label: "稳定性", value: 72 }], riskTriggers: ["比利时阵地推进节奏偏慢", "新西兰定位球连续制造禁区混乱", "客队领先后主动控速导致比分停留一球差"] },
+    riskNotes: ["比利时方向更清楚，但前两轮进攻效率一般", "新西兰定位球是主要风险", "让胜平负更偏一球客胜的让平路径"],
+    why: "比利时前两轮结果平淡，但个人能力和中前场上限仍高于新西兰。新西兰有高空球和定位球威胁，因此不适合写成大胜；0-1、1-1、0-2 是更合理的稳健路径。"
+  }
+];
+
 const historyHandicap = {
   "mexico-south-africa": { line: -1, trend: [43, 32, 25], prediction: "让胜", actual: "让胜", hit: true },
   "korea-czech": { line: -1, trend: [31, 40, 29], prediction: "让平", actual: "让平", hit: true },
@@ -391,7 +448,19 @@ const historyHandicap = {
   "portugal-uzbekistan": { line: -1, trend: [42, 38, 20], prediction: "让胜", actual: "让胜", hit: true },
   "england-ghana": { line: -1, trend: [39, 40, 21], prediction: "让平", actual: "让负", hit: false },
   "panama-croatia": { line: 1, trend: [38, 42, 20], prediction: "让平", actual: "让平", hit: true },
-  "colombia-dr-congo": { line: -1, trend: [31, 42, 27], prediction: "让平", actual: "让平", hit: true }
+  "colombia-dr-congo": { line: -1, trend: [31, 42, 27], prediction: "让平", actual: "让平", hit: true },
+  "bosnia-qatar": { line: -1, trend: [23, 35, 42], prediction: "让负", actual: "让胜", hit: false },
+  "switzerland-canada": { line: -1, trend: [20, 34, 46], prediction: "让负", actual: "让平", hit: false },
+  "morocco-haiti": { line: -1, trend: [38, 41, 21], prediction: "让平", actual: "让胜", hit: false },
+  "scotland-brazil": { line: 1, trend: [37, 41, 22], prediction: "让平", actual: "让负", hit: false },
+  "czech-mexico": { line: 1, trend: [38, 42, 20], prediction: "让平", actual: "让负", hit: false },
+  "south-africa-korea": { line: 1, trend: [39, 41, 20], prediction: "让平", actual: "让胜", hit: false },
+  "curacao-ivory-coast": { line: 1, trend: [38, 42, 20], prediction: "让平", actual: "让负", hit: false },
+  "ecuador-germany": { line: 1, trend: [36, 42, 22], prediction: "让平", actual: "让胜", hit: false },
+  "japan-sweden": { line: -1, trend: [24, 36, 40], prediction: "让负", actual: "让负", hit: true },
+  "tunisia-netherlands": { line: 1, trend: [33, 42, 25], prediction: "让平", actual: "让负", hit: false },
+  "paraguay-australia": { line: 1, trend: [42, 39, 19], prediction: "让胜", actual: "让胜", hit: true },
+  "turkey-usa": { line: 1, trend: [38, 40, 22], prediction: "让平", actual: "让胜", hit: false }
 };
 
 function historySeed(id) {
@@ -510,10 +579,22 @@ const completedResults = {
   "portugal-uzbekistan": { date: "06-24 01:00", result: "5-0", direction: "葡萄牙胜", tags: ["方向命中", "比分未中", "进球未中"], review: "葡萄牙主胜方向得到验证，实际 5-0 明显高于赛前稳健比分和 0–2 主区间。" },
   "england-ghana": { date: "06-24 04:00", result: "0-0", direction: "平局", tags: ["方向未一致", "比分未中", "进球命中"], review: "0–2 球区间得到验证，但英格兰主胜方向和比分路径未覆盖零比零。" },
   "panama-croatia": { date: "06-24 07:00", result: "0-1", direction: "克罗地亚胜", tags: ["方向命中", "比分命中", "进球命中"], review: "克罗地亚客胜、0-1 首选比分和 0–2 球区间全部得到验证。" },
-  "colombia-dr-congo": { date: "06-24 10:00", result: "1-0", direction: "哥伦比亚胜", tags: ["方向命中", "比分命中", "进球命中"], review: "哥伦比亚主胜、1-0 首选比分和 0–2 球区间全部得到验证。" }
+  "colombia-dr-congo": { date: "06-24 10:00", result: "1-0", direction: "哥伦比亚胜", tags: ["方向命中", "比分命中", "进球命中"], review: "哥伦比亚主胜、1-0 首选比分和 0–2 球区间全部得到验证。" },
+  "bosnia-qatar": { date: "06-25 03:00", result: "3-1", direction: "波黑胜", tags: ["方向命中", "比分未中", "进球未中"], review: "波黑主胜方向得到验证，实际 3-1 进入 3–4 球档，比分高于赛前低比分主路径。" },
+  "switzerland-canada": { date: "06-25 03:00", result: "2-1", direction: "瑞士胜", tags: ["方向命中", "比分命中", "进球未中"], review: "瑞士主胜和 2-1 比分路径得到验证，实际三球落入 3–4 球档。" },
+  "morocco-haiti": { date: "06-25 06:00", result: "4-2", direction: "摩洛哥胜", tags: ["方向命中", "比分未中", "进球未中"], review: "摩洛哥主胜方向得到验证，实际六球明显高于赛前稳健区间。" },
+  "scotland-brazil": { date: "06-25 06:00", result: "0-3", direction: "巴西胜", tags: ["方向命中", "比分未中", "进球未中"], review: "巴西客胜方向得到验证，实际三球落入 3–4 球档，比分未覆盖。" },
+  "czech-mexico": { date: "06-25 09:00", result: "0-3", direction: "墨西哥胜", tags: ["方向命中", "比分未中", "进球未中"], review: "墨西哥客胜方向得到验证，实际优势比赛前小比分预期更明显。" },
+  "south-africa-korea": { date: "06-25 09:00", result: "1-0", direction: "南非胜", tags: ["方向未一致", "比分命中", "进球命中"], review: "1-0 比分路径和 0–2 球区间得到验证，方向由受让防平转为南非小胜。" },
+  "curacao-ivory-coast": { date: "06-26 04:00", result: "0-2", direction: "科特迪瓦胜", tags: ["方向命中", "比分命中", "进球命中"], review: "科特迪瓦客胜、0-2 比分路径和 0–2 球区间全部得到验证。" },
+  "ecuador-germany": { date: "06-26 04:00", result: "2-1", direction: "厄瓜多尔胜", tags: ["方向未一致", "比分未中", "进球未中"], review: "比赛进入主队反打路径，德国方向和赛前比分未覆盖，实际三球落入 3–4 球档。" },
+  "japan-sweden": { date: "06-26 07:00", result: "1-1", direction: "平局", tags: ["方向未一致", "比分命中", "进球命中"], review: "1-1 比分路径和 0–2 球区间得到验证，方向从客胜微优回落到平局。" },
+  "tunisia-netherlands": { date: "06-26 07:00", result: "1-3", direction: "荷兰胜", tags: ["方向命中", "比分未中", "进球未中"], review: "荷兰客胜方向得到验证，实际四球落入 3–4 球档，比分未覆盖。" },
+  "paraguay-australia": { date: "06-26 10:00", result: "0-0", direction: "平局", tags: ["方向未一致", "比分命中", "进球命中"], review: "0-0 比分路径和 0–2 球区间得到验证，方向层面实际落在平局。" },
+  "turkey-usa": { date: "06-26 10:00", result: "3-2", direction: "土耳其胜", tags: ["方向未一致", "比分未中", "进球未中"], review: "比赛被拉到五球以上开放节奏，客胜微优、防平和低比分路径均未覆盖。" }
 };
 
-const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches].map(match => {
+const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches].map(match => {
   const result = completedResults[match.id];
   return {
     id: match.id,
@@ -585,4 +666,4 @@ export const historyRecords = [
   return { ...cleanRecord, handicap, report };
 });
 
-export const metrics = { direction: 79.2, score: 54.2, goals: 56.3, handicap: 54.2, handicapSamples: 48 };
+export const metrics = { direction: 75.0, score: 51.7, goals: 51.7, handicap: 46.7, handicapSamples: 60 };
