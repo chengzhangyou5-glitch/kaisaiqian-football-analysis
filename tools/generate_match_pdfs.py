@@ -1,5 +1,6 @@
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 from reportlab.lib import colors
@@ -189,7 +190,10 @@ def write_pdf(item, history=False):
 
 if __name__ == "__main__":
     data = load_site_data()
+    selected_ids = set(sys.argv[1:])
     for match in data["matches"]:
-        write_pdf(match)
+        if not selected_ids or match["id"] in selected_ids:
+            write_pdf(match)
     for record in data["historyRecords"]:
-        write_pdf(record, history=True)
+        if not selected_ids or record["id"] in selected_ids:
+            write_pdf(record, history=True)
