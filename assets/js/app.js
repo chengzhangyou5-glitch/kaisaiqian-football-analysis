@@ -1,4 +1,4 @@
-import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260627-match-rollover";
+import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260628-knockout-rollover";
 
 const app = document.querySelector("#app");
 const modalLayer = document.querySelector("#modal-layer");
