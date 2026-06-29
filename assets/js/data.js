@@ -714,6 +714,25 @@ const completedResults = {
   "algeria-austria": { date: "06-29 08:00", result: "3-3", direction: "平局", tags: ["方向未一致", "比分未中", "进球未中"], review: "按既有规则记录赛果与历史状态。" }
 };
 
+function directionLabelFromMatch(match) {
+  const topIndex = match.trend.indexOf(Math.max(...match.trend));
+  if (topIndex === 0) return `${match.home.name}胜`;
+  if (topIndex === 1) return "平局";
+  return `${match.away.name}胜`;
+}
+
+function outcomeTypeFromResult(result) {
+  const [homeGoals, awayGoals] = result.split("-").map(Number);
+  if (homeGoals === awayGoals) return "draw";
+  return homeGoals > awayGoals ? "home" : "away";
+}
+
+function outcomeTypeFromDirection(direction, match) {
+  const [homeName] = match.split(" vs ");
+  if (direction === "平局") return "draw";
+  return direction.startsWith(homeName) ? "home" : "away";
+}
+
 const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches].map(match => {
   const result = completedResults[match.id];
   return {
@@ -722,7 +741,7 @@ const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches,
     competition: match.competition,
     match: `${match.home.name} vs ${match.away.name}`,
     result: result.result,
-    direction: result.direction,
+    direction: directionLabelFromMatch(match),
     scores: match.scores.slice(0, 2).join(" / "),
     goals: `${match.goals} 球`,
     review: result.review,
@@ -762,13 +781,21 @@ export const historyRecords = [
   const handicap = historyHandicap[record.id];
   const normalizedGoals = normalizeHistoryGoalRange(record);
   const isGoalHit = goalRangeHit(normalizedGoals, record.result);
-  const tags = [...record.tags.filter(tag => !tag.startsWith("进球")), isGoalHit ? "进球命中" : "进球未中"];
+  const isDirectionHit = outcomeTypeFromDirection(record.direction, record.match) === outcomeTypeFromResult(record.result);
+  const primaryScores = record.scores.split("/").map(score => score.trim()).slice(0, 2);
+  const isScoreHit = primaryScores.includes(record.result);
+  const tags = [
+    isDirectionHit ? "方向命中" : "方向未一致",
+    isScoreHit ? "比分命中" : "比分未中",
+    isGoalHit ? "进球命中" : "进球未中"
+  ];
   const directionSummary = tags.includes("方向命中") ? "方向得到验证" : "方向未覆盖";
   const scoreSummary = tags.includes("比分命中") ? "比分路径得到验证" : "比分路径未覆盖";
   const normalizedRecord = {
     ...record,
     goals: normalizedGoals,
     tags,
+    status: isDirectionHit ? "hit" : "miss",
     review: `${directionSummary}，${scoreSummary}，${normalizedGoals}${isGoalHit ? "得到验证" : "未覆盖实际总进球"}。`
   };
   const report = record.lockedPrediction

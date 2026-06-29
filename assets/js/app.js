@@ -1,4 +1,4 @@
-import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260628-knockout-rollover";
+import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260629-history-audit";
 
 const app = document.querySelector("#app");
 const modalLayer = document.querySelector("#modal-layer");
