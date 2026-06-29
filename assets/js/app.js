@@ -1,4 +1,4 @@
-import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260629-history-audit";
+import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260629-browser-print";
 
 const app = document.querySelector("#app");
 const modalLayer = document.querySelector("#modal-layer");
@@ -93,6 +93,7 @@ document.addEventListener("click", (event) => {
   if (action === "back") location.hash = "upcoming";
   if (action === "back-history") location.hash = "history";
   if (action === "notice") showModal(noticeModal());
+  if (action === "print-pdf") window.print();
   if (action === "close-modal") closeModal();
   if (action === "clear-search") { searchQuery = ""; render(); document.querySelector("#history-search")?.focus(); }
 });

@@ -1,7 +1,8 @@
-import { matches, historyRecords, metrics } from "./data.js?v=20260629-history-audit";
+import { matches, historyRecords, metrics } from "./data.js?v=20260629-browser-print";
 
 const flag = (team) => `<img class="team-flag" src="https://flagcdn.com/w160/${team.code}.png" alt="${team.name}队旗" width="80" height="54">`;
 const icon = (name) => `<i class="ri-${name}" aria-hidden="true"></i>`;
+const goalRangeLabel = (value) => value.includes("球") ? value : `${value} 球`;
 const teamCodes = {
   "墨西哥":"mx", "南非":"za", "韩国":"kr", "捷克":"cz", "加拿大":"ca", "波黑":"ba",
   "卡塔尔":"qa", "瑞士":"ch", "美国":"us", "巴拉圭":"py", "巴西":"br", "摩洛哥":"ma",
@@ -12,7 +13,7 @@ const teamCodes = {
   "阿根廷":"ar", "阿尔及利亚":"dz", "奥地利":"at", "约旦":"jo", "加纳":"gh", "巴拿马":"pa",
   "英格兰":"gb-eng", "克罗地亚":"hr", "葡萄牙":"pt", "刚果（金）":"cd", "乌兹别克斯坦":"uz", "哥伦比亚":"co"
 };
-const pdfLink = (id, label) => `<a class="icon-button download-button" href="output/pdf/${id}-analysis.pdf" download="${label}-分析.pdf" aria-label="下载${label} PDF">${icon("file-download-line")}<span>下载 PDF</span></a>`;
+const pdfLink = (label) => `<button class="icon-button download-button" type="button" data-action="print-pdf" aria-label="打印或另存为${label} PDF">${icon("file-download-line")}<span>生成 PDF</span></button>`;
 const officialAccount = {
   platform: "闲鱼",
   nickname: "草地赛事王",
@@ -49,7 +50,7 @@ export function matchCard(match, featured = false) {
       <div class="trend-labels"><span>主胜 <b>${match.trend[0]}%</b></span><span>平 <b>${match.trend[1]}%</b></span><span>客胜 <b>${match.trend[2]}%</b></span></div>
       <div class="stacked-bar"><i style="width:${match.trend[0]}%"></i><i style="width:${match.trend[1]}%"></i><i style="width:${match.trend[2]}%"></i></div>
     </div>
-    <div class="quick-stats"><div><span>首选比分路径</span><strong>${match.scores.slice(0, 2).join(" / ")}</strong></div><div><span>总进球区间</span><strong>${match.goals} 球</strong></div></div>
+    <div class="quick-stats"><div><span>首选比分路径</span><strong>${match.scores.slice(0, 2).join(" / ")}</strong></div><div><span>总进球区间</span><strong>${goalRangeLabel(match.goals)}</strong></div></div>
     <div class="conclusion-line">${icon("lightbulb-flash-line")}<p>${match.conclusion}</p></div>
     <div class="risk-line"><span>风险等级</span><b class="risk-badge ${match.riskTone}">${match.risk}<i></i></b></div>
     <button class="primary-button card-button" type="button" data-open-match="${match.id}">查看完整分析 ${icon("arrow-right-line")}</button>
@@ -82,7 +83,7 @@ function directionSummary(match) {
     <div class="summary-item"><span>方向置信度</span><b>${match.model.confidence}</b><small>平局风险 ${match.model.drawRisk}</small></div>
     <div class="summary-item"><span>领先幅度</span><b>${direction.lead}%</b><small>${direction.main.short}领先${direction.second.short}</small></div>
     <div class="summary-item"><span>比分主路径</span><b>${match.scores.slice(0, 2).join(" / ")}</b><small>首选双路径</small></div>
-    <div class="summary-item"><span>总进球区间</span><b>${match.goals}</b><small>${coreGoals}为核心</small></div>
+    <div class="summary-item"><span>总进球区间</span><b>${goalRangeLabel(match.goals)}</b><small>${coreGoals}为核心</small></div>
     <div class="summary-item"><span>让胜平负</span><b>${handicapDirection}</b><small>主队 ${match.handicap.line > 0 ? "+" : ""}${match.handicap.line} 球 · ${handicapMax}%</small></div>
     <div class="summary-item risk"><span>风险等级</span><b>${match.risk}</b><small>${match.model.riskTriggers[0]}</small></div>
   </section>`;
@@ -142,7 +143,7 @@ export function upcomingPage() {
 export function detailPage(id) {
   const match = matches.find((item) => item.id === id) || matches[0];
   return `<div class="page page-detail">
-    <div class="detail-toolbar"><button class="text-button" type="button" data-action="back">${icon("arrow-left-line")}返回待赛</button><span>比赛详情</span>${pdfLink(match.id, `${match.home.name}-${match.away.name}`)}</div>
+    <div class="detail-toolbar"><button class="text-button" type="button" data-action="back">${icon("arrow-left-line")}返回待赛</button><span>比赛详情</span>${pdfLink(`${match.home.name}-${match.away.name}`)}</div>
     ${antiResaleBanner()}
     <section class="match-hero">
       <div class="card-topline"><span class="competition-pill">${icon("football-line")}${match.competition}</span><span class="risk-inline ${match.riskTone}">${icon("alarm-warning-line")}风险 ${match.risk}</span></div>
@@ -159,7 +160,7 @@ export function detailPage(id) {
         ${modelEvidencePanel(match)}
       </div>
       <aside class="detail-secondary">
-        <section class="detail-panel goals-panel"><h2>总进球区间</h2><div class="goals-value"><strong>${match.goals}</strong><div><span>三档区间：已启用</span><span>概率分布：已重算</span></div></div><div class="goal-scale">${match.model.goalDistribution.map(item => `<i class="${item.core ? "active" : ""}"></i>`).join("")}</div><div class="goal-distribution">${match.model.goalDistribution.map(item => `<span class="${item.core ? "core" : ""}"><b>${item.label}</b><small>${item.weight}%${item.core ? " · 核心" : ""}</small></span>`).join("")}</div><p>三档概率用于展示比赛总进球的主要分布与延伸风险。</p></section>
+        <section class="detail-panel goals-panel"><h2>总进球区间</h2><div class="goals-value"><strong>${goalRangeLabel(match.goals)}</strong><div><span>三档区间：已启用</span><span>概率分布：已重算</span></div></div><div class="goal-scale">${match.model.goalDistribution.map(item => `<i class="${item.core ? "active" : ""}"></i>`).join("")}</div><div class="goal-distribution">${match.model.goalDistribution.map(item => `<span class="${item.core ? "core" : ""}"><b>${item.label}</b><small>${item.weight}%${item.core ? " · 核心" : ""}</small></span>`).join("")}</div><p>三档概率用于展示比赛总进球的主要分布与延伸风险。</p></section>
         <section class="detail-panel risk-panel"><h2>${icon("shield-line")}风险触发条件（${match.risk}）</h2><ul>${match.model.riskTriggers.map(note => `<li>${icon("alarm-warning-line")}${note}</li>`).join("")}</ul></section>
         <section class="detail-panel why-panel"><h2>${icon("brain-line")}为什么这样看</h2><p>${match.why}</p></section>
       </aside>
@@ -175,7 +176,7 @@ export function historyDetailPage(id) {
   const away = { ...report.away, code: teamCodes[report.away.name] || "un" };
   const actualGoals = record.result.split("-").map(Number).reduce((sum, value) => sum + value, 0);
   return `<div class="page page-detail page-history-detail">
-    <div class="detail-toolbar"><button class="text-button" type="button" data-action="back-history">${icon("arrow-left-line")}返回准确率</button><span>历史预测详情</span>${pdfLink(record.id, `${home.name}-${away.name}`)}</div>
+    <div class="detail-toolbar"><button class="text-button" type="button" data-action="back-history">${icon("arrow-left-line")}返回准确率</button><span>历史预测详情</span>${pdfLink(`${home.name}-${away.name}`)}</div>
     ${antiResaleBanner()}
     <section class="match-hero history-match-hero">
       <div class="card-topline"><span class="competition-pill">${icon("football-line")}${record.competition}</span><span class="history-record-pill">已完赛记录</span></div>
