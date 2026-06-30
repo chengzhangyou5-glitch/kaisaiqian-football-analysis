@@ -457,7 +457,7 @@ const june28CompletedMatches = [
   }
 ];
 
-export const matches = [
+const june30CompletedMatches = [
   {
     id: "south-africa-canada", competition: "2026 世界杯 淘汰赛", date: "06-29", time: "凌晨 03:00", updated: "赛前版本",
     home: { name: "南非", code: "za" }, away: { name: "加拿大", code: "ca" },
@@ -493,6 +493,63 @@ export const matches = [
     model: { consistency: 70, confidence: "中", drawRisk: "偏高", scoreWeights: [19, 18, 14, 11, 9, 7], scoreNotes: ["首选防平", "荷兰小胜", "零封主胜", "摩洛哥反击", "开放平局", "优势延伸"], goalDistribution: [{ label: "0–2球", weight: 50, core: true }, { label: "3–4球", weight: 40, core: false }, { label: "5球以上", weight: 10, core: false }], factors: [{ label: "攻防状态", value: 78 }, { label: "阵容完整度", value: 81 }, { label: "节奏控制", value: 79 }, { label: "稳定性", value: 73 }], riskTriggers: ["荷兰控球优势未转化为高质量射门", "摩洛哥快速反击持续形成威胁", "比赛长时间停留在一球差或平局"] },
     riskNotes: ["荷兰只具备有限优势", "摩洛哥韧性和反击质量较高", "1-1 是最需要防范的单一比分"],
     why: "荷兰小优，但摩洛哥韧性强、反击质量高，1-1 是重点风险比分。总进球以 0–2 球略优先，3–4 球作为次级打开路径。"
+  }
+];
+
+export const matches = [
+  {
+    id: "ivory-coast-norway", competition: "2026 世界杯 淘汰赛", date: "07-01", time: "凌晨 02:00", updated: "赛前版本",
+    home: { name: "科特迪瓦", code: "ci" }, away: { name: "挪威", code: "no" },
+    conclusion: "挪威前场冲击力略强，客胜作为第一方向；科特迪瓦对抗、防守回收和转换质量使平局风险偏高。",
+    trend: [27, 29, 44], handicap: { line: 1, trend: [47, 35, 18] }, scores: ["1-2", "1-1", "0-1", "2-1", "0-2", "2-2"], goals: "3–4", risk: "中高", riskTone: "high",
+    model: { consistency: 71, confidence: "中", drawRisk: "偏高", scoreWeights: [19, 17, 14, 11, 8, 7], scoreNotes: ["挪威小胜", "重点防平", "零封客胜", "主队反打", "优势延伸", "开放平局"], goalDistribution: [{ label: "0–2球", weight: 42, core: false }, { label: "3–4球", weight: 46, core: true }, { label: "5球以上", weight: 12, core: false }], factors: [{ label: "攻防状态", value: 78 }, { label: "阵容完整度", value: 79 }, { label: "节奏控制", value: 73 }, { label: "稳定性", value: 72 }], riskTriggers: ["科特迪瓦强对抗持续切断挪威推进", "挪威高位压迫被主队快速越过", "双方早段进球把比赛推入开放节奏"] },
+    riskNotes: ["挪威进攻上限更高但防线并不稳定", "科特迪瓦三场小组赛防守结构完整", "对抗强度会放大平局与一球差路径"],
+    why: "挪威小组赛进攻产量更高，科特迪瓦则依靠稳定防守和身体对抗晋级。客胜略优但优势有限，1-2 与 1-1 是首选双路径，总进球以 3–4 球为核心。"
+  },
+  {
+    id: "france-sweden", competition: "2026 世界杯 淘汰赛", date: "07-01", time: "凌晨 05:00", updated: "赛前版本",
+    home: { name: "法国", code: "fr" }, away: { name: "瑞典", code: "se" },
+    conclusion: "法国阵容深度、推进速度与禁区效率形成明显优势，主胜是最清晰方向；瑞典高点和直接冲击仍可能制造失球。",
+    trend: [68, 20, 12], handicap: { line: -1, trend: [48, 36, 16] }, scores: ["2-0", "3-1", "2-1", "1-0", "3-0", "1-1"], goals: "3–4", risk: "中", riskTone: "medium",
+    model: { consistency: 85, confidence: "高", drawRisk: "低", scoreWeights: [21, 18, 14, 11, 8, 6], scoreNotes: ["稳健主胜", "优势放大", "失球主胜", "控速延伸", "零封延伸", "防冷平局"], goalDistribution: [{ label: "0–2球", weight: 41, core: false }, { label: "3–4球", weight: 47, core: true }, { label: "5球以上", weight: 12, core: false }], factors: [{ label: "攻防状态", value: 90 }, { label: "阵容完整度", value: 86 }, { label: "节奏控制", value: 88 }, { label: "稳定性", value: 85 }], riskTriggers: ["法国轮换幅度过大影响前场协同", "瑞典高空球连续形成禁区二点", "法国领先后主动控制比赛速度"] },
+    riskNotes: ["法国小组赛三战全胜且进攻稳定", "瑞典高点与直接打法仍有威胁", "让胜平负更偏法国扩大优势"],
+    why: "法国小组赛三场均展现出稳定的机会创造与终结能力，瑞典的高点和直接冲击会制造局部风险，但整体层级仍有差距。主胜优先，2-0 与 3-1 为首选，总进球核心为 3–4 球。"
+  },
+  {
+    id: "mexico-ecuador", competition: "2026 世界杯 淘汰赛", date: "07-01", time: "上午 11:00", updated: "赛前版本",
+    home: { name: "墨西哥", code: "mx" }, away: { name: "厄瓜多尔", code: "ec" },
+    conclusion: "墨西哥小组赛防守完整、比赛控制更稳定，主胜优先；厄瓜多尔对抗和反击能力使比赛更偏一球差。",
+    trend: [55, 27, 18], handicap: { line: -1, trend: [36, 43, 21] }, scores: ["1-0", "2-0", "1-1", "2-1", "0-0", "0-1"], goals: "0–2", risk: "中", riskTone: "medium",
+    model: { consistency: 79, confidence: "中高", drawRisk: "中", scoreWeights: [20, 17, 14, 11, 8, 6], scoreNotes: ["稳健主胜", "零封延伸", "重点防平", "失球主胜", "低效平局", "客队冷门"], goalDistribution: [{ label: "0–2球", weight: 60, core: true }, { label: "3–4球", weight: 32, core: false }, { label: "5球以上", weight: 8, core: false }], factors: [{ label: "攻防状态", value: 83 }, { label: "阵容完整度", value: 81 }, { label: "节奏控制", value: 85 }, { label: "稳定性", value: 82 }], riskTriggers: ["墨西哥控球占优但禁区效率下降", "厄瓜多尔强对抗持续破坏中场节奏", "客队定位球率先制造领先"] },
+    riskNotes: ["墨西哥小组赛保持零封", "厄瓜多尔击败德国证明反击上限", "一球主胜与低比分平局需要同时保留"],
+    why: "墨西哥小组赛三场保持零封，结构与节奏控制更稳定；厄瓜多尔有身体和反击威胁，但阵地进攻连续性一般。主胜优先，1-0、2-0 为首选，总进球偏向 0–2 球。"
+  },
+  {
+    id: "england-dr-congo", competition: "2026 世界杯 淘汰赛", date: "07-02", time: "凌晨 00:00", updated: "赛前版本",
+    home: { name: "英格兰", code: "gb-eng" }, away: { name: "刚果（金）", code: "cd" },
+    conclusion: "英格兰阵容深度和控球质量更高，主胜优先；刚果（金）的对抗和转换会让比分更偏稳健。",
+    trend: [59, 25, 16], handicap: { line: -1, trend: [41, 39, 20] }, scores: ["2-0", "2-1", "1-0", "1-1", "3-1", "0-1"], goals: "0–2", risk: "中", riskTone: "medium",
+    model: { consistency: 80, confidence: "中高", drawRisk: "中", scoreWeights: [20, 18, 14, 11, 8, 6], scoreNotes: ["零封主胜", "失球主胜", "稳健延伸", "重点防平", "优势放大", "客队冷门"], goalDistribution: [{ label: "0–2球", weight: 52, core: true }, { label: "3–4球", weight: 38, core: false }, { label: "5球以上", weight: 10, core: false }], factors: [{ label: "攻防状态", value: 83 }, { label: "阵容完整度", value: 85 }, { label: "节奏控制", value: 84 }, { label: "稳定性", value: 79 }], riskTriggers: ["英格兰阵地推进再次出现效率波动", "刚果（金）快速转换连续攻击边路身后", "主队领先后过早降速"] },
+    riskNotes: ["英格兰综合优势明确但阵地战有波动", "刚果（金）对抗能力不弱", "两球以内仍是更稳健路径"],
+    why: "英格兰小组赛展现出较高上限，也出现过阵地战效率不足；刚果（金）结构稳定且对抗强。主胜仍是第一方向，但比分以 2-0、2-1 为主，总进球先看 0–2 球。"
+  },
+  {
+    id: "belgium-senegal", competition: "2026 世界杯 淘汰赛", date: "07-02", time: "早上 07:00", updated: "赛前版本",
+    home: { name: "比利时", code: "be" }, away: { name: "塞内加尔", code: "sn" },
+    conclusion: "比利时个人能力和中前场上限略高，主胜微弱优先；塞内加尔身体、速度和反击使平局与客胜风险都不可忽视。",
+    trend: [48, 27, 25], handicap: { line: -1, trend: [27, 39, 34] }, scores: ["2-1", "1-1", "1-0", "1-2", "2-2", "0-1"], goals: "3–4", risk: "中高", riskTone: "high",
+    model: { consistency: 70, confidence: "中", drawRisk: "偏高", scoreWeights: [19, 17, 14, 11, 8, 7], scoreNotes: ["失球主胜", "重点防平", "零封主胜", "客队反打", "开放平局", "客胜延伸"], goalDistribution: [{ label: "0–2球", weight: 43, core: false }, { label: "3–4球", weight: 45, core: true }, { label: "5球以上", weight: 12, core: false }], factors: [{ label: "攻防状态", value: 79 }, { label: "阵容完整度", value: 81 }, { label: "节奏控制", value: 75 }, { label: "稳定性", value: 71 }], riskTriggers: ["比利时中场控制出现断层", "塞内加尔转换连续形成单点突破", "双方早段进球显著提升开放度"] },
+    riskNotes: ["两队小组赛表现都存在波动", "塞内加尔最后一轮进攻明显回升", "主方向领先有限且平局风险偏高"],
+    why: "比利时最后一轮找回进攻效率，但前两轮稳定性一般；塞内加尔身体和转换优势明显。比利时小优，2-1 与 1-1 为首选，3–4 球是主要打开区间。"
+  },
+  {
+    id: "usa-bosnia", competition: "2026 世界杯 淘汰赛", date: "07-02", time: "上午 11:00", updated: "赛前版本",
+    home: { name: "美国", code: "us" }, away: { name: "波黑", code: "ba" },
+    conclusion: "美国速度、转换和主场推进更具连续性，主胜优先；波黑定位球和前场支点会保留失球路径。",
+    trend: [54, 26, 20], handicap: { line: -1, trend: [35, 43, 22] }, scores: ["2-1", "2-0", "1-0", "1-1", "3-1", "0-1"], goals: "3–4", risk: "中", riskTone: "medium",
+    model: { consistency: 76, confidence: "中高", drawRisk: "中", scoreWeights: [19, 17, 14, 11, 8, 7], scoreNotes: ["失球主胜", "零封主胜", "稳健延伸", "重点防平", "优势放大", "客队冷门"], goalDistribution: [{ label: "0–2球", weight: 44, core: false }, { label: "3–4球", weight: 46, core: true }, { label: "5球以上", weight: 10, core: false }], factors: [{ label: "攻防状态", value: 80 }, { label: "阵容完整度", value: 82 }, { label: "节奏控制", value: 78 }, { label: "稳定性", value: 75 }], riskTriggers: ["美国前场压迫被波黑长传直接越过", "波黑定位球连续制造禁区二点", "主队转换效率从小组赛高位回落"] },
+    riskNotes: ["美国进攻速度与主场环境占优", "波黑定位球和支点能力具备威胁", "一球主胜的让平权重较高"],
+    why: "美国小组赛进攻速度和转换效率更高，波黑则依赖定位球、支点和对抗。主胜优先但需保留失球，2-1、2-0 为首选，总进球核心为 3–4 球。"
   }
 ];
 
@@ -568,7 +625,11 @@ const historyHandicap = {
   "colombia-portugal": { line: 1, trend: [49, 32, 19], prediction: "让胜", actual: "让胜", hit: true },
   "dr-congo-uzbekistan": { line: -1, trend: [46, 34, 20], prediction: "让胜", actual: "让胜", hit: true },
   "jordan-argentina": { line: 2, trend: [28, 41, 31], prediction: "让平", actual: "让平", hit: true },
-  "algeria-austria": { line: 1, trend: [40, 41, 19], prediction: "让平", actual: "让胜", hit: false }
+  "algeria-austria": { line: 1, trend: [40, 41, 19], prediction: "让平", actual: "让胜", hit: false },
+  "south-africa-canada": { line: 1, trend: [46, 34, 20], prediction: "让胜", actual: "让平", hit: false },
+  "brazil-japan": { line: -1, trend: [38, 41, 21], prediction: "让平", actual: "让平", hit: true },
+  "germany-paraguay": { line: -1, trend: [37, 42, 21], prediction: "让平", actual: "让负", hit: false },
+  "netherlands-morocco": { line: -1, trend: [27, 39, 34], prediction: "让平", actual: "让负", hit: false }
 };
 
 function historySeed(id) {
@@ -711,7 +772,11 @@ const completedResults = {
   "colombia-portugal": { date: "06-29 05:30", result: "0-0", direction: "平局", tags: ["方向命中", "比分命中", "进球命中"], review: "按既有规则记录赛果与历史状态。" },
   "dr-congo-uzbekistan": { date: "06-29 05:30", result: "3-1", direction: "刚果（金）胜", tags: ["方向命中", "比分未中", "进球未中"], review: "按既有规则记录赛果与历史状态。" },
   "jordan-argentina": { date: "06-29 08:00", result: "1-3", direction: "阿根廷胜", tags: ["方向命中", "比分命中", "进球命中"], review: "按既有规则记录赛果与历史状态。" },
-  "algeria-austria": { date: "06-29 08:00", result: "3-3", direction: "平局", tags: ["方向未一致", "比分未中", "进球未中"], review: "按既有规则记录赛果与历史状态。" }
+  "algeria-austria": { date: "06-29 08:00", result: "3-3", direction: "平局", tags: ["方向未一致", "比分未中", "进球未中"], review: "按既有规则记录赛果与历史状态。" },
+  "south-africa-canada": { date: "06-29 03:00", result: "0-1", direction: "加拿大胜", tags: ["方向命中", "比分未中", "进球命中"], review: "加拿大一球客胜晋级，方向与低进球区间得到验证。" },
+  "brazil-japan": { date: "06-30 01:00", result: "2-1", direction: "巴西胜", tags: ["方向命中", "比分命中", "进球未中"], review: "巴西主胜与 2-1 首选比分得到验证，实际三球进入 3–4 球区间。" },
+  "germany-paraguay": { date: "06-30 04:30", result: "1-1", direction: "平局", tags: ["方向未一致", "比分未中", "进球命中"], review: "常规与加时比分为 1-1，巴拉圭通过点球晋级；历史方向按平局记录。" },
+  "netherlands-morocco": { date: "06-30 09:00", result: "1-1", direction: "平局", tags: ["方向未一致", "比分命中", "进球命中"], review: "常规与加时比分为 1-1，摩洛哥通过点球晋级；历史方向按平局记录。" }
 };
 
 function directionLabelFromMatch(match) {
@@ -733,7 +798,7 @@ function outcomeTypeFromDirection(direction, match) {
   return direction.startsWith(homeName) ? "home" : "away";
 }
 
-const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches].map(match => {
+const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches, ...june30CompletedMatches].map(match => {
   const result = completedResults[match.id];
   return {
     id: match.id,
