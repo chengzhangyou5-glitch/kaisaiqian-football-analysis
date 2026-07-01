@@ -496,7 +496,7 @@ const june30CompletedMatches = [
   }
 ];
 
-export const matches = [
+const july1CompletedMatches = [
   {
     id: "ivory-coast-norway", competition: "2026 世界杯 淘汰赛", date: "07-01", time: "凌晨 02:00", updated: "赛前版本",
     home: { name: "科特迪瓦", code: "ci" }, away: { name: "挪威", code: "no" },
@@ -523,7 +523,10 @@ export const matches = [
     model: { consistency: 79, confidence: "中高", drawRisk: "中", scoreWeights: [20, 17, 14, 11, 8, 6], scoreNotes: ["稳健主胜", "零封延伸", "重点防平", "失球主胜", "低效平局", "客队冷门"], goalDistribution: [{ label: "0–2球", weight: 60, core: true }, { label: "3–4球", weight: 32, core: false }, { label: "5球以上", weight: 8, core: false }], factors: [{ label: "攻防状态", value: 83 }, { label: "阵容完整度", value: 81 }, { label: "节奏控制", value: 85 }, { label: "稳定性", value: 82 }], riskTriggers: ["墨西哥控球占优但禁区效率下降", "厄瓜多尔强对抗持续破坏中场节奏", "客队定位球率先制造领先"] },
     riskNotes: ["墨西哥小组赛保持零封", "厄瓜多尔击败德国证明反击上限", "一球主胜与低比分平局需要同时保留"],
     why: "墨西哥小组赛三场保持零封，结构与节奏控制更稳定；厄瓜多尔有身体和反击威胁，但阵地进攻连续性一般。主胜优先，1-0、2-0 为首选，总进球偏向 0–2 球。"
-  },
+  }
+];
+
+export const matches = [
   {
     id: "england-dr-congo", competition: "2026 世界杯 淘汰赛", date: "07-02", time: "凌晨 00:00", updated: "赛前版本",
     home: { name: "英格兰", code: "gb-eng" }, away: { name: "刚果（金）", code: "cd" },
@@ -550,6 +553,33 @@ export const matches = [
     model: { consistency: 76, confidence: "中高", drawRisk: "中", scoreWeights: [19, 17, 14, 11, 8, 7], scoreNotes: ["失球主胜", "零封主胜", "稳健延伸", "重点防平", "优势放大", "客队冷门"], goalDistribution: [{ label: "0–2球", weight: 44, core: false }, { label: "3–4球", weight: 46, core: true }, { label: "5球以上", weight: 10, core: false }], factors: [{ label: "攻防状态", value: 80 }, { label: "阵容完整度", value: 82 }, { label: "节奏控制", value: 78 }, { label: "稳定性", value: 75 }], riskTriggers: ["美国前场压迫被波黑长传直接越过", "波黑定位球连续制造禁区二点", "主队转换效率从小组赛高位回落"] },
     riskNotes: ["美国进攻速度与主场环境占优", "波黑定位球和支点能力具备威胁", "一球主胜的让平权重较高"],
     why: "美国小组赛进攻速度和转换效率更高，波黑则依赖定位球、支点和对抗。主胜优先但需保留失球，2-1、2-0 为首选，总进球核心为 3–4 球。"
+  },
+  {
+    id: "argentina-cape-verde", competition: "2026 世界杯 淘汰赛", date: "07-03", time: "凌晨 02:00", updated: "赛前版本",
+    home: { name: "阿根廷", code: "ar" }, away: { name: "佛得角", code: "cv" },
+    conclusion: "阿根廷的阵地控制、前场终结和淘汰赛经验形成明显优势，主胜是第一方向；佛得角小组赛三场不败，低位防守韧性不能低估。",
+    trend: [70, 20, 10], handicap: { line: -1, trend: [42, 40, 18] }, scores: ["2-0", "1-0", "2-1", "1-1", "3-0", "0-0"], goals: "0–2", risk: "中", riskTone: "medium",
+    model: { consistency: 86, confidence: "高", drawRisk: "中", scoreWeights: [21, 18, 14, 11, 8, 6], scoreNotes: ["零封主胜", "稳健小胜", "失球主胜", "重点防平", "优势延伸", "低效平局"], goalDistribution: [{ label: "0–2球", weight: 54, core: true }, { label: "3–4球", weight: 38, core: false }, { label: "5球以上", weight: 8, core: false }], factors: [{ label: "攻防状态", value: 89 }, { label: "阵容完整度", value: 87 }, { label: "节奏控制", value: 90 }, { label: "稳定性", value: 86 }], riskTriggers: ["佛得角低位防守长时间压缩禁区空间", "阿根廷轮换影响前场配合速度", "主队前 30 分钟未能转化控球优势"] },
+    riskNotes: ["阿根廷小组赛三战全胜且攻守稳定", "佛得角三场平局体现防守韧性", "让胜与让平的权重接近"],
+    why: "阿根廷小组赛保持全胜，控球、压迫和终结层级都更完整；佛得角以三场平局晋级，防守组织和比赛耐心值得尊重。主胜明确，但比分先看 2-0、1-0，总进球以 0–2 球为核心。"
+  },
+  {
+    id: "colombia-ghana", competition: "2026 世界杯 淘汰赛", date: "07-03", time: "早上 07:00", updated: "赛前版本",
+    home: { name: "哥伦比亚", code: "co" }, away: { name: "加纳", code: "gh" },
+    conclusion: "哥伦比亚小组赛保持不败，控球稳定性和防守完整度更好，主胜优先；加纳的身体对抗与反击会提高平局权重。",
+    trend: [52, 29, 19], handicap: { line: -1, trend: [32, 44, 24] }, scores: ["1-0", "2-0", "1-1", "2-1", "0-0", "0-1"], goals: "0–2", risk: "中", riskTone: "medium",
+    model: { consistency: 78, confidence: "中高", drawRisk: "偏高", scoreWeights: [20, 17, 14, 11, 8, 6], scoreNotes: ["稳健主胜", "零封延伸", "重点防平", "失球主胜", "低效平局", "客队冷门"], goalDistribution: [{ label: "0–2球", weight: 56, core: true }, { label: "3–4球", weight: 35, core: false }, { label: "5球以上", weight: 9, core: false }], factors: [{ label: "攻防状态", value: 83 }, { label: "阵容完整度", value: 82 }, { label: "节奏控制", value: 84 }, { label: "稳定性", value: 81 }], riskTriggers: ["加纳强对抗持续切断哥伦比亚中路推进", "哥伦比亚控球占优但禁区效率偏低", "加纳反击或定位球率先制造领先"] },
+    riskNotes: ["哥伦比亚小组赛两胜一平且仅失一球", "加纳具备压低节奏的对抗能力", "让平是一球主胜下的主要路径"],
+    why: "哥伦比亚小组赛两胜一平，只丢一球，比赛控制和防守回收更稳定；加纳晋级过程更依赖对抗、防守与反击。哥伦比亚主胜优先，但更像 1-0、2-0 的稳健路径，0–2 球为主区间。"
+  },
+  {
+    id: "australia-egypt", competition: "2026 世界杯 淘汰赛", date: "07-03", time: "上午 10:30", updated: "赛前版本",
+    home: { name: "澳大利亚", code: "au" }, away: { name: "埃及", code: "eg" },
+    conclusion: "埃及小组赛保持不败，转换与前场个人能力略占优势；澳大利亚对抗、定位球和防守纪律使平局成为最主要风险。",
+    trend: [28, 33, 39], handicap: { line: 1, trend: [51, 33, 16] }, scores: ["1-1", "0-1", "1-0", "0-0", "1-2", "2-1"], goals: "0–2", risk: "中高", riskTone: "high",
+    model: { consistency: 68, confidence: "中", drawRisk: "高", scoreWeights: [19, 18, 14, 11, 8, 7], scoreNotes: ["首选防平", "埃及小胜", "澳洲反打", "低效平局", "失球客胜", "主队延伸"], goalDistribution: [{ label: "0–2球", weight: 58, core: true }, { label: "3–4球", weight: 34, core: false }, { label: "5球以上", weight: 8, core: false }], factors: [{ label: "攻防状态", value: 75 }, { label: "阵容完整度", value: 78 }, { label: "节奏控制", value: 72 }, { label: "稳定性", value: 73 }], riskTriggers: ["澳大利亚高空球和定位球持续形成二点机会", "埃及控球时间增加但推进效率下降", "双方淘汰赛策略使节奏长期偏慢"] },
+    riskNotes: ["埃及三场小组赛保持不败", "澳大利亚防守纪律与对抗能力稳定", "第一方向只领先平局六个百分点"],
+    why: "埃及小组赛一胜两平，转换效率和前场个人能力略好；澳大利亚一胜一平一负，防守纪律和高空球仍有威胁。客胜仅是微弱第一方向，1-1 与 0-1 为首选，0–2 球权重最高。"
   }
 ];
 
@@ -629,7 +659,10 @@ const historyHandicap = {
   "south-africa-canada": { line: 1, trend: [46, 34, 20], prediction: "让胜", actual: "让平", hit: false },
   "brazil-japan": { line: -1, trend: [38, 41, 21], prediction: "让平", actual: "让平", hit: true },
   "germany-paraguay": { line: -1, trend: [37, 42, 21], prediction: "让平", actual: "让负", hit: false },
-  "netherlands-morocco": { line: -1, trend: [27, 39, 34], prediction: "让平", actual: "让负", hit: false }
+  "netherlands-morocco": { line: -1, trend: [27, 39, 34], prediction: "让平", actual: "让负", hit: false },
+  "ivory-coast-norway": { line: 1, trend: [47, 35, 18], prediction: "让胜", actual: "让平", hit: false },
+  "france-sweden": { line: -1, trend: [48, 36, 16], prediction: "让胜", actual: "让胜", hit: true },
+  "mexico-ecuador": { line: -1, trend: [36, 43, 21], prediction: "让平", actual: "让胜", hit: false }
 };
 
 function historySeed(id) {
@@ -776,7 +809,10 @@ const completedResults = {
   "south-africa-canada": { date: "06-29 03:00", result: "0-1", direction: "加拿大胜", tags: ["方向命中", "比分未中", "进球命中"], review: "加拿大一球客胜晋级，方向与低进球区间得到验证。" },
   "brazil-japan": { date: "06-30 01:00", result: "2-1", direction: "巴西胜", tags: ["方向命中", "比分命中", "进球未中"], review: "巴西主胜与 2-1 首选比分得到验证，实际三球进入 3–4 球区间。" },
   "germany-paraguay": { date: "06-30 04:30", result: "1-1", direction: "平局", tags: ["方向未一致", "比分未中", "进球命中"], review: "常规与加时比分为 1-1，巴拉圭通过点球晋级；历史方向按平局记录。" },
-  "netherlands-morocco": { date: "06-30 09:00", result: "1-1", direction: "平局", tags: ["方向未一致", "比分命中", "进球命中"], review: "常规与加时比分为 1-1，摩洛哥通过点球晋级；历史方向按平局记录。" }
+  "netherlands-morocco": { date: "06-30 09:00", result: "1-1", direction: "平局", tags: ["方向未一致", "比分命中", "进球命中"], review: "常规与加时比分为 1-1，摩洛哥通过点球晋级；历史方向按平局记录。" },
+  "ivory-coast-norway": { date: "07-01 02:00", result: "1-2", direction: "挪威胜", tags: ["方向命中", "比分命中", "进球命中"], review: "挪威 2-1 晋级，客胜、1-2 首选比分与 3–4 球区间全部得到验证。" },
+  "france-sweden": { date: "07-01 05:00", result: "3-0", direction: "法国胜", tags: ["方向命中", "比分未中", "进球命中"], review: "法国 3-0 晋级，主胜与 3–4 球区间得到验证，首选两个比分未覆盖实际赛果。" },
+  "mexico-ecuador": { date: "07-01 11:00", result: "2-0", direction: "墨西哥胜", tags: ["方向命中", "比分命中", "进球命中"], review: "墨西哥 2-0 晋级，主胜、2-0 首选比分与 0–2 球区间全部得到验证。" }
 };
 
 function directionLabelFromMatch(match) {
@@ -798,7 +834,7 @@ function outcomeTypeFromDirection(direction, match) {
   return direction.startsWith(homeName) ? "home" : "away";
 }
 
-const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches, ...june30CompletedMatches].map(match => {
+const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches, ...june30CompletedMatches, ...july1CompletedMatches].map(match => {
   const result = completedResults[match.id];
   return {
     id: match.id,
