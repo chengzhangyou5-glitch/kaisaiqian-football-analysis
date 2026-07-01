@@ -555,7 +555,43 @@ export const matches = [
     why: "美国小组赛进攻速度和转换效率更高，波黑则依赖定位球、支点和对抗。主胜优先但需保留失球，2-1、2-0 为首选，总进球核心为 3–4 球。"
   },
   {
-    id: "argentina-cape-verde", competition: "2026 世界杯 淘汰赛", date: "07-03", time: "凌晨 02:00", updated: "赛前版本",
+    id: "portugal-croatia", competition: "2026 世界杯 淘汰赛", date: "07-03", time: "早上 06:00", updated: "赛前版本",
+    home: { name: "葡萄牙", code: "pt" }, away: { name: "克罗地亚", code: "hr" },
+    conclusion: "葡萄牙前场个人能力和阵地创造略占优势，但克罗地亚中场控制、淘汰赛经验与韧性会显著提高平局风险。",
+    trend: [43, 31, 26], handicap: { line: -1, trend: [23, 37, 40] }, scores: ["1-1", "2-1", "1-0", "0-0", "1-2", "2-2"], goals: "0–2", risk: "中高", riskTone: "high",
+    model: { consistency: 69, confidence: "中", drawRisk: "高", scoreWeights: [19, 17, 14, 11, 8, 7], scoreNotes: ["首选防平", "葡萄牙小胜", "稳健主胜", "低效平局", "客队反打", "开放平局"], goalDistribution: [{ label: "0–2球", weight: 50, core: true }, { label: "3–4球", weight: 40, core: false }, { label: "5球以上", weight: 10, core: false }], factors: [{ label: "攻防状态", value: 79 }, { label: "阵容完整度", value: 82 }, { label: "节奏控制", value: 80 }, { label: "稳定性", value: 74 }], riskTriggers: ["克罗地亚中场持续压低葡萄牙推进速度", "葡萄牙前场机会转化率再次波动", "淘汰赛谨慎策略令比赛长期停留平局"] },
+    riskNotes: ["葡萄牙方向只具有限优势", "克罗地亚淘汰赛经验丰富", "主队让一球时更偏让负保护"],
+    why: "葡萄牙小组赛进攻上限更高，但稳定性仍有波动；克罗地亚在首轮失利后连续取胜，中场控制和比赛韧性依旧可靠。葡萄牙小优，首选 1-1 与 2-1，总进球先看 0–2 球。"
+  },
+  {
+    id: "spain-austria", competition: "2026 世界杯 淘汰赛", date: "07-03", time: "早上 07:00", updated: "赛前版本",
+    home: { name: "西班牙", code: "es" }, away: { name: "奥地利", code: "at" },
+    conclusion: "西班牙控球、压迫与阵地推进更完整，主胜是第一方向；奥地利高强度逼抢和纵向冲击会保留失球与平局路径。",
+    trend: [61, 24, 15], handicap: { line: -1, trend: [39, 42, 19] }, scores: ["2-0", "2-1", "1-0", "1-1", "3-1", "0-1"], goals: "0–2", risk: "中", riskTone: "medium",
+    model: { consistency: 81, confidence: "中高", drawRisk: "中", scoreWeights: [20, 18, 14, 11, 8, 6], scoreNotes: ["零封主胜", "失球主胜", "稳健延伸", "重点防平", "优势放大", "客队冷门"], goalDistribution: [{ label: "0–2球", weight: 49, core: true }, { label: "3–4球", weight: 42, core: false }, { label: "5球以上", weight: 9, core: false }], factors: [{ label: "攻防状态", value: 86 }, { label: "阵容完整度", value: 84 }, { label: "节奏控制", value: 89 }, { label: "稳定性", value: 82 }], riskTriggers: ["奥地利前场逼抢持续制造西班牙出球失误", "西班牙控球占优但禁区终结效率偏低", "主队轮换使边路压迫强度下降"] },
+    riskNotes: ["西班牙整体控制能力更强", "奥地利具备高强度压迫和纵向冲击", "让平是一球主胜下的主要路径"],
+    why: "西班牙小组赛防守与控制表现稳定，奥地利则依靠压迫和纵向冲击争取晋级。西班牙阵地能力更完整，主胜优先；比分以 2-0、2-1 为首选，0–2 球略高于 3–4 球。"
+  },
+  {
+    id: "switzerland-algeria", competition: "2026 世界杯 淘汰赛", date: "07-03", time: "上午 11:00", updated: "赛前版本",
+    home: { name: "瑞士", code: "ch" }, away: { name: "阿尔及利亚", code: "dz" },
+    conclusion: "瑞士小组赛攻守稳定、整体结构更完整，主胜优先；阿尔及利亚反击效率和前场冲击使比赛仍需保留失球路径。",
+    trend: [54, 27, 19], handicap: { line: -1, trend: [34, 43, 23] }, scores: ["2-1", "2-0", "1-0", "1-1", "3-1", "0-1"], goals: "3–4", risk: "中", riskTone: "medium",
+    model: { consistency: 77, confidence: "中高", drawRisk: "中", scoreWeights: [19, 17, 14, 11, 8, 6], scoreNotes: ["失球主胜", "零封主胜", "稳健延伸", "重点防平", "优势放大", "客队冷门"], goalDistribution: [{ label: "0–2球", weight: 45, core: false }, { label: "3–4球", weight: 47, core: true }, { label: "5球以上", weight: 8, core: false }], factors: [{ label: "攻防状态", value: 82 }, { label: "阵容完整度", value: 83 }, { label: "节奏控制", value: 80 }, { label: "稳定性", value: 81 }], riskTriggers: ["阿尔及利亚快速反击连续攻击瑞士边路身后", "瑞士控球优势未转化为高质量射门", "双方早段进球把比赛推入开放节奏"] },
+    riskNotes: ["瑞士小组赛整体表现更稳定", "阿尔及利亚进攻上限高于普通第三名球队", "一球主胜的让平权重最高"],
+    why: "瑞士小组赛保持稳定输出，整体结构和防守回收更可靠；阿尔及利亚末轮打出开放比赛，反击与个人能力具备威胁。瑞士主胜优先，2-1、2-0 为首选，总进球以 3–4 球微弱领先。"
+  },
+  {
+    id: "australia-egypt", competition: "2026 世界杯 淘汰赛", date: "07-04", time: "凌晨 02:00", updated: "赛前版本",
+    home: { name: "澳大利亚", code: "au" }, away: { name: "埃及", code: "eg" },
+    conclusion: "埃及小组赛保持不败，转换与前场个人能力略占优势；澳大利亚对抗、定位球和防守纪律使平局成为最主要风险。",
+    trend: [28, 33, 39], handicap: { line: 1, trend: [51, 33, 16] }, scores: ["1-1", "0-1", "1-0", "0-0", "1-2", "2-1"], goals: "0–2", risk: "中高", riskTone: "high",
+    model: { consistency: 68, confidence: "中", drawRisk: "高", scoreWeights: [19, 18, 14, 11, 8, 7], scoreNotes: ["首选防平", "埃及小胜", "澳洲反打", "低效平局", "失球客胜", "主队延伸"], goalDistribution: [{ label: "0–2球", weight: 58, core: true }, { label: "3–4球", weight: 34, core: false }, { label: "5球以上", weight: 8, core: false }], factors: [{ label: "攻防状态", value: 75 }, { label: "阵容完整度", value: 78 }, { label: "节奏控制", value: 72 }, { label: "稳定性", value: 73 }], riskTriggers: ["澳大利亚高空球和定位球持续形成二点机会", "埃及控球时间增加但推进效率下降", "双方淘汰赛策略使节奏长期偏慢"] },
+    riskNotes: ["埃及三场小组赛保持不败", "澳大利亚防守纪律与对抗能力稳定", "第一方向只领先平局六个百分点"],
+    why: "埃及小组赛一胜两平，转换效率和前场个人能力略好；澳大利亚一胜一平一负，防守纪律和高空球仍有威胁。客胜仅是微弱第一方向，1-1 与 0-1 为首选，0–2 球权重最高。"
+  },
+  {
+    id: "argentina-cape-verde", competition: "2026 世界杯 淘汰赛", date: "07-04", time: "早上 06:00", updated: "赛前版本",
     home: { name: "阿根廷", code: "ar" }, away: { name: "佛得角", code: "cv" },
     conclusion: "阿根廷的阵地控制、前场终结和淘汰赛经验形成明显优势，主胜是第一方向；佛得角小组赛三场不败，低位防守韧性不能低估。",
     trend: [70, 20, 10], handicap: { line: -1, trend: [42, 40, 18] }, scores: ["2-0", "1-0", "2-1", "1-1", "3-0", "0-0"], goals: "0–2", risk: "中", riskTone: "medium",
@@ -564,24 +600,15 @@ export const matches = [
     why: "阿根廷小组赛保持全胜，控球、压迫和终结层级都更完整；佛得角以三场平局晋级，防守组织和比赛耐心值得尊重。主胜明确，但比分先看 2-0、1-0，总进球以 0–2 球为核心。"
   },
   {
-    id: "colombia-ghana", competition: "2026 世界杯 淘汰赛", date: "07-03", time: "早上 07:00", updated: "赛前版本",
+    id: "colombia-ghana", competition: "2026 世界杯 淘汰赛", date: "07-04", time: "上午 09:30", updated: "赛前版本",
     home: { name: "哥伦比亚", code: "co" }, away: { name: "加纳", code: "gh" },
     conclusion: "哥伦比亚小组赛保持不败，控球稳定性和防守完整度更好，主胜优先；加纳的身体对抗与反击会提高平局权重。",
     trend: [52, 29, 19], handicap: { line: -1, trend: [32, 44, 24] }, scores: ["1-0", "2-0", "1-1", "2-1", "0-0", "0-1"], goals: "0–2", risk: "中", riskTone: "medium",
     model: { consistency: 78, confidence: "中高", drawRisk: "偏高", scoreWeights: [20, 17, 14, 11, 8, 6], scoreNotes: ["稳健主胜", "零封延伸", "重点防平", "失球主胜", "低效平局", "客队冷门"], goalDistribution: [{ label: "0–2球", weight: 56, core: true }, { label: "3–4球", weight: 35, core: false }, { label: "5球以上", weight: 9, core: false }], factors: [{ label: "攻防状态", value: 83 }, { label: "阵容完整度", value: 82 }, { label: "节奏控制", value: 84 }, { label: "稳定性", value: 81 }], riskTriggers: ["加纳强对抗持续切断哥伦比亚中路推进", "哥伦比亚控球占优但禁区效率偏低", "加纳反击或定位球率先制造领先"] },
     riskNotes: ["哥伦比亚小组赛两胜一平且仅失一球", "加纳具备压低节奏的对抗能力", "让平是一球主胜下的主要路径"],
     why: "哥伦比亚小组赛两胜一平，只丢一球，比赛控制和防守回收更稳定；加纳晋级过程更依赖对抗、防守与反击。哥伦比亚主胜优先，但更像 1-0、2-0 的稳健路径，0–2 球为主区间。"
-  },
-  {
-    id: "australia-egypt", competition: "2026 世界杯 淘汰赛", date: "07-03", time: "上午 10:30", updated: "赛前版本",
-    home: { name: "澳大利亚", code: "au" }, away: { name: "埃及", code: "eg" },
-    conclusion: "埃及小组赛保持不败，转换与前场个人能力略占优势；澳大利亚对抗、定位球和防守纪律使平局成为最主要风险。",
-    trend: [28, 33, 39], handicap: { line: 1, trend: [51, 33, 16] }, scores: ["1-1", "0-1", "1-0", "0-0", "1-2", "2-1"], goals: "0–2", risk: "中高", riskTone: "high",
-    model: { consistency: 68, confidence: "中", drawRisk: "高", scoreWeights: [19, 18, 14, 11, 8, 7], scoreNotes: ["首选防平", "埃及小胜", "澳洲反打", "低效平局", "失球客胜", "主队延伸"], goalDistribution: [{ label: "0–2球", weight: 58, core: true }, { label: "3–4球", weight: 34, core: false }, { label: "5球以上", weight: 8, core: false }], factors: [{ label: "攻防状态", value: 75 }, { label: "阵容完整度", value: 78 }, { label: "节奏控制", value: 72 }, { label: "稳定性", value: 73 }], riskTriggers: ["澳大利亚高空球和定位球持续形成二点机会", "埃及控球时间增加但推进效率下降", "双方淘汰赛策略使节奏长期偏慢"] },
-    riskNotes: ["埃及三场小组赛保持不败", "澳大利亚防守纪律与对抗能力稳定", "第一方向只领先平局六个百分点"],
-    why: "埃及小组赛一胜两平，转换效率和前场个人能力略好；澳大利亚一胜一平一负，防守纪律和高空球仍有威胁。客胜仅是微弱第一方向，1-1 与 0-1 为首选，0–2 球权重最高。"
   }
-].sort((a, b) => b.date.localeCompare(a.date));
+].sort((a, b) => a.date.localeCompare(b.date));
 
 const historyHandicap = {
   "mexico-south-africa": { line: -1, trend: [43, 32, 25], prediction: "让胜", actual: "让胜", hit: true },
