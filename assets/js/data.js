@@ -581,7 +581,7 @@ export const matches = [
     riskNotes: ["埃及三场小组赛保持不败", "澳大利亚防守纪律与对抗能力稳定", "第一方向只领先平局六个百分点"],
     why: "埃及小组赛一胜两平，转换效率和前场个人能力略好；澳大利亚一胜一平一负，防守纪律和高空球仍有威胁。客胜仅是微弱第一方向，1-1 与 0-1 为首选，0–2 球权重最高。"
   }
-];
+].sort((a, b) => b.date.localeCompare(a.date));
 
 const historyHandicap = {
   "mexico-south-africa": { line: -1, trend: [43, 32, 25], prediction: "让胜", actual: "让胜", hit: true },

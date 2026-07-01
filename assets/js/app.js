@@ -1,4 +1,4 @@
-import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260701-two-official-accounts";
+import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260701-july3-date-label";
 
 const app = document.querySelector("#app");
 const modalLayer = document.querySelector("#modal-layer");

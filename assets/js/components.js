@@ -1,4 +1,4 @@
-import { matches, historyRecords, metrics } from "./data.js?v=20260701-two-official-accounts";
+import { matches, historyRecords, metrics } from "./data.js?v=20260701-july3-date-label";
 
 const flag = (team) => `<img class="team-flag" src="https://flagcdn.com/w160/${team.code}.png" alt="${team.name}队旗" width="80" height="54">`;
 const icon = (name) => `<i class="ri-${name}" aria-hidden="true"></i>`;
@@ -14,6 +14,10 @@ const teamCodes = {
   "英格兰":"gb-eng", "克罗地亚":"hr", "葡萄牙":"pt", "刚果（金）":"cd", "乌兹别克斯坦":"uz", "哥伦比亚":"co"
 };
 const pdfLink = (label) => `<button class="icon-button download-button" type="button" data-action="print-pdf" aria-label="打印或另存为${label} PDF">${icon("file-download-line")}<span>生成 PDF</span></button>`;
+const beijingKickoffLabel = (match) => {
+  const [month, day] = match.date.split("-").map(Number);
+  return `北京时间 ${month}月${day}日 ${match.time}`;
+};
 const previousOfficialAccount = {
   platform: "闲鱼",
   nickname: "草地赛事王",
@@ -47,7 +51,7 @@ export function pageIntro(kicker, title, description, aside = "") {
 
 export function matchCard(match, featured = false) {
   return `<article class="match-card ${featured ? "is-featured" : ""}" data-open-match="${match.id}" tabindex="0" role="link" aria-label="查看${match.home.name}对${match.away.name}完整分析">
-    <div class="card-topline"><span class="competition-pill">${icon("football-line")}${match.competition}</span><time>${icon("time-line")}${match.time}</time></div>
+    <div class="card-topline"><span class="competition-pill">${icon("football-line")}${match.competition}</span><time>${icon("time-line")}${beijingKickoffLabel(match)}</time></div>
     <div class="teams-row">
       <div class="team">${flag(match.home)}<strong>${match.home.name}</strong></div>
       <div class="versus"><b>VS</b><small>模型更新 ${match.updated}</small></div>
@@ -154,7 +158,7 @@ export function detailPage(id) {
     ${antiResaleBanner()}
     <section class="match-hero">
       <div class="card-topline"><span class="competition-pill">${icon("football-line")}${match.competition}</span><span class="risk-inline ${match.riskTone}">${icon("alarm-warning-line")}风险 ${match.risk}</span></div>
-      <div class="teams-row large"><div class="team">${flag(match.home)}<strong>${match.home.name}</strong></div><div class="versus"><b>VS</b><small>${match.time}</small></div><div class="team">${flag(match.away)}<strong>${match.away.name}</strong></div></div>
+      <div class="teams-row large"><div class="team">${flag(match.home)}<strong>${match.home.name}</strong></div><div class="versus"><b>VS</b><small>${beijingKickoffLabel(match)}</small></div><div class="team">${flag(match.away)}<strong>${match.away.name}</strong></div></div>
       <p class="updated-line">${icon("refresh-line")}模型更新：${match.updated}</p>
     </section>
     ${directionSummary(match)}
