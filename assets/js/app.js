@@ -1,4 +1,4 @@
-import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260701-rollover";
+import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260701-account-notice";
 
 const app = document.querySelector("#app");
 const modalLayer = document.querySelector("#modal-layer");
