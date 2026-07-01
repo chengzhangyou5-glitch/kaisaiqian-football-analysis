@@ -1,4 +1,4 @@
-import { matches, historyRecords, metrics } from "./data.js?v=20260701-account-notice";
+import { matches, historyRecords, metrics } from "./data.js?v=20260701-two-official-accounts";
 
 const flag = (team) => `<img class="team-flag" src="https://flagcdn.com/w160/${team.code}.png" alt="${team.name}队旗" width="80" height="54">`;
 const icon = (name) => `<i class="ri-${name}" aria-hidden="true"></i>`;
@@ -14,7 +14,12 @@ const teamCodes = {
   "英格兰":"gb-eng", "克罗地亚":"hr", "葡萄牙":"pt", "刚果（金）":"cd", "乌兹别克斯坦":"uz", "哥伦比亚":"co"
 };
 const pdfLink = (label) => `<button class="icon-button download-button" type="button" data-action="print-pdf" aria-label="打印或另存为${label} PDF">${icon("file-download-line")}<span>生成 PDF</span></button>`;
-const officialAccount = {
+const previousOfficialAccount = {
+  platform: "闲鱼",
+  nickname: "草地赛事王",
+  member: "tb416734536"
+};
+const currentOfficialAccount = {
   platform: "闲鱼",
   nickname: "金玫狗的庭",
   member: "xy806263754718",
@@ -28,8 +33,8 @@ function antiResaleBanner() {
     <div class="anti-resale-icon">${icon("shield-keyhole-line")}</div>
     <div class="anti-resale-copy">
       <strong>本网站不得倒卖，买错渠道请找卖家退款</strong>
-      <p>官方平台：${officialAccount.platform}　昵称：${officialAccount.nickname}　会员名：${officialAccount.member}</p>
-      <small>如并非通过以上闲鱼账号购买，请直接联系你付款的卖家或平台申请退款；倒卖版本可能面临不更新数据或关闭访问权限等风险，且没有售后保障。</small>
+      <p>官方账号 ① ${previousOfficialAccount.nickname} / ${previousOfficialAccount.member}　② ${currentOfficialAccount.nickname} / ${currentOfficialAccount.member}</p>
+      <small>以上两个闲鱼账号均为官方账号。如购买渠道不属于其中任何一个，请直接联系你付款的卖家或平台申请退款；倒卖版本可能面临不更新数据或关闭访问权限等风险，且没有售后保障。</small>
     </div>
   </section>`;
 }
@@ -244,25 +249,33 @@ export function noticeModal() {
   return `<div class="official-modal" data-official-notice="true">
     <div class="modal-icon warning">${icon("shield-keyhole-line")}</div>
     <p class="eyebrow">OFFICIAL NOTICE</p>
-    <h2 id="modal-title">买错渠道请直接找卖家退款</h2>
+    <h2 id="modal-title">请认准两个官方闲鱼账号</h2>
+    <p class="official-modal-lead">以下两个账号均为官方账号，在其中任一账号购买都属于正常官方渠道。</p>
     <div class="official-account-card">
+      <div class="official-account-heading"><span>官方账号 1 · 原账号</span><b>官方</b></div>
+      <div><span>平台</span><strong>${previousOfficialAccount.platform}</strong></div>
+      <div><span>昵称</span><strong>${previousOfficialAccount.nickname}</strong></div>
+      <div><span>会员名</span><strong>${previousOfficialAccount.member}</strong></div>
+    </div>
+    <div class="official-account-card">
+      <div class="official-account-heading"><span>官方账号 2 · 当前账号</span><b>官方</b></div>
       <div class="official-account-identity">
-        <img src="${officialAccount.avatar}" alt="闲鱼账号金玫狗的庭头像" width="72" height="72">
-        <p><span>唯一认可的闲鱼账号</span><strong>${officialAccount.nickname}</strong><small>${officialAccount.intro}</small></p>
+        <img src="${currentOfficialAccount.avatar}" alt="闲鱼账号金玫狗的庭头像" width="72" height="72">
+        <p><span>官方账号头像</span><strong>${currentOfficialAccount.nickname}</strong><small>${currentOfficialAccount.intro}</small></p>
       </div>
-      <div><span>平台</span><strong>${officialAccount.platform}</strong></div>
-      <div><span>昵称</span><strong>${officialAccount.nickname}</strong></div>
-      <div><span>会员名</span><strong>${officialAccount.member}</strong></div>
+      <div><span>平台</span><strong>${currentOfficialAccount.platform}</strong></div>
+      <div><span>昵称</span><strong>${currentOfficialAccount.nickname}</strong></div>
+      <div><span>会员名</span><strong>${currentOfficialAccount.member}</strong></div>
     </div>
     <figure class="official-account-proof">
-      <a href="${officialAccount.profile}" target="_blank" rel="noopener" aria-label="查看完整闲鱼账号资料截图">
-        <img src="${officialAccount.profile}" alt="闲鱼账号金玫狗的庭资料截图" width="360" height="427">
+      <a href="${currentOfficialAccount.profile}" target="_blank" rel="noopener" aria-label="查看完整闲鱼账号资料截图">
+        <img src="${currentOfficialAccount.profile}" alt="闲鱼账号金玫狗的庭资料截图" width="360" height="427">
       </a>
       <figcaption>账号资料核验图：昵称与会员号需同时一致，点击可查看完整截图</figcaption>
     </figure>
     <ul class="official-warning-list">
       <li>${icon("error-warning-line")}本网站内容不得倒卖、转售或冒充官方渠道销售。</li>
-      <li>${icon("refund-2-line")}如果不是在以上闲鱼账号购买，请立即联系你付款的卖家退款，或直接在原购买平台申请退款。</li>
+      <li>${icon("refund-2-line")}如果购买渠道不属于以上两个官方账号，请立即联系你付款的卖家退款，或直接在原购买平台申请退款。</li>
       <li>${icon("lock-line")}倒卖版本可能随时不更新数据或关闭访问权限，完全没有售后保障。</li>
     </ul>
     <button class="primary-button" type="button" data-action="close-modal">我知道了</button>

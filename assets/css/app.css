@@ -326,12 +326,16 @@ button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-vis
 .modal-icon.warning { color: #1d0905; background: #ff9f7f; box-shadow: 0 0 28px rgba(255, 127, 92, .18); }
 .modal h2 { margin: 7px 0 10px; font-size: 23px; }
 .modal p:not(.eyebrow) { margin: 0 0 22px; color: var(--muted); font-size: 14px; line-height: 1.65; }
+.modal .official-modal-lead { margin-bottom: 12px !important; color: #d8e2d4 !important; }
 .official-account-card { display: grid; gap: 8px; margin: 16px 0; padding: 14px; border: 1px solid #405127; border-radius: 14px; background: #10170e; }
 .official-account-card div { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding-bottom: 8px; border-bottom: 1px solid #26331d; }
 .official-account-card div:last-of-type { padding-bottom: 0; border-bottom: 0; }
 .official-account-card span { color: var(--muted); font-size: 12px; font-weight: 800; }
 .official-account-card strong { color: var(--lime); font-size: 17px; text-align: right; word-break: break-all; }
 .official-account-card p { margin: 4px 0 0 !important; color: #dbe5d7 !important; font-size: 12px !important; }
+.official-account-card .official-account-heading { padding-bottom: 9px; }
+.official-account-heading span { color: #f2f7ef; font-size: 13px; }
+.official-account-heading b { padding: 3px 8px; border-radius: 99px; color: #0a1005; background: var(--lime); font-size: 11px; }
 .official-account-card .official-account-identity { align-items: center; justify-content: flex-start; gap: 12px; padding-bottom: 12px; }
 .official-account-identity img { flex: none; width: 72px; height: 72px; border: 2px solid #6c9137; border-radius: 18px; object-fit: cover; box-shadow: 0 10px 24px rgba(0,0,0,.3); }
 .official-account-card .official-account-identity p { display: grid; gap: 3px; min-width: 0; margin: 0 !important; }
