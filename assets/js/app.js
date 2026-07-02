@@ -1,4 +1,4 @@
-import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260701-beijing-july3-july4";
+import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260702-results-rollover";
 
 const app = document.querySelector("#app");
 const modalLayer = document.querySelector("#modal-layer");

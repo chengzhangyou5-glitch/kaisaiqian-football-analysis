@@ -526,7 +526,7 @@ const july1CompletedMatches = [
   }
 ];
 
-export const matches = [
+const july2CompletedMatches = [
   {
     id: "england-dr-congo", competition: "2026 世界杯 淘汰赛", date: "07-02", time: "凌晨 00:00", updated: "赛前版本",
     home: { name: "英格兰", code: "gb-eng" }, away: { name: "刚果（金）", code: "cd" },
@@ -537,7 +537,7 @@ export const matches = [
     why: "英格兰小组赛展现出较高上限，也出现过阵地战效率不足；刚果（金）结构稳定且对抗强。主胜仍是第一方向，但比分以 2-0、2-1 为主，总进球先看 0–2 球。"
   },
   {
-    id: "belgium-senegal", competition: "2026 世界杯 淘汰赛", date: "07-02", time: "早上 07:00", updated: "赛前版本",
+    id: "belgium-senegal", competition: "2026 世界杯 淘汰赛", date: "07-02", time: "凌晨 04:00", updated: "赛前版本",
     home: { name: "比利时", code: "be" }, away: { name: "塞内加尔", code: "sn" },
     conclusion: "比利时个人能力和中前场上限略高，主胜微弱优先；塞内加尔身体、速度和反击使平局与客胜风险都不可忽视。",
     trend: [48, 27, 25], handicap: { line: -1, trend: [27, 39, 34] }, scores: ["2-1", "1-1", "1-0", "1-2", "2-2", "0-1"], goals: "3–4", risk: "中高", riskTone: "high",
@@ -546,16 +546,19 @@ export const matches = [
     why: "比利时最后一轮找回进攻效率，但前两轮稳定性一般；塞内加尔身体和转换优势明显。比利时小优，2-1 与 1-1 为首选，3–4 球是主要打开区间。"
   },
   {
-    id: "usa-bosnia", competition: "2026 世界杯 淘汰赛", date: "07-02", time: "上午 11:00", updated: "赛前版本",
+    id: "usa-bosnia", competition: "2026 世界杯 淘汰赛", date: "07-02", time: "上午 08:00", updated: "赛前版本",
     home: { name: "美国", code: "us" }, away: { name: "波黑", code: "ba" },
     conclusion: "美国速度、转换和主场推进更具连续性，主胜优先；波黑定位球和前场支点会保留失球路径。",
     trend: [54, 26, 20], handicap: { line: -1, trend: [35, 43, 22] }, scores: ["2-1", "2-0", "1-0", "1-1", "3-1", "0-1"], goals: "3–4", risk: "中", riskTone: "medium",
     model: { consistency: 76, confidence: "中高", drawRisk: "中", scoreWeights: [19, 17, 14, 11, 8, 7], scoreNotes: ["失球主胜", "零封主胜", "稳健延伸", "重点防平", "优势放大", "客队冷门"], goalDistribution: [{ label: "0–2球", weight: 44, core: false }, { label: "3–4球", weight: 46, core: true }, { label: "5球以上", weight: 10, core: false }], factors: [{ label: "攻防状态", value: 80 }, { label: "阵容完整度", value: 82 }, { label: "节奏控制", value: 78 }, { label: "稳定性", value: 75 }], riskTriggers: ["美国前场压迫被波黑长传直接越过", "波黑定位球连续制造禁区二点", "主队转换效率从小组赛高位回落"] },
     riskNotes: ["美国进攻速度与主场环境占优", "波黑定位球和支点能力具备威胁", "一球主胜的让平权重较高"],
     why: "美国小组赛进攻速度和转换效率更高，波黑则依赖定位球、支点和对抗。主胜优先但需保留失球，2-1、2-0 为首选，总进球核心为 3–4 球。"
-  },
+  }
+];
+
+export const matches = [
   {
-    id: "portugal-croatia", competition: "2026 世界杯 淘汰赛", date: "07-03", time: "早上 06:00", updated: "赛前版本",
+    id: "portugal-croatia", competition: "2026 世界杯 淘汰赛", date: "07-03", time: "早上 07:00", updated: "赛前版本",
     home: { name: "葡萄牙", code: "pt" }, away: { name: "克罗地亚", code: "hr" },
     conclusion: "葡萄牙前场个人能力和阵地创造略占优势，但克罗地亚中场控制、淘汰赛经验与韧性会显著提高平局风险。",
     trend: [43, 31, 26], handicap: { line: -1, trend: [23, 37, 40] }, scores: ["1-1", "2-1", "1-0", "0-0", "1-2", "2-2"], goals: "0–2", risk: "中高", riskTone: "high",
@@ -564,7 +567,7 @@ export const matches = [
     why: "葡萄牙小组赛进攻上限更高，但稳定性仍有波动；克罗地亚在首轮失利后连续取胜，中场控制和比赛韧性依旧可靠。葡萄牙小优，首选 1-1 与 2-1，总进球先看 0–2 球。"
   },
   {
-    id: "spain-austria", competition: "2026 世界杯 淘汰赛", date: "07-03", time: "早上 07:00", updated: "赛前版本",
+    id: "spain-austria", competition: "2026 世界杯 淘汰赛", date: "07-03", time: "凌晨 03:00", updated: "赛前版本",
     home: { name: "西班牙", code: "es" }, away: { name: "奥地利", code: "at" },
     conclusion: "西班牙控球、压迫与阵地推进更完整，主胜是第一方向；奥地利高强度逼抢和纵向冲击会保留失球与平局路径。",
     trend: [61, 24, 15], handicap: { line: -1, trend: [39, 42, 19] }, scores: ["2-0", "2-1", "1-0", "1-1", "3-1", "0-1"], goals: "0–2", risk: "中", riskTone: "medium",
@@ -608,7 +611,7 @@ export const matches = [
     riskNotes: ["哥伦比亚小组赛两胜一平且仅失一球", "加纳具备压低节奏的对抗能力", "让平是一球主胜下的主要路径"],
     why: "哥伦比亚小组赛两胜一平，只丢一球，比赛控制和防守回收更稳定；加纳晋级过程更依赖对抗、防守与反击。哥伦比亚主胜优先，但更像 1-0、2-0 的稳健路径，0–2 球为主区间。"
   }
-].sort((a, b) => a.date.localeCompare(b.date));
+].sort((a, b) => a.date.localeCompare(b.date) || a.time.match(/\d{2}:\d{2}/)[0].localeCompare(b.time.match(/\d{2}:\d{2}/)[0]));
 
 const historyHandicap = {
   "mexico-south-africa": { line: -1, trend: [43, 32, 25], prediction: "让胜", actual: "让胜", hit: true },
@@ -689,7 +692,10 @@ const historyHandicap = {
   "netherlands-morocco": { line: -1, trend: [27, 39, 34], prediction: "让平", actual: "让负", hit: false },
   "ivory-coast-norway": { line: 1, trend: [47, 35, 18], prediction: "让胜", actual: "让平", hit: false },
   "france-sweden": { line: -1, trend: [48, 36, 16], prediction: "让胜", actual: "让胜", hit: true },
-  "mexico-ecuador": { line: -1, trend: [36, 43, 21], prediction: "让平", actual: "让胜", hit: false }
+  "mexico-ecuador": { line: -1, trend: [36, 43, 21], prediction: "让平", actual: "让胜", hit: false },
+  "england-dr-congo": { line: -1, trend: [41, 39, 20], prediction: "让胜", actual: "让平", hit: false },
+  "belgium-senegal": { line: -1, trend: [27, 39, 34], prediction: "让平", actual: "让平", hit: true },
+  "usa-bosnia": { line: -1, trend: [35, 43, 22], prediction: "让平", actual: "让胜", hit: false }
 };
 
 function historySeed(id) {
@@ -839,7 +845,10 @@ const completedResults = {
   "netherlands-morocco": { date: "06-30 09:00", result: "1-1", direction: "平局", tags: ["方向未一致", "比分命中", "进球命中"], review: "常规与加时比分为 1-1，摩洛哥通过点球晋级；历史方向按平局记录。" },
   "ivory-coast-norway": { date: "07-01 02:00", result: "1-2", direction: "挪威胜", tags: ["方向命中", "比分命中", "进球命中"], review: "挪威 2-1 晋级，客胜、1-2 首选比分与 3–4 球区间全部得到验证。" },
   "france-sweden": { date: "07-01 05:00", result: "3-0", direction: "法国胜", tags: ["方向命中", "比分未中", "进球命中"], review: "法国 3-0 晋级，主胜与 3–4 球区间得到验证，首选两个比分未覆盖实际赛果。" },
-  "mexico-ecuador": { date: "07-01 11:00", result: "2-0", direction: "墨西哥胜", tags: ["方向命中", "比分命中", "进球命中"], review: "墨西哥 2-0 晋级，主胜、2-0 首选比分与 0–2 球区间全部得到验证。" }
+  "mexico-ecuador": { date: "07-01 11:00", result: "2-0", direction: "墨西哥胜", tags: ["方向命中", "比分命中", "进球命中"], review: "墨西哥 2-0 晋级，主胜、2-0 首选比分与 0–2 球区间全部得到验证。" },
+  "england-dr-congo": { date: "07-02 00:00", result: "2-1", direction: "英格兰胜", tags: ["方向命中", "比分命中", "进球未中"], review: "英格兰 2-1 晋级，主胜与第二个首选比分得到验证，实际三球未落入 0–2 球主区间。" },
+  "belgium-senegal": { date: "07-02 04:00", result: "3-2", direction: "比利时胜", tags: ["方向命中", "比分未中", "进球未中"], review: "比利时加时赛 3-2 晋级，主胜方向得到验证，首选比分与 3–4 球区间未覆盖五球赛果。" },
+  "usa-bosnia": { date: "07-02 08:00", result: "2-0", direction: "美国胜", tags: ["方向命中", "比分命中", "进球未中"], review: "美国 2-0 晋级，主胜与第二个首选比分得到验证，实际两球未落入 3–4 球主区间。" }
 };
 
 function directionLabelFromMatch(match) {
@@ -861,7 +870,7 @@ function outcomeTypeFromDirection(direction, match) {
   return direction.startsWith(homeName) ? "home" : "away";
 }
 
-const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches, ...june30CompletedMatches, ...july1CompletedMatches].map(match => {
+const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches, ...june30CompletedMatches, ...july1CompletedMatches, ...july2CompletedMatches].map(match => {
   const result = completedResults[match.id];
   return {
     id: match.id,
