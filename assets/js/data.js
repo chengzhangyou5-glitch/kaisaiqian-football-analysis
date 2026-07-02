@@ -694,7 +694,7 @@ const historyHandicap = {
   "france-sweden": { line: -1, trend: [48, 36, 16], prediction: "让胜", actual: "让胜", hit: true },
   "mexico-ecuador": { line: -1, trend: [36, 43, 21], prediction: "让平", actual: "让胜", hit: false },
   "england-dr-congo": { line: -1, trend: [41, 39, 20], prediction: "让胜", actual: "让平", hit: false },
-  "belgium-senegal": { line: -1, trend: [27, 39, 34], prediction: "让平", actual: "让平", hit: true },
+  "belgium-senegal": { line: -1, trend: [27, 39, 34], prediction: "让平", actual: "让负", hit: false },
   "usa-bosnia": { line: -1, trend: [35, 43, 22], prediction: "让平", actual: "让胜", hit: false }
 };
 
@@ -849,7 +849,7 @@ const completedResults = {
   "france-sweden": { date: "07-01 05:00", result: "3-0", direction: "法国胜", tags: ["方向命中", "比分未中", "进球命中"], review: "法国 3-0 晋级，主胜与 3–4 球区间得到验证，首选两个比分未覆盖实际赛果。" },
   "mexico-ecuador": { date: "07-01 11:00", result: "2-0", direction: "墨西哥胜", tags: ["方向命中", "比分命中", "进球命中"], review: "墨西哥 2-0 晋级，主胜、2-0 首选比分与 0–2 球区间全部得到验证。" },
   "england-dr-congo": { date: "07-02 00:00", result: "2-1", direction: "英格兰胜", tags: ["方向命中", "比分命中", "进球未中"], review: "英格兰 2-1 晋级，主胜与第二个首选比分得到验证，实际三球未落入 0–2 球主区间。" },
-  "belgium-senegal": { date: "07-02 04:00", result: "3-2", direction: "比利时胜", tags: ["方向命中", "比分未中", "进球未中"], review: "比利时加时赛 3-2 晋级，主胜方向得到验证，首选比分与 3–4 球区间未覆盖五球赛果。" },
+  "belgium-senegal": { date: "07-02 04:00", result: "2-2", direction: "平局", tags: ["方向未一致", "比分未中", "进球命中"], review: "体彩口径下常规 90 分钟（含伤停补时）为 2-2；比利时加时赛 3-2 晋级仅作复盘说明，不计入赛果判定。" },
   "usa-bosnia": { date: "07-02 08:00", result: "2-0", direction: "美国胜", tags: ["方向命中", "比分命中", "进球未中"], review: "美国 2-0 晋级，主胜与第二个首选比分得到验证，实际两球未落入 3–4 球主区间。" }
 };
 

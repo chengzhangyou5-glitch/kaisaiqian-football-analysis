@@ -1,4 +1,4 @@
-import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260702-flexible-goal-window";
+import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260702-lottery-90min";
 
 const app = document.querySelector("#app");
 const modalLayer = document.querySelector("#modal-layer");

@@ -1,4 +1,4 @@
-import { matches, historyRecords, metrics } from "./data.js?v=20260702-flexible-goal-window";
+import { matches, historyRecords, metrics } from "./data.js?v=20260702-lottery-90min";
 
 const flag = (team) => `<img class="team-flag" src="https://flagcdn.com/w160/${team.code}.png" alt="${team.name}队旗" width="80" height="54">`;
 const icon = (name) => `<i class="ri-${name}" aria-hidden="true"></i>`;
@@ -40,6 +40,13 @@ function antiResaleBanner() {
       <p>官方账号 ① ${previousOfficialAccount.nickname} / ${previousOfficialAccount.member}　② ${currentOfficialAccount.nickname} / ${currentOfficialAccount.member}</p>
       <small>以上两个闲鱼账号均为官方账号。如购买渠道不属于其中任何一个，请直接联系你付款的卖家或平台申请退款；倒卖版本可能面临不更新数据或关闭访问权限等风险，且没有售后保障。</small>
     </div>
+  </section>`;
+}
+
+function lotteryScopeNotice() {
+  return `<section class="lottery-scope-notice" aria-label="中国体彩赛果统计口径">
+    ${icon("information-line")}
+    <p><strong>中国体彩 90 分钟口径</strong><span>比分、胜平负、总进球及让胜平负均按常规 90 分钟加伤停补时计算，不包含加时赛和点球大战；淘汰赛晋级结果仅在复盘说明中单独注明。</span></p>
   </section>`;
 }
 
@@ -145,6 +152,7 @@ export function upcomingPage() {
   return `<div class="page page-upcoming">
     ${pageIntro("MATCH INTELLIGENCE", "待赛分析", `已更新 ${matches.length} 场 · 开赛前持续更新`, `<div class="update-chip">${icon("pulse-line")}模型状态正常</div>`)}
     ${antiResaleBanner()}
+    ${lotteryScopeNotice()}
     <div class="match-grid">${matches.map((m, i) => matchCard(m, i === 0)).join("")}</div>
     <section class="trust-strip"><div>${icon("shield-check-line")}<span><b>只做赛前记录</b><small>开赛后锁定，历史可回看</small></span></div><div>${icon("focus-3-line")}<span><b>结论先行</b><small>不懂球也能快速扫读</small></span></div><div>${icon("database-2-line")}<span><b>模型持续更新</b><small>时间与版本清楚可见</small></span></div></section>
   </div>`;
@@ -155,6 +163,7 @@ export function detailPage(id) {
   return `<div class="page page-detail">
     <div class="detail-toolbar"><button class="text-button" type="button" data-action="back">${icon("arrow-left-line")}返回待赛</button><span>比赛详情</span>${pdfLink(`${match.home.name}-${match.away.name}`)}</div>
     ${antiResaleBanner()}
+    ${lotteryScopeNotice()}
     <section class="match-hero">
       <div class="card-topline"><span class="competition-pill">${icon("football-line")}${match.competition}</span><span class="risk-inline ${match.riskTone}">${icon("alarm-warning-line")}风险 ${match.risk}</span></div>
       <div class="teams-row large"><div class="team">${flag(match.home)}<strong>${match.home.name}</strong></div><div class="versus"><b>VS</b><small>${beijingKickoffLabel(match)}</small></div><div class="team">${flag(match.away)}<strong>${match.away.name}</strong></div></div>
@@ -188,6 +197,7 @@ export function historyDetailPage(id) {
   return `<div class="page page-detail page-history-detail">
     <div class="detail-toolbar"><button class="text-button" type="button" data-action="back-history">${icon("arrow-left-line")}返回准确率</button><span>历史预测详情</span>${pdfLink(`${home.name}-${away.name}`)}</div>
     ${antiResaleBanner()}
+    ${lotteryScopeNotice()}
     <section class="match-hero history-match-hero">
       <div class="card-topline"><span class="competition-pill">${icon("football-line")}${record.competition}</span><span class="history-record-pill">已完赛记录</span></div>
       <div class="teams-row large"><div class="team">${flag(home)}<strong>${home.name}</strong></div><div class="versus history-result"><b>${record.result}</b><small>实际结果</small></div><div class="team">${flag(away)}<strong>${away.name}</strong></div></div>
@@ -226,6 +236,7 @@ export function historyPage() {
   return `<div class="page page-history">
     ${pageIntro("VERIFICATION CENTER", "历史验证中心", `近 ${historyRecords.length} 场赛前分析表现 · 持续更新`)}
     ${antiResaleBanner()}
+    ${lotteryScopeNotice()}
     <section class="metric-hero"><div class="metric-main"><span>近 ${historyRecords.length} 场胜平负方向一致率</span><strong>${metrics.direction}%</strong><small>基于已完赛场次统计</small></div><div class="metric-grid"><div><span>比分路径参考率</span><b>${metrics.score}%</b><small>${Math.round(metrics.score * historyRecords.length / 100)}/${historyRecords.length} 场比分覆盖</small></div><div><span>总进球区间参考率</span><b>${metrics.goals}%</b><small>${Math.round(metrics.goals * historyRecords.length / 100)}/${historyRecords.length} 场区间覆盖</small></div><div><span>让胜平负参考率</span><b>${metrics.handicap}%</b><small>${Math.round(metrics.handicap * metrics.handicapSamples / 100)}/${metrics.handicapSamples} 场方向覆盖</small></div></div></section>
     <section class="history-section"><div class="section-heading"><div><p class="eyebrow">RECORDS</p><h2>历史场次明细</h2></div><div class="history-heading-meta"><div class="history-legend"><span><i class="hit"></i>命中</span><span><i class="miss"></i>未中</span></div><span>${historyRecords.length} 场记录</span></div></div><div class="history-list">${historyRecords.map(historyCard).join("")}</div></section>
   </div>`;
@@ -237,6 +248,7 @@ export function searchPage(query = "") {
   return `<div class="page page-search">
     ${pageIntro("MATCH ARCHIVE", "搜索历史场次", "输入球队、赛事或日期，回看当时的完整判断")}
     ${antiResaleBanner()}
+    ${lotteryScopeNotice()}
     <div class="search-box">${icon("search-line")}<input id="history-search" type="search" value="${query}" placeholder="输入球队、赛事或日期" autocomplete="off"><kbd>ESC</kbd></div>
     <div class="search-meta"><span>${query ? `找到 ${filtered.length} 场相关记录` : "最近查看"}</span>${query ? `<button type="button" data-action="clear-search">清除搜索</button>` : ""}</div>
     <div class="search-results">${filtered.length ? filtered.map(record => `<article class="search-result">
