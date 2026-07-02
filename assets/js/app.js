@@ -1,4 +1,4 @@
-import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260702-results-rollover";
+import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260702-flexible-goal-window";
 
 const app = document.querySelector("#app");
 const modalLayer = document.querySelector("#modal-layer");

@@ -1,4 +1,4 @@
-import { matches, historyRecords, metrics } from "./data.js?v=20260702-results-rollover";
+import { matches, historyRecords, metrics } from "./data.js?v=20260702-flexible-goal-window";
 
 const flag = (team) => `<img class="team-flag" src="https://flagcdn.com/w160/${team.code}.png" alt="${team.name}队旗" width="80" height="54">`;
 const icon = (name) => `<i class="ri-${name}" aria-hidden="true"></i>`;
@@ -86,7 +86,6 @@ function directionMeta(match) {
 
 function directionSummary(match) {
   const direction = directionMeta(match);
-  const coreGoals = match.model.goalDistribution.filter(item => item.core).map(item => item.label).join("、");
   const handicapMax = Math.max(...match.handicap.trend);
   const handicapDirection = ["让胜", "让平", "让负"][match.handicap.trend.indexOf(handicapMax)];
   return `<section class="direction-summary" aria-label="本场核心摘要">
@@ -94,7 +93,7 @@ function directionSummary(match) {
     <div class="summary-item"><span>方向置信度</span><b>${match.model.confidence}</b><small>平局风险 ${match.model.drawRisk}</small></div>
     <div class="summary-item"><span>领先幅度</span><b>${direction.lead}%</b><small>${direction.main.short}领先${direction.second.short}</small></div>
     <div class="summary-item"><span>比分主路径</span><b>${match.scores.slice(0, 2).join(" / ")}</b><small>首选双路径</small></div>
-    <div class="summary-item"><span>总进球区间</span><b>${goalRangeLabel(match.goals)}</b><small>${coreGoals}为核心</small></div>
+    <div class="summary-item"><span>总进球区间</span><b>${goalRangeLabel(match.goals)}</b><small>连续三球主窗口</small></div>
     <div class="summary-item"><span>让胜平负</span><b>${handicapDirection}</b><small>主队 ${match.handicap.line > 0 ? "+" : ""}${match.handicap.line} 球 · ${handicapMax}%</small></div>
     <div class="summary-item risk"><span>风险等级</span><b>${match.risk}</b><small>${match.model.riskTriggers[0]}</small></div>
   </section>`;
@@ -171,7 +170,7 @@ export function detailPage(id) {
         ${modelEvidencePanel(match)}
       </div>
       <aside class="detail-secondary">
-        <section class="detail-panel goals-panel"><h2>总进球区间</h2><div class="goals-value"><strong>${goalRangeLabel(match.goals)}</strong><div><span>三档区间：已启用</span><span>概率分布：已重算</span></div></div><div class="goal-scale">${match.model.goalDistribution.map(item => `<i class="${item.core ? "active" : ""}"></i>`).join("")}</div><div class="goal-distribution">${match.model.goalDistribution.map(item => `<span class="${item.core ? "core" : ""}"><b>${item.label}</b><small>${item.weight}%${item.core ? " · 核心" : ""}</small></span>`).join("")}</div><p>三档概率用于展示比赛总进球的主要分布与延伸风险。</p></section>
+        <section class="detail-panel goals-panel"><h2>总进球区间</h2><div class="goals-value"><strong>${goalRangeLabel(match.goals)}</strong><div><span>连续三球窗口：已启用</span><span>基础概率：辅助参考</span></div></div><div class="goal-scale">${match.model.goalDistribution.map(item => `<i class="${item.core ? "active" : ""}"></i>`).join("")}</div><div class="goal-distribution">${match.model.goalDistribution.map(item => `<span class="${item.core ? "core" : ""}"><b>${item.label}</b><small>${item.weight}%${item.core ? " · 核心" : ""}</small></span>`).join("")}</div><p>主区间采用连续三个总进球数，基础概率用于辅助展示整体分布与延伸风险。</p></section>
         <section class="detail-panel risk-panel"><h2>${icon("shield-line")}风险触发条件（${match.risk}）</h2><ul>${match.model.riskTriggers.map(note => `<li>${icon("alarm-warning-line")}${note}</li>`).join("")}</ul></section>
         <section class="detail-panel why-panel"><h2>${icon("brain-line")}为什么这样看</h2><p>${match.why}</p></section>
       </aside>
