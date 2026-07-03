@@ -556,7 +556,7 @@ const july2CompletedMatches = [
   }
 ];
 
-export const matches = [
+const july3CompletedMatches = [
   {
     id: "portugal-croatia", competition: "2026 世界杯 淘汰赛", date: "07-03", time: "早上 07:00", updated: "赛前版本",
     home: { name: "葡萄牙", code: "pt" }, away: { name: "克罗地亚", code: "hr" },
@@ -584,6 +584,9 @@ export const matches = [
     riskNotes: ["瑞士小组赛整体表现更稳定", "阿尔及利亚进攻上限高于普通第三名球队", "一球主胜的让平权重最高"],
     why: "瑞士小组赛保持稳定输出，整体结构和防守回收更可靠；阿尔及利亚末轮打出开放比赛，反击与个人能力具备威胁。瑞士主胜优先，2-1、2-0 为首选，总进球主窗口调整为 2–4 球。"
   },
+];
+
+export const matches = [
   {
     id: "australia-egypt", competition: "2026 世界杯 淘汰赛", date: "07-04", time: "凌晨 02:00", updated: "赛前版本",
     home: { name: "澳大利亚", code: "au" }, away: { name: "埃及", code: "eg" },
@@ -610,6 +613,24 @@ export const matches = [
     model: { consistency: 78, confidence: "中高", drawRisk: "偏高", scoreWeights: [20, 17, 14, 11, 8, 6], scoreNotes: ["稳健主胜", "零封延伸", "重点防平", "失球主胜", "低效平局", "客队冷门"], goalDistribution: [{ label: "0–2球", weight: 56, core: true }, { label: "3–4球", weight: 35, core: false }, { label: "5球以上", weight: 9, core: false }], factors: [{ label: "攻防状态", value: 83 }, { label: "阵容完整度", value: 82 }, { label: "节奏控制", value: 84 }, { label: "稳定性", value: 81 }], riskTriggers: ["加纳强对抗持续切断哥伦比亚中路推进", "哥伦比亚控球占优但禁区效率偏低", "加纳反击或定位球率先制造领先"] },
     riskNotes: ["哥伦比亚小组赛两胜一平且仅失一球", "加纳具备压低节奏的对抗能力", "让平是一球主胜下的主要路径"],
     why: "哥伦比亚小组赛两胜一平，只丢一球，比赛控制和防守回收更稳定；加纳晋级过程更依赖对抗、防守与反击。哥伦比亚主胜优先，但更像 1-0、2-0 的稳健路径，总进球主窗口调整为 1–3 球。"
+  },
+  {
+    id: "canada-morocco", competition: "2026 世界杯 16 强", date: "07-05", time: "凌晨 01:00", updated: "赛前版本",
+    home: { name: "加拿大", code: "ca" }, away: { name: "摩洛哥", code: "ma" },
+    conclusion: "摩洛哥阵容平衡、淘汰赛经验和转换质量略占优势，客胜是第一方向；加拿大主场环境、对抗强度与快速推进使平局风险必须保留。",
+    trend: [24, 31, 45], handicap: { line: 1, trend: [46, 35, 19] }, scores: ["0-1", "1-1", "0-0", "1-2", "1-0", "0-2"], goals: "1–3", risk: "中", riskTone: "medium",
+    model: { consistency: 74, confidence: "中", drawRisk: "偏高", scoreWeights: [18, 17, 14, 11, 8, 7], scoreNotes: ["摩洛哥小胜", "重点防平", "低效平局", "失球客胜", "主场反打", "优势延伸"], goalDistribution: [{ label: "0–2球", weight: 58, core: true }, { label: "3–4球", weight: 34, core: false }, { label: "5球以上", weight: 8, core: false }], factors: [{ label: "攻防状态", value: 79 }, { label: "阵容完整度", value: 77 }, { label: "节奏控制", value: 80 }, { label: "稳定性", value: 78 }], riskTriggers: ["加拿大高位压迫迫使摩洛哥后场连续失误", "戴维斯回归后显著增强加拿大左路推进", "摩洛哥控球占优但迟迟无法打开低位防线"] },
+    riskNotes: ["摩洛哥整体平衡性与淘汰赛经验更好", "加拿大拥有主场环境与直接推进能力", "90 分钟平局是最主要保护路径"],
+    why: "摩洛哥小组第一出线，并在 90 分钟与荷兰战成 1-1 后通过点球晋级，防守结构和大赛经验更成熟；加拿大依靠纪律性防守 1-0 淘汰南非，戴维斯回归也提高反击上限。按 90 分钟口径看摩洛哥小优，首选 0-1 与 1-1，总进球先看 1–3 球。"
+  },
+  {
+    id: "paraguay-france", competition: "2026 世界杯 16 强", date: "07-05", time: "凌晨 05:00", updated: "赛前版本",
+    home: { name: "巴拉圭", code: "py" }, away: { name: "法国", code: "fr" },
+    conclusion: "法国前场终结、阵容深度和持续施压能力形成明显优势，客胜是主方向；巴拉圭的低位防守、门将状态与反击会增加法国迟迟无法拉开比分的风险。",
+    trend: [11, 20, 69], handicap: { line: 1, trend: [22, 34, 44] }, scores: ["0-2", "0-3", "0-1", "1-2", "1-3", "1-1"], goals: "2–4", risk: "中", riskTone: "medium",
+    model: { consistency: 84, confidence: "高", drawRisk: "中", scoreWeights: [20, 18, 15, 12, 8, 6], scoreNotes: ["法国零封", "优势放大", "稳健客胜", "失球客胜", "开放延伸", "重点防平"], goalDistribution: [{ label: "0–2球", weight: 40, core: false }, { label: "3–4球", weight: 51, core: true }, { label: "5球以上", weight: 9, core: false }], factors: [{ label: "攻防状态", value: 90 }, { label: "阵容完整度", value: 88 }, { label: "节奏控制", value: 86 }, { label: "稳定性", value: 87 }], riskTriggers: ["巴拉圭低位防守与门将发挥持续压低法国转化率", "高温环境令法国前场压迫强度下降", "巴拉圭定位球或快速反击率先取得进球"] },
+    riskNotes: ["法国四场比赛进攻输出稳定且阵容深度充足", "巴拉圭此前依靠防守与点球淘汰德国", "主队受让一球时让负是第一路径"],
+    why: "法国此前四战全胜、攻入 13 球且仅失 2 球，姆巴佩、登贝莱和巴尔科拉构成稳定终结层；巴拉圭连续零封并在 90 分钟逼平德国，防守韧性和门将状态值得尊重。按 90 分钟口径法国客胜优先，首选 0-2 与 0-3，总进球先看 2–4 球。"
   }
 ].sort((a, b) => a.date.localeCompare(b.date) || a.time.match(/\d{2}:\d{2}/)[0].localeCompare(b.time.match(/\d{2}:\d{2}/)[0]));
 
@@ -695,7 +716,10 @@ const historyHandicap = {
   "mexico-ecuador": { line: -1, trend: [36, 43, 21], prediction: "让平", actual: "让胜", hit: false },
   "england-dr-congo": { line: -1, trend: [41, 39, 20], prediction: "让胜", actual: "让平", hit: false },
   "belgium-senegal": { line: -1, trend: [27, 39, 34], prediction: "让平", actual: "让负", hit: false },
-  "usa-bosnia": { line: -1, trend: [35, 43, 22], prediction: "让平", actual: "让胜", hit: false }
+  "usa-bosnia": { line: -1, trend: [35, 43, 22], prediction: "让平", actual: "让胜", hit: false },
+  "spain-austria": { line: -1, trend: [39, 42, 19], prediction: "让平", actual: "让胜", hit: false },
+  "portugal-croatia": { line: -1, trend: [23, 37, 40], prediction: "让负", actual: "让平", hit: false },
+  "switzerland-algeria": { line: -1, trend: [34, 43, 23], prediction: "让平", actual: "让胜", hit: false }
 };
 
 function historySeed(id) {
@@ -850,7 +874,10 @@ const completedResults = {
   "mexico-ecuador": { date: "07-01 11:00", result: "2-0", direction: "墨西哥胜", tags: ["方向命中", "比分命中", "进球命中"], review: "墨西哥 2-0 晋级，主胜、2-0 首选比分与 0–2 球区间全部得到验证。" },
   "england-dr-congo": { date: "07-02 00:00", result: "2-1", direction: "英格兰胜", tags: ["方向命中", "比分命中", "进球未中"], review: "英格兰 2-1 晋级，主胜与第二个首选比分得到验证，实际三球未落入 0–2 球主区间。" },
   "belgium-senegal": { date: "07-02 04:00", result: "2-2", direction: "平局", tags: ["方向未一致", "比分未中", "进球命中"], review: "体彩口径下常规 90 分钟（含伤停补时）为 2-2；比利时加时赛 3-2 晋级仅作复盘说明，不计入赛果判定。" },
-  "usa-bosnia": { date: "07-02 08:00", result: "2-0", direction: "美国胜", tags: ["方向命中", "比分命中", "进球未中"], review: "美国 2-0 晋级，主胜与第二个首选比分得到验证，实际两球未落入 3–4 球主区间。" }
+  "usa-bosnia": { date: "07-02 08:00", result: "2-0", direction: "美国胜", tags: ["方向命中", "比分命中", "进球未中"], review: "美国 2-0 晋级，主胜与第二个首选比分得到验证，实际两球未落入 3–4 球主区间。" },
+  "spain-austria": { date: "07-03 03:00", result: "3-0", direction: "西班牙胜", tags: ["方向命中", "比分未中", "进球命中"], review: "西班牙在常规 90 分钟 3-0 取胜；主胜与 1–3 球区间命中，首选两个比分未覆盖。" },
+  "portugal-croatia": { date: "07-03 07:00", result: "2-1", direction: "葡萄牙胜", tags: ["方向命中", "比分命中", "进球命中"], review: "葡萄牙在常规 90 分钟 2-1 取胜；主胜、第二首选比分与 1–3 球区间全部命中。" },
+  "switzerland-algeria": { date: "07-03 11:00", result: "2-0", direction: "瑞士胜", tags: ["方向命中", "比分命中", "进球命中"], review: "瑞士在常规 90 分钟 2-0 取胜；主胜、第二首选比分与 2–4 球区间全部命中。" }
 };
 
 function directionLabelFromMatch(match) {
@@ -872,7 +899,7 @@ function outcomeTypeFromDirection(direction, match) {
   return direction.startsWith(homeName) ? "home" : "away";
 }
 
-const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches, ...june30CompletedMatches, ...july1CompletedMatches, ...july2CompletedMatches].map(match => {
+const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches, ...june30CompletedMatches, ...july1CompletedMatches, ...july2CompletedMatches, ...july3CompletedMatches].map(match => {
   const result = completedResults[match.id];
   return {
     id: match.id,

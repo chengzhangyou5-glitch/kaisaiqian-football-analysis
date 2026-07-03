@@ -1,4 +1,4 @@
-import { matches, historyRecords, metrics } from "./data.js?v=20260702-lottery-90min";
+import { matches, historyRecords, metrics } from "./data.js?v=20260703-rollover-july5";
 
 const flag = (team) => `<img class="team-flag" src="https://flagcdn.com/w160/${team.code}.png" alt="${team.name}队旗" width="80" height="54">`;
 const icon = (name) => `<i class="ri-${name}" aria-hidden="true"></i>`;
