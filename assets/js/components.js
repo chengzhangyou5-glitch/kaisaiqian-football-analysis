@@ -1,4 +1,4 @@
-import { matches, historyRecords, metrics } from "./data.js?v=20260703-rollover-july5";
+import { matches, historyRecords, metrics } from "./data.js?v=20260703-official-wechat";
 
 const flag = (team) => `<img class="team-flag" src="https://flagcdn.com/w160/${team.code}.png" alt="${team.name}队旗" width="80" height="54">`;
 const icon = (name) => `<i class="ri-${name}" aria-hidden="true"></i>`;
@@ -31,6 +31,7 @@ const currentOfficialAccount = {
   avatar: "assets/images/official-account/xianyu-avatar.jpg",
   profile: "assets/images/official-account/xianyu-profile.jpg"
 };
+const officialWechat = "FFFezMAX-YYCCZZ";
 
 function antiResaleBanner() {
   return `<section class="anti-resale-banner" aria-label="官方渠道与防倒卖提示">
@@ -264,8 +265,12 @@ export function noticeModal() {
   return `<div class="official-modal" data-official-notice="true">
     <div class="modal-icon warning">${icon("shield-keyhole-line")}</div>
     <p class="eyebrow">OFFICIAL NOTICE</p>
-    <h2 id="modal-title">请认准两个官方闲鱼账号</h2>
-    <p class="official-modal-lead">以下两个账号均为官方账号，在其中任一账号购买都属于正常官方渠道。</p>
+    <h2 id="modal-title">请认准官方账号与微信号</h2>
+    <p class="official-modal-lead">以下微信号与两个闲鱼账号均为官方信息，请注意核对。</p>
+    <div class="official-account-card official-wechat-card">
+      <div class="official-account-heading"><span>官方微信</span><b>官方</b></div>
+      <div><span>微信号</span><strong>${officialWechat}</strong></div>
+    </div>
     <div class="official-account-card">
       <div class="official-account-heading"><span>官方账号 1 · 原账号</span><b>官方</b></div>
       <div><span>平台</span><strong>${previousOfficialAccount.platform}</strong></div>

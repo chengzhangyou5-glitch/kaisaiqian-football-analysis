@@ -1,4 +1,4 @@
-import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260703-rollover-july5";
+import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260703-official-wechat";
 
 const app = document.querySelector("#app");
 const modalLayer = document.querySelector("#modal-layer");
