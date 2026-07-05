@@ -616,7 +616,7 @@ const july4CompletedMatches = [
   },
 ];
 
-export const matches = [
+const july5CompletedMatches = [
   {
     id: "canada-morocco", competition: "2026 世界杯 16 强", date: "07-05", time: "凌晨 01:00", updated: "赛前版本",
     home: { name: "加拿大", code: "ca" }, away: { name: "摩洛哥", code: "ma" },
@@ -635,6 +635,9 @@ export const matches = [
     riskNotes: ["法国四场比赛进攻输出稳定且阵容深度充足", "巴拉圭此前依靠防守与点球淘汰德国", "主队受让一球时让负是第一路径"],
     why: "法国此前四战全胜、攻入 13 球且仅失 2 球，姆巴佩、登贝莱和巴尔科拉构成稳定终结层；巴拉圭连续零封并在 90 分钟逼平德国，防守韧性和门将状态值得尊重。按 90 分钟口径法国客胜优先，首选 0-2 与 0-3，总进球先看 2–4 球。"
   },
+];
+
+export const matches = [
   {
     id: "brazil-norway", competition: "2026 世界杯 16 强", date: "07-06", time: "凌晨 04:00", updated: "赛前版本",
     home: { name: "巴西", code: "br" }, away: { name: "挪威", code: "no" },
@@ -652,6 +655,24 @@ export const matches = [
     model: { consistency: 67, confidence: "中", drawRisk: "高", scoreWeights: [19, 17, 14, 11, 8, 7], scoreNotes: ["首选防平", "低效平局", "英格兰小胜", "墨西哥反打", "客队延伸", "主队延伸"], goalDistribution: [{ label: "0–2球", weight: 59, core: true }, { label: "3–4球", weight: 34, core: false }, { label: "5球以上", weight: 7, core: false }], factors: [{ label: "攻防状态", value: 80 }, { label: "阵容完整度", value: 81 }, { label: "节奏控制", value: 78 }, { label: "稳定性", value: 76 }], riskTriggers: ["英格兰快速适应高海拔并持续形成禁区压制", "墨西哥主场攻势迫使英格兰防线频繁退守", "早段进球打破淘汰赛谨慎节奏并扩大总进球"] },
     riskNotes: ["英格兰阵容深度更强但上一轮推进并不顺畅", "墨西哥拥有主场与海拔适应优势", "平局仅领先客胜两个百分点，风险必须定为高"],
     why: "英格兰依靠凯恩末段双响逆转刚果（金），终结能力可靠但此前破密集防守效率一般；墨西哥 2-0 淘汰厄瓜多尔，主场环境与约 2240 米海拔进一步放大对手体能压力。按 90 分钟而非晋级口径，本场首选 1-1 与 0-0，主方向设为平局，总进球先看 0–2 球。"
+  },
+  {
+    id: "portugal-spain", competition: "2026 世界杯 16 强", date: "07-07", time: "凌晨 03:00", updated: "赛前版本",
+    home: { name: "葡萄牙", code: "pt" }, away: { name: "西班牙", code: "es" },
+    conclusion: "西班牙本届赛事控制力、防守完整度和前场连续施压更稳定，客胜略优；葡萄牙个人能力与伊比利亚德比的熟悉度让平局风险保持高位。",
+    trend: [23, 30, 47], handicap: { line: 1, trend: [48, 34, 18] }, scores: ["0-1", "1-1", "0-2", "1-2", "1-0", "2-2"], goals: "1–3", risk: "中", riskTone: "medium",
+    model: { consistency: 77, confidence: "中", drawRisk: "偏高", scoreWeights: [18, 17, 14, 11, 8, 7], scoreNotes: ["西班牙小胜", "重点防平", "零封延伸", "失球客胜", "葡萄牙反打", "开放平局"], goalDistribution: [{ label: "0–2球", weight: 52, core: true }, { label: "3–4球", weight: 40, core: false }, { label: "5球以上", weight: 8, core: false }], factors: [{ label: "攻防状态", value: 87 }, { label: "阵容完整度", value: 84 }, { label: "节奏控制", value: 88 }, { label: "稳定性", value: 83 }], riskTriggers: ["葡萄牙中前场个人能力率先打破西班牙压迫", "德比属性令双方主动降低推进风险", "西班牙控球占优但禁区终结效率下降"] },
+    riskNotes: ["西班牙保持不败且尚未失球", "葡萄牙四场仅失两球但进攻流畅度有波动", "主队受让一球时让胜是第一保护路径"],
+    why: "西班牙本届赛事保持不败且尚未失球，上一轮 3-0 淘汰奥地利，控制与防守稳定性更好；葡萄牙虽然 2-1 淘汰克罗地亚，但此前两场平局显示阵地进攻仍会波动。按 90 分钟口径西班牙小优，首选 0-1 与 1-1，总进球先看 1–3 球。"
+  },
+  {
+    id: "usa-belgium", competition: "2026 世界杯 16 强", date: "07-07", time: "早上 08:00", updated: "赛前版本",
+    home: { name: "美国", code: "us" }, away: { name: "比利时", code: "be" },
+    conclusion: "美国拥有主场、跑动和转换优势，比利时则在经验与前场个人能力上更强；双方优势互相抵消，常规 90 分钟优先平局。",
+    trend: [33, 36, 31], handicap: { line: 1, trend: [52, 31, 17] }, scores: ["1-1", "0-0", "1-0", "0-1", "1-2", "2-1"], goals: "0–2", risk: "高", riskTone: "high",
+    model: { consistency: 66, confidence: "中", drawRisk: "高", scoreWeights: [19, 17, 14, 11, 8, 7], scoreNotes: ["首选防平", "低效平局", "主场小胜", "比利时小胜", "客队延伸", "主队延伸"], goalDistribution: [{ label: "0–2球", weight: 56, core: true }, { label: "3–4球", weight: 36, core: false }, { label: "5球以上", weight: 8, core: false }], factors: [{ label: "攻防状态", value: 80 }, { label: "阵容完整度", value: 72 }, { label: "节奏控制", value: 76 }, { label: "稳定性", value: 73 }], riskTriggers: ["比利时前场经验持续惩罚美国高位防线身后", "美国主场压迫与快速转换形成连续射门", "巴洛贡停赛明显削弱美国禁区终结效率"] },
+    riskNotes: ["美国主场与跑动强度形成现实优势", "头号前锋巴洛贡停赛削弱美国终结", "三方向差距很小，常规时间不确定性高"],
+    why: "美国 2-0 淘汰波黑，但巴洛贡红牌停赛会削弱前场支点和终结；比利时在 90 分钟末段将 0-2 追成 2-2，随后加时晋级，展示韧性也暴露防守波动。按 90 分钟口径更适合优先平局，首选 1-1 与 0-0，总进球先看 0–2 球。"
   }
 ].sort((a, b) => a.date.localeCompare(b.date) || a.time.match(/\d{2}:\d{2}/)[0].localeCompare(b.time.match(/\d{2}:\d{2}/)[0]));
 
@@ -743,7 +764,9 @@ const historyHandicap = {
   "switzerland-algeria": { line: -1, trend: [34, 43, 23], prediction: "让平", actual: "让胜", hit: false },
   "australia-egypt": { line: 1, trend: [51, 33, 16], prediction: "让胜", actual: "让胜", hit: true },
   "argentina-cape-verde": { line: -1, trend: [42, 40, 18], prediction: "让胜", actual: "让负", hit: false },
-  "colombia-ghana": { line: -1, trend: [32, 44, 24], prediction: "让平", actual: "让平", hit: true }
+  "colombia-ghana": { line: -1, trend: [32, 44, 24], prediction: "让平", actual: "让平", hit: true },
+  "canada-morocco": { line: 1, trend: [46, 35, 19], prediction: "让胜", actual: "让负", hit: false },
+  "paraguay-france": { line: 1, trend: [22, 34, 44], prediction: "让负", actual: "让平", hit: false }
 };
 
 function historySeed(id) {
@@ -904,7 +927,9 @@ const completedResults = {
   "switzerland-algeria": { date: "07-03 11:00", result: "2-0", direction: "瑞士胜", tags: ["方向命中", "比分命中", "进球命中"], review: "瑞士在常规 90 分钟 2-0 取胜；主胜、第二首选比分与 2–4 球区间全部命中。" },
   "australia-egypt": { date: "07-04 02:00", result: "1-1", direction: "平局", tags: ["方向未一致", "比分命中", "进球命中"], review: "体彩口径下常规 90 分钟（含伤停补时）为 1-1；埃及点球晋级仅作复盘说明，不改变平局赛果。" },
   "argentina-cape-verde": { date: "07-04 06:00", result: "1-1", direction: "平局", tags: ["方向未一致", "比分未中", "进球命中"], review: "体彩口径下常规 90 分钟（含伤停补时）为 1-1；阿根廷加时 3-2 晋级仅作复盘说明，不计入比分和胜平负。" },
-  "colombia-ghana": { date: "07-04 09:30", result: "1-0", direction: "哥伦比亚胜", tags: ["方向命中", "比分命中", "进球命中"], review: "哥伦比亚在常规 90 分钟 1-0 取胜；主胜、首选比分与 1–3 球区间全部命中。" }
+  "colombia-ghana": { date: "07-04 09:30", result: "1-0", direction: "哥伦比亚胜", tags: ["方向命中", "比分命中", "进球命中"], review: "哥伦比亚在常规 90 分钟 1-0 取胜；主胜、首选比分与 1–3 球区间全部命中。" },
+  "canada-morocco": { date: "07-05 01:00", result: "0-3", direction: "摩洛哥胜", tags: ["方向命中", "比分未中", "进球命中"], review: "摩洛哥在常规 90 分钟 3-0 取胜；客胜方向与 1–3 球区间命中，首选两个比分未覆盖。" },
+  "paraguay-france": { date: "07-05 05:00", result: "0-1", direction: "法国胜", tags: ["方向命中", "比分未中", "进球未中"], review: "法国在常规 90 分钟 1-0 取胜；客胜方向命中，首选两个比分及 2–4 球主区间未覆盖。" }
 };
 
 function directionLabelFromMatch(match) {
@@ -926,7 +951,7 @@ function outcomeTypeFromDirection(direction, match) {
   return direction.startsWith(homeName) ? "home" : "away";
 }
 
-const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches, ...june30CompletedMatches, ...july1CompletedMatches, ...july2CompletedMatches, ...july3CompletedMatches, ...july4CompletedMatches].map(match => {
+const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches, ...june30CompletedMatches, ...july1CompletedMatches, ...july2CompletedMatches, ...july3CompletedMatches, ...july4CompletedMatches, ...july5CompletedMatches].map(match => {
   const result = completedResults[match.id];
   return {
     id: match.id,
