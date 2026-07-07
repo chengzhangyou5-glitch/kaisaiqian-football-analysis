@@ -683,20 +683,20 @@ export const matches = [
   {
     id: "argentina-egypt", competition: "2026 世界杯 16 强", date: "07-08", time: "凌晨 00:00", updated: "赛前版本",
     home: { name: "阿根廷", code: "ar" }, away: { name: "埃及", code: "eg" },
-    conclusion: "阿根廷的阵地控制、淘汰赛经验和前场上限仍占明显优势，但上一轮常规时间被逼平说明低位防守会制造麻烦，主胜优先并重点防平。",
-    trend: [57, 28, 15], handicap: { line: -1, trend: [31, 45, 24] }, scores: ["1-0", "1-1", "2-0", "2-1", "0-0", "0-1"], goals: "0–2", risk: "中", riskTone: "medium",
-    model: { consistency: 79, confidence: "中高", drawRisk: "偏高", scoreWeights: [19, 17, 15, 11, 8, 6], scoreNotes: ["稳健主胜", "重点防平", "零封延伸", "失球主胜", "低效平局", "埃及反击"], goalDistribution: [{ label: "0–2球", weight: 55, core: true }, { label: "3–4球", weight: 37, core: false }, { label: "5球以上", weight: 8, core: false }], factors: [{ label: "攻防状态", value: 85 }, { label: "阵容完整度", value: 82 }, { label: "节奏控制", value: 87 }, { label: "稳定性", value: 80 }], riskTriggers: ["埃及低位防守长时间压缩阿根廷禁区空间", "阿根廷连续淘汰赛消耗影响前场压迫强度", "萨拉赫反击率先制造进球或关键定位球"] },
-    riskNotes: ["阿根廷纸面实力与淘汰赛经验占优", "两队上一轮 90 分钟均战成 1-1", "一球主胜对应让平为主要让胜平负路径"],
-    why: "阿根廷上一轮被佛得角在 90 分钟逼成 1-1，说明面对纪律性低位防守时并非稳稳拉开；埃及同样以 1-1 进入点球大战淘汰澳大利亚，防守耐心与萨拉赫反击是主要威胁。仍以阿根廷主胜为第一方向，但首选收窄到 1-0 与 1-1，总进球看 0–2 球。"
+    conclusion: "阿根廷整体控制力、淘汰赛经验和前场质量仍明显占优。上一轮被拖入加时，说明面对低位防守时不会轻松打穿，但主方向不应过度收缩。埃及防守纪律和萨拉赫反击需要防范，所以保留1-1风险；但90分钟优先看阿根廷胜，比分主路径为2-0和2-1，总进球看1-3球。",
+    trend: [62, 25, 13], handicap: { line: -1, trend: [30, 46, 24] }, scores: ["2-0", "2-1", "1-0", "1-1", "3-1", "0-0"], goals: "1–3", risk: "中", riskTone: "medium",
+    model: { consistency: 79, confidence: "中高", drawRisk: "偏高", scoreWeights: [18, 15, 14, 11, 9, 6], scoreNotes: ["首选主胜", "失球主胜", "控制主胜", "重点防平", "优势延伸", "低效平局"], goalDistribution: [{ label: "1–3球", weight: 58, core: true }, { label: "0–2球", weight: 34, core: false }, { label: "2–4球", weight: 8, core: false }], factors: [{ label: "攻防状态", value: 85 }, { label: "阵容完整度", value: 82 }, { label: "节奏控制", value: 87 }, { label: "稳定性", value: 80 }], riskTriggers: ["埃及低位防守长时间压缩阿根廷禁区空间", "阿根廷连续淘汰赛消耗影响前场压迫强度", "萨拉赫反击率先制造进球或关键定位球"] },
+    riskNotes: ["阿根廷控制力和前场质量仍明显占优", "平局风险保留在 1-1 路径，但不作为第一方向", "一球主胜对应让平为主要让胜平负路径，同时防让负"],
+    why: "阿根廷上一轮被佛得角拖入加时，确实暴露出破密集防守效率问题；埃及同样具备低位防守和反击威胁。但从控球质量、前场上限、替补深度和淘汰赛经验看，阿根廷仍是更容易解决比赛的一方。本场不宜过度压低进球，主方向为阿根廷胜，比分优先2-0和2-1，防1-1。"
   },
   {
     id: "switzerland-colombia", competition: "2026 世界杯 16 强", date: "07-08", time: "凌晨 04:00", updated: "赛前版本",
     home: { name: "瑞士", code: "ch" }, away: { name: "哥伦比亚", code: "co" },
-    conclusion: "两队都保持不败且防守稳定，哥伦比亚个人突破与反击质量略好，瑞士整体结构和比赛控制更均衡，常规 90 分钟优先平局。",
-    trend: [29, 36, 35], handicap: { line: 1, trend: [53, 30, 17] }, scores: ["1-1", "0-0", "0-1", "1-0", "1-2", "2-1"], goals: "0–2", risk: "高", riskTone: "high",
-    model: { consistency: 70, confidence: "中", drawRisk: "高", scoreWeights: [19, 17, 14, 12, 8, 7], scoreNotes: ["首选防平", "低效平局", "哥伦比亚小胜", "瑞士小胜", "客队延伸", "主队延伸"], goalDistribution: [{ label: "0–2球", weight: 60, core: true }, { label: "3–4球", weight: 33, core: false }, { label: "5球以上", weight: 7, core: false }], factors: [{ label: "攻防状态", value: 83 }, { label: "阵容完整度", value: 81 }, { label: "节奏控制", value: 84 }, { label: "稳定性", value: 84 }], riskTriggers: ["哥伦比亚边路个人突破持续制造高质量机会", "瑞士定位球和后排插上率先打破均势", "早段进球迫使双方从低风险结构转向对攻"] },
-    riskNotes: ["瑞士近期取得三连胜且上一轮完成零封", "哥伦比亚保持不败并依靠防守效率晋级", "平局仅领先客胜一个百分点，风险等级必须偏高"],
-    why: "瑞士连续击败波黑、加拿大和阿尔及利亚，整体结构稳定；哥伦比亚同样保持不败，上一轮以 1-0 的务实路径淘汰加纳。双方都更擅长控制风险而不是主动对攻，按 90 分钟口径首选 1-1 与 0-0，哥伦比亚小胜仅作次级路径，总进球看 0–2 球。"
+    conclusion: "两队防守都很稳定，平局权重依然很高，但哥伦比亚在边路突破、反击推进和单点解决能力上略强。瑞士整体结构完整，也有定位球和1-0偷胜路径，但90分钟主方向建议从平局微调为哥伦比亚小胜。总进球继续看0-2球，比分优先0-1，重点防1-1和0-0。",
+    trend: [28, 33, 39], handicap: { line: 1, trend: [53, 30, 17] }, scores: ["0-1", "1-1", "0-0", "1-2", "1-0", "2-1"], goals: "0–2", risk: "高", riskTone: "high",
+    model: { consistency: 70, confidence: "中", drawRisk: "高", scoreWeights: [17, 16, 13, 10, 9, 7], scoreNotes: ["客胜首选", "重点防平", "僵持路径", "客胜延伸", "瑞士风险", "主队延伸"], goalDistribution: [{ label: "0–2球", weight: 60, core: true }, { label: "1–3球", weight: 33, core: false }, { label: "2–4球", weight: 7, core: false }], factors: [{ label: "攻防状态", value: 83 }, { label: "阵容完整度", value: 81 }, { label: "节奏控制", value: 84 }, { label: "稳定性", value: 84 }], riskTriggers: ["哥伦比亚边路个人突破持续制造高质量机会", "瑞士定位球和后排插上率先打破均势", "早段进球迫使双方从低风险结构转向对攻"] },
+    riskNotes: ["哥伦比亚边路突破和反击推进略占优势", "瑞士结构稳定，定位球与 1-0 偷胜路径需要防范", "客胜只领先平局 6 个百分点，平局风险仍然很高"],
+    why: "瑞士连续取胜，整体结构稳定，但哥伦比亚同样保持强防守质量，并且边路个人能力和反击推进更容易制造决定性机会。本场节奏不会太开放，平局仍是主要风险；但如果90分钟必须选一个主方向，更倾向哥伦比亚小胜。比分主路径为0-1和1-1，总进球看0-2球。"
   }
 ].sort((a, b) => a.date.localeCompare(b.date) || a.time.match(/\d{2}:\d{2}/)[0].localeCompare(b.time.match(/\d{2}:\d{2}/)[0]));
 
