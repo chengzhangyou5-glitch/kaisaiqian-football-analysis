@@ -658,7 +658,7 @@ const july6CompletedMatches = [
   },
 ];
 
-export const matches = [
+const july7CompletedMatches = [
   {
     id: "portugal-spain", competition: "2026 世界杯 16 强", date: "07-07", time: "凌晨 03:00", updated: "赛前版本",
     home: { name: "葡萄牙", code: "pt" }, away: { name: "西班牙", code: "es" },
@@ -677,6 +677,9 @@ export const matches = [
     riskNotes: ["美国主场与跑动强度形成现实优势", "巴洛贡停赛被撤销，提高美国进攻完整度", "平局仅领先美国两个百分点，风险仍然很高"],
     why: "美国 2-0 淘汰波黑，巴洛贡红牌停赛已被撤销，前场支点与终结能力得到恢复；比利时在 90 分钟末段将 0-2 追成 2-2，随后加时晋级，展示韧性也暴露防守波动。更新后略微提高美国方向，但按 90 分钟口径仍优先平局，首选 1-1 与 0-0，总进球先看 0–2 球。"
   },
+];
+
+export const matches = [
   {
     id: "argentina-egypt", competition: "2026 世界杯 16 强", date: "07-08", time: "凌晨 00:00", updated: "赛前版本",
     home: { name: "阿根廷", code: "ar" }, away: { name: "埃及", code: "eg" },
@@ -789,7 +792,9 @@ const historyHandicap = {
   "canada-morocco": { line: 1, trend: [46, 35, 19], prediction: "让胜", actual: "让负", hit: false },
   "paraguay-france": { line: 1, trend: [22, 34, 44], prediction: "让负", actual: "让平", hit: false },
   "brazil-norway": { line: -1, trend: [28, 44, 28], prediction: "让平", actual: "让负", hit: false },
-  "mexico-england": { line: 1, trend: [51, 31, 18], prediction: "让胜", actual: "让平", hit: false }
+  "mexico-england": { line: 1, trend: [51, 31, 18], prediction: "让胜", actual: "让平", hit: false },
+  "portugal-spain": { line: 1, trend: [48, 34, 18], prediction: "让胜", actual: "让平", hit: false },
+  "usa-belgium": { line: 1, trend: [54, 30, 16], prediction: "让胜", actual: "让负", hit: false }
 };
 
 function historySeed(id) {
@@ -954,7 +959,9 @@ const completedResults = {
   "canada-morocco": { date: "07-05 01:00", result: "0-3", direction: "摩洛哥胜", tags: ["方向命中", "比分未中", "进球命中"], review: "摩洛哥在常规 90 分钟 3-0 取胜；客胜方向与 1–3 球区间命中，首选两个比分未覆盖。" },
   "paraguay-france": { date: "07-05 05:00", result: "0-1", direction: "法国胜", tags: ["方向命中", "比分未中", "进球未中"], review: "法国在常规 90 分钟 1-0 取胜；客胜方向命中，首选两个比分及 2–4 球主区间未覆盖。" },
   "brazil-norway": { date: "07-06 04:00", result: "1-2", direction: "挪威胜", tags: ["方向未一致", "比分未中", "进球命中"], review: "挪威在常规 90 分钟 2-1 取胜；赛前巴西主方向和首选两个比分未覆盖，1–3 球区间命中。" },
-  "mexico-england": { date: "07-06 08:00", result: "2-3", direction: "英格兰胜", tags: ["方向未一致", "比分未中", "进球未中"], review: "英格兰在常规 90 分钟 3-2 取胜；赛前平局方向、首选两个比分及 0–2 球区间均未覆盖。" }
+  "mexico-england": { date: "07-06 08:00", result: "2-3", direction: "英格兰胜", tags: ["方向未一致", "比分未中", "进球未中"], review: "英格兰在常规 90 分钟 3-2 取胜；赛前平局方向、首选两个比分及 0–2 球区间均未覆盖。" },
+  "portugal-spain": { date: "07-07 03:00", result: "0-1", direction: "西班牙胜", tags: ["方向命中", "比分命中", "进球命中"], review: "西班牙在常规 90 分钟补时阶段 1-0 取胜；客胜方向、0-1 首选比分与 1–3 球区间全部命中。" },
+  "usa-belgium": { date: "07-07 08:00", result: "1-4", direction: "比利时胜", tags: ["方向未一致", "比分未中", "进球未中"], review: "比利时在常规 90 分钟 4-1 取胜；赛前平局方向、首选两个比分及 0–2 球区间均未覆盖。" }
 };
 
 function directionLabelFromMatch(match) {
@@ -976,7 +983,7 @@ function outcomeTypeFromDirection(direction, match) {
   return direction.startsWith(homeName) ? "home" : "away";
 }
 
-const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches, ...june30CompletedMatches, ...july1CompletedMatches, ...july2CompletedMatches, ...july3CompletedMatches, ...july4CompletedMatches, ...july5CompletedMatches, ...july6CompletedMatches].map(match => {
+const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches, ...june30CompletedMatches, ...july1CompletedMatches, ...july2CompletedMatches, ...july3CompletedMatches, ...july4CompletedMatches, ...july5CompletedMatches, ...july6CompletedMatches, ...july7CompletedMatches].map(match => {
   const result = completedResults[match.id];
   return {
     id: match.id,
