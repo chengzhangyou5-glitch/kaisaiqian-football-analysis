@@ -679,7 +679,7 @@ const july7CompletedMatches = [
   },
 ];
 
-export const matches = [
+const july8CompletedMatches = [
   {
     id: "argentina-egypt", competition: "2026 世界杯 16 强", date: "07-08", time: "凌晨 00:00", updated: "赛前版本",
     home: { name: "阿根廷", code: "ar" }, away: { name: "埃及", code: "eg" },
@@ -697,6 +697,27 @@ export const matches = [
     model: { consistency: 70, confidence: "中", drawRisk: "高", scoreWeights: [17, 16, 13, 10, 9, 7], scoreNotes: ["客胜首选", "重点防平", "僵持路径", "客胜延伸", "瑞士风险", "主队延伸"], goalDistribution: [{ label: "0–2球", weight: 60, core: true }, { label: "1–3球", weight: 33, core: false }, { label: "2–4球", weight: 7, core: false }], factors: [{ label: "攻防状态", value: 83 }, { label: "阵容完整度", value: 81 }, { label: "节奏控制", value: 84 }, { label: "稳定性", value: 84 }], riskTriggers: ["哥伦比亚边路个人突破持续制造高质量机会", "瑞士定位球和后排插上率先打破均势", "早段进球迫使双方从低风险结构转向对攻"] },
     riskNotes: ["哥伦比亚边路突破和反击推进略占优势", "瑞士结构稳定，定位球与 1-0 偷胜路径需要防范", "客胜只领先平局 6 个百分点，平局风险仍然很高"],
     why: "瑞士连续取胜，整体结构稳定，但哥伦比亚同样保持强防守质量，并且边路个人能力和反击推进更容易制造决定性机会。本场节奏不会太开放，平局仍是主要风险；但如果90分钟必须选一个主方向，更倾向哥伦比亚小胜。比分主路径为0-1和1-1，总进球看0-2球。"
+  }
+];
+
+export const matches = [
+  {
+    id: "france-morocco", competition: "2026 世界杯 1/4 决赛", date: "07-10", time: "凌晨 04:00", updated: "赛前版本",
+    home: { name: "法国", code: "fr" }, away: { name: "摩洛哥", code: "ma" },
+    conclusion: "法国前场终结、阵容深度和淘汰赛经验仍然占优，主方向看法国胜；但摩洛哥防守韧性、反击质量和定位球都足以把比赛压成一球差，平局风险需要保留。",
+    trend: [58, 26, 16], handicap: { line: -1, trend: [31, 44, 25] }, scores: ["2-1", "1-0", "2-0", "1-1", "3-1", "0-0"], goals: "1–3", risk: "中", riskTone: "medium",
+    model: { consistency: 80, confidence: "中高", drawRisk: "中", scoreWeights: [18, 16, 14, 12, 8, 6], scoreNotes: ["法国小胜", "控制小胜", "零封延伸", "重点防平", "优势延伸", "低效平局"], goalDistribution: [{ label: "1–3球", weight: 57, core: true }, { label: "0–2球", weight: 35, core: false }, { label: "2–4球", weight: 8, core: false }], factors: [{ label: "攻防状态", value: 87 }, { label: "阵容完整度", value: 82 }, { label: "节奏控制", value: 84 }, { label: "稳定性", value: 81 }], riskTriggers: ["摩洛哥低位防守长时间压缩法国肋部空间", "法国中场伤情或轮换降低二点保护强度", "摩洛哥边路反击与定位球率先制造威胁"] },
+    riskNotes: ["法国本届进攻输出稳定，但上一轮只是一球小胜", "摩洛哥连续淘汰赛韧性强，不能忽略常规时间平局", "一球法国胜对应让平为主要让胜平负路径"],
+    why: "法国拥有更稳定的前场终结和更深的阵容储备，姆巴佩、登贝莱和奥利塞的连续冲击会持续考验摩洛哥防线。摩洛哥本届保持很强韧性，且反击和定位球具备制造先手的能力；但若比赛进入阵地消耗，法国仍是更容易解决问题的一方。90分钟优先法国胜，比分主路径为2-1和1-0，总进球看1–3球。"
+  },
+  {
+    id: "spain-belgium", competition: "2026 世界杯 1/4 决赛", date: "07-11", time: "凌晨 03:00", updated: "赛前版本",
+    home: { name: "西班牙", code: "es" }, away: { name: "比利时", code: "be" },
+    conclusion: "西班牙防守完整度、控球稳定性和淘汰赛节奏管理更好，主胜是第一方向；比利时前场个人能力强，若西班牙迟迟无法破局，平局和失球小胜都需要保留。",
+    trend: [61, 24, 15], handicap: { line: -1, trend: [32, 44, 24] }, scores: ["1-0", "2-0", "2-1", "1-1", "3-1", "0-0"], goals: "0–2", risk: "中", riskTone: "medium",
+    model: { consistency: 82, confidence: "中高", drawRisk: "中", scoreWeights: [19, 16, 13, 11, 8, 6], scoreNotes: ["首选小胜", "零封延伸", "失球主胜", "重点防平", "优势延伸", "低效平局"], goalDistribution: [{ label: "0–2球", weight: 58, core: true }, { label: "1–3球", weight: 36, core: false }, { label: "2–4球", weight: 6, core: false }], factors: [{ label: "攻防状态", value: 85 }, { label: "阵容完整度", value: 84 }, { label: "节奏控制", value: 89 }, { label: "稳定性", value: 86 }], riskTriggers: ["比利时前场个人能力打穿西班牙高位防线身后", "西班牙控球占优但禁区转化率下降", "早段进球迫使比利时提前放大进攻投入"] },
+    riskNotes: ["西班牙连续零封让低比分主胜更集中", "比利时淘汰赛进攻火力回升，不能完全压低失球路径", "一球主胜对应让平为主要让胜平负路径"],
+    why: "西班牙本届防守稳定性最突出，连续零封说明中后场保护和控球压制都很成熟；比利时上一轮大胜美国，前场终结回暖，但防线空间与攻守转换仍容易被西班牙持续消耗。90分钟更倾向西班牙小胜，比分优先1-0和2-0，总进球看0–2球，同时保留2-1和1-1风险。"
   }
 ].sort((a, b) => a.date.localeCompare(b.date) || a.time.match(/\d{2}:\d{2}/)[0].localeCompare(b.time.match(/\d{2}:\d{2}/)[0]));
 
@@ -794,7 +815,9 @@ const historyHandicap = {
   "brazil-norway": { line: -1, trend: [28, 44, 28], prediction: "让平", actual: "让负", hit: false },
   "mexico-england": { line: 1, trend: [51, 31, 18], prediction: "让胜", actual: "让平", hit: false },
   "portugal-spain": { line: 1, trend: [48, 34, 18], prediction: "让胜", actual: "让平", hit: false },
-  "usa-belgium": { line: 1, trend: [54, 30, 16], prediction: "让胜", actual: "让负", hit: false }
+  "usa-belgium": { line: 1, trend: [54, 30, 16], prediction: "让胜", actual: "让负", hit: false },
+  "argentina-egypt": { line: -1, trend: [30, 46, 24], prediction: "让平", actual: "让平", hit: true },
+  "switzerland-colombia": { line: 1, trend: [53, 30, 17], prediction: "让胜", actual: "让胜", hit: true }
 };
 
 function historySeed(id) {
@@ -961,7 +984,9 @@ const completedResults = {
   "brazil-norway": { date: "07-06 04:00", result: "1-2", direction: "挪威胜", tags: ["方向未一致", "比分未中", "进球命中"], review: "挪威在常规 90 分钟 2-1 取胜；赛前巴西主方向和首选两个比分未覆盖，1–3 球区间命中。" },
   "mexico-england": { date: "07-06 08:00", result: "2-3", direction: "英格兰胜", tags: ["方向未一致", "比分未中", "进球未中"], review: "英格兰在常规 90 分钟 3-2 取胜；赛前平局方向、首选两个比分及 0–2 球区间均未覆盖。" },
   "portugal-spain": { date: "07-07 03:00", result: "0-1", direction: "西班牙胜", tags: ["方向命中", "比分命中", "进球命中"], review: "西班牙在常规 90 分钟补时阶段 1-0 取胜；客胜方向、0-1 首选比分与 1–3 球区间全部命中。" },
-  "usa-belgium": { date: "07-07 08:00", result: "1-4", direction: "比利时胜", tags: ["方向未一致", "比分未中", "进球未中"], review: "比利时在常规 90 分钟 4-1 取胜；赛前平局方向、首选两个比分及 0–2 球区间均未覆盖。" }
+  "usa-belgium": { date: "07-07 08:00", result: "1-4", direction: "比利时胜", tags: ["方向未一致", "比分未中", "进球未中"], review: "比利时在常规 90 分钟 4-1 取胜；赛前平局方向、首选两个比分及 0–2 球区间均未覆盖。" },
+  "argentina-egypt": { date: "07-08 00:00", result: "3-2", direction: "阿根廷胜", tags: ["方向命中", "比分未中", "进球未中"], review: "阿根廷在常规 90 分钟补时阶段完成 3-2 逆转；主胜方向命中，首选两个比分和 1–3 球区间未覆盖五球走势。" },
+  "switzerland-colombia": { date: "07-08 04:00", result: "0-0", direction: "平局", tags: ["方向未一致", "比分未中", "进球命中"], review: "体彩口径下常规 90 分钟（含伤停补时）为 0-0；瑞士点球晋级仅作复盘说明，不改变平局赛果。" }
 };
 
 function directionLabelFromMatch(match) {
@@ -983,7 +1008,7 @@ function outcomeTypeFromDirection(direction, match) {
   return direction.startsWith(homeName) ? "home" : "away";
 }
 
-const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches, ...june30CompletedMatches, ...july1CompletedMatches, ...july2CompletedMatches, ...july3CompletedMatches, ...july4CompletedMatches, ...july5CompletedMatches, ...july6CompletedMatches, ...july7CompletedMatches].map(match => {
+const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches, ...june30CompletedMatches, ...july1CompletedMatches, ...july2CompletedMatches, ...july3CompletedMatches, ...july4CompletedMatches, ...july5CompletedMatches, ...july6CompletedMatches, ...july7CompletedMatches, ...july8CompletedMatches].map(match => {
   const result = completedResults[match.id];
   return {
     id: match.id,

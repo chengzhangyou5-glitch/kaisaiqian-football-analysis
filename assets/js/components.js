@@ -1,4 +1,4 @@
-import { matches, historyRecords, metrics } from "./data.js?v=20260706-rollover-july8";
+import { matches, historyRecords, metrics } from "./data.js?v=20260709-quarterfinals";
 
 const flag = (team) => `<img class="team-flag" src="https://flagcdn.com/w160/${team.code}.png" alt="${team.name}队旗" width="80" height="54">`;
 const icon = (name) => `<i class="ri-${name}" aria-hidden="true"></i>`;

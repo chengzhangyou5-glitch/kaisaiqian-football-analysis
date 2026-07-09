@@ -1,4 +1,4 @@
-import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260706-rollover-july8";
+import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260709-quarterfinals";
 
 const app = document.querySelector("#app");
 const modalLayer = document.querySelector("#modal-layer");
