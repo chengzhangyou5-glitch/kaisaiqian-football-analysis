@@ -745,7 +745,7 @@ const july12CompletedMatches = [
   }
 ];
 
-export const matches = [
+const july15CompletedMatches = [
   {
     id: "france-spain", competition: "2026 世界杯 半决赛", date: "07-15", time: "凌晨 03:00", updated: "赛前版本",
     home: { name: "法国", code: "fr" }, away: { name: "西班牙", code: "es" },
@@ -763,6 +763,18 @@ export const matches = [
     model: { consistency: 69, confidence: "中", drawRisk: "高", scoreWeights: [18, 15, 12, 11, 8, 7], scoreNotes: ["首选防平", "低效平局", "英格兰小胜", "阿根廷反打", "开放平局", "主队延伸"], goalDistribution: [{ label: "0–2球", weight: 52, core: true }, { label: "1–3球", weight: 40, core: false }, { label: "2–4球", weight: 8, core: false }], factors: [{ label: "攻防状态", value: 86 }, { label: "阵容完整度", value: 83 }, { label: "节奏控制", value: 82 }, { label: "稳定性", value: 80 }], riskTriggers: ["英格兰定位球和二点球持续制造禁区压力", "阿根廷通过梅西与中场传导把节奏压慢", "早段进球迫使双方从谨慎结构转向更开放的对攻"] },
     riskNotes: ["两队上一轮90分钟均为1-1，平局权重需要提高", "英格兰身体冲击和贝林厄姆后插上非常关键", "阿根廷淘汰赛经验更足，客队受让一球方向保护更强"],
     why: "英格兰淘汰挪威依靠加时解决比赛，说明冲击力和关键球很强，但90分钟并没有完全压住对手；阿根廷同样在常规时间被瑞士拖住，更多依赖后段经验和替补质量拉开差距。半决赛通常容错更低，双方都会先保护中路与转换空间，因此90分钟主方向看平局，比分优先1-1和0-0，总进球看0–2球。"
+  }
+];
+
+export const matches = [
+  {
+    id: "france-england", competition: "2026 世界杯 季军赛", date: "07-19", time: "凌晨 05:00", updated: "赛前版本",
+    home: { name: "法国", code: "fr" }, away: { name: "英格兰", code: "gb-eng" },
+    conclusion: "这场是季军赛，双方刚从半决赛失利中切换出来，比赛动机和轮换不确定性都比淘汰赛正赛更高。法国阵容深度、边路速度和姆巴佩个人终结仍略占优势，英格兰则有凯恩、贝林厄姆和定位球反击路径，90分钟主方向看法国小胜，同时重点防平。",
+    trend: [46, 27, 27], handicap: { line: -1, trend: [29, 43, 28] }, scores: ["2-1", "2-2", "1-1", "3-1", "1-0", "1-2"], goals: "1–3", risk: "高", riskTone: "high",
+    model: { consistency: 71, confidence: "中", drawRisk: "偏高", scoreWeights: [18, 15, 13, 10, 8, 7], scoreNotes: ["法国小胜", "开放平局", "重点防平", "法国延伸", "控制小胜", "英格兰反打"], goalDistribution: [{ label: "1–3球", weight: 50, core: true }, { label: "2–4球", weight: 38, core: false }, { label: "0–2球", weight: 12, core: false }], factors: [{ label: "攻防状态", value: 84 }, { label: "阵容完整度", value: 81 }, { label: "节奏控制", value: 78 }, { label: "稳定性", value: 76 }], riskTriggers: ["双方轮换幅度偏大，比赛节奏从控制转向开放", "英格兰定位球和二点球连续制造禁区压力", "法国边路速度与姆巴佩冲刺率先打穿身后空间"] },
+    riskNotes: ["法国多休一天且阵容纵深更足，但刚被西班牙零封", "英格兰半决赛最后阶段被逆转，心理波动和反扑动力并存", "一球法国胜对应让平，季军赛防开放平局"],
+    why: "法国半决赛0-2不敌西班牙，进攻端被压制，但整体阵容深度、边路速度和前场单点上限仍然更好；英格兰1-2被阿根廷逆转，说明领先后的控制和换人选择存在波动，不过凯恩、贝林厄姆与定位球仍能稳定制造威胁。季军赛通常不会像半决赛一样极度保守，90分钟法国小优，比分优先2-1和2-2，总进球看1–3球。"
   }
 ].sort((a, b) => a.date.localeCompare(b.date) || a.time.match(/\d{2}:\d{2}/)[0].localeCompare(b.time.match(/\d{2}:\d{2}/)[0]));
 
@@ -866,7 +878,9 @@ const historyHandicap = {
   "france-morocco": { line: -1, trend: [31, 44, 25], prediction: "让平", actual: "让胜", hit: false },
   "spain-belgium": { line: -1, trend: [32, 44, 24], prediction: "让平", actual: "让平", hit: true },
   "norway-england": { line: 1, trend: [50, 32, 18], prediction: "让胜", actual: "让胜", hit: true },
-  "argentina-switzerland": { line: -1, trend: [26, 45, 29], prediction: "让平", actual: "让负", hit: false }
+  "argentina-switzerland": { line: -1, trend: [26, 45, 29], prediction: "让平", actual: "让负", hit: false },
+  "france-spain": { line: -1, trend: [24, 45, 31], prediction: "让平", actual: "让负", hit: false },
+  "england-argentina": { line: -1, trend: [20, 31, 49], prediction: "让负", actual: "让负", hit: true }
 };
 
 function historySeed(id) {
@@ -1039,7 +1053,9 @@ const completedResults = {
   "france-morocco": { date: "07-10 04:00", result: "2-0", direction: "法国胜", tags: ["方向命中", "比分未中", "进球命中"], review: "法国在常规 90 分钟 2-0 击败摩洛哥晋级；主胜方向和1–3球区间命中，首选两个比分未覆盖，让球口径从让平落到让胜。" },
   "spain-belgium": { date: "07-11 03:00", result: "2-1", direction: "西班牙胜", tags: ["方向命中", "比分未中", "进球未中"], review: "西班牙在常规 90 分钟 2-1 击败比利时晋级；主胜方向命中，第三比分路径覆盖但首选两个未中，三球总进球高于赛前0–2主区间。" },
   "norway-england": { date: "07-12 05:00", result: "1-1", direction: "平局", tags: ["方向未一致", "比分命中", "进球命中"], review: "体彩口径下常规 90 分钟（含伤停补时）为 1-1；英格兰加时 2-1 晋级仅作复盘说明，不改变平局赛果。" },
-  "argentina-switzerland": { date: "07-12 09:00", result: "1-1", direction: "平局", tags: ["方向未一致", "比分命中", "进球命中"], review: "体彩口径下常规 90 分钟（含伤停补时）为 1-1；阿根廷加时 3-1 晋级仅作复盘说明，不计入比分和胜平负。" }
+  "argentina-switzerland": { date: "07-12 09:00", result: "1-1", direction: "平局", tags: ["方向未一致", "比分命中", "进球命中"], review: "体彩口径下常规 90 分钟（含伤停补时）为 1-1；阿根廷加时 3-1 晋级仅作复盘说明，不计入比分和胜平负。" },
+  "france-spain": { date: "07-15 03:00", result: "0-2", direction: "西班牙胜", tags: ["方向未一致", "比分未中", "进球命中"], review: "西班牙在常规 90 分钟 2-0 击败法国晋级；赛前法国主方向和首选两个比分未覆盖，但1–3球区间得到验证。" },
+  "england-argentina": { date: "07-16 03:00", result: "1-2", direction: "阿根廷胜", tags: ["方向未一致", "比分未中", "进球未中"], review: "阿根廷在常规 90 分钟补时阶段完成2-1逆转；赛前平局方向、首选两个比分和0–2球主区间均未覆盖。" }
 };
 
 function directionLabelFromMatch(match) {
@@ -1061,7 +1077,7 @@ function outcomeTypeFromDirection(direction, match) {
   return direction.startsWith(homeName) ? "home" : "away";
 }
 
-const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches, ...june30CompletedMatches, ...july1CompletedMatches, ...july2CompletedMatches, ...july3CompletedMatches, ...july4CompletedMatches, ...july5CompletedMatches, ...july6CompletedMatches, ...july7CompletedMatches, ...july8CompletedMatches, ...july10CompletedMatches, ...july11CompletedMatches, ...july12CompletedMatches].map(match => {
+const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches, ...june30CompletedMatches, ...july1CompletedMatches, ...july2CompletedMatches, ...july3CompletedMatches, ...july4CompletedMatches, ...july5CompletedMatches, ...july6CompletedMatches, ...july7CompletedMatches, ...july8CompletedMatches, ...july10CompletedMatches, ...july11CompletedMatches, ...july12CompletedMatches, ...july15CompletedMatches].map(match => {
   const result = completedResults[match.id];
   return {
     id: match.id,

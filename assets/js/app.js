@@ -1,4 +1,4 @@
-import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260714-england-argentina";
+import { upcomingPage, detailPage, historyDetailPage, historyPage, searchPage, noticeModal } from "./components.js?v=20260718-france-england";
 
 const app = document.querySelector("#app");
 const modalLayer = document.querySelector("#modal-layer");
