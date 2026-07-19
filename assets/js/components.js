@@ -1,4 +1,4 @@
-import { matches, historyRecords, metrics } from "./data.js?v=20260718-france-england";
+import { matches, historyRecords, metrics } from "./data.js?v=20260719-final";
 
 const flag = (team) => `<img class="team-flag" src="https://flagcdn.com/w160/${team.code}.png" alt="${team.name}队旗" width="80" height="54">`;
 const icon = (name) => `<i class="ri-${name}" aria-hidden="true"></i>`;

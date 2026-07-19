@@ -766,7 +766,7 @@ const july15CompletedMatches = [
   }
 ];
 
-export const matches = [
+const july19CompletedMatches = [
   {
     id: "france-england", competition: "2026 世界杯 季军赛", date: "07-19", time: "凌晨 05:00", updated: "赛前版本",
     home: { name: "法国", code: "fr" }, away: { name: "英格兰", code: "gb-eng" },
@@ -775,6 +775,18 @@ export const matches = [
     model: { consistency: 71, confidence: "中", drawRisk: "偏高", scoreWeights: [18, 15, 13, 10, 8, 7], scoreNotes: ["法国小胜", "开放平局", "重点防平", "法国延伸", "控制小胜", "英格兰反打"], goalDistribution: [{ label: "1–3球", weight: 50, core: true }, { label: "2–4球", weight: 38, core: false }, { label: "0–2球", weight: 12, core: false }], factors: [{ label: "攻防状态", value: 84 }, { label: "阵容完整度", value: 81 }, { label: "节奏控制", value: 78 }, { label: "稳定性", value: 76 }], riskTriggers: ["双方轮换幅度偏大，比赛节奏从控制转向开放", "英格兰定位球和二点球连续制造禁区压力", "法国边路速度与姆巴佩冲刺率先打穿身后空间"] },
     riskNotes: ["法国多休一天且阵容纵深更足，但刚被西班牙零封", "英格兰半决赛最后阶段被逆转，心理波动和反扑动力并存", "一球法国胜对应让平，季军赛防开放平局"],
     why: "法国半决赛0-2不敌西班牙，进攻端被压制，但整体阵容深度、边路速度和前场单点上限仍然更好；英格兰1-2被阿根廷逆转，说明领先后的控制和换人选择存在波动，不过凯恩、贝林厄姆与定位球仍能稳定制造威胁。季军赛通常不会像半决赛一样极度保守，90分钟法国小优，比分优先2-1和2-2，总进球看1–3球。"
+  }
+];
+
+export const matches = [
+  {
+    id: "spain-argentina", competition: "2026 世界杯 决赛", date: "07-20", time: "凌晨 02:00", updated: "赛前版本",
+    home: { name: "西班牙", code: "es" }, away: { name: "阿根廷", code: "ar" },
+    conclusion: "西班牙是90分钟主方向：整体控球、防守稳定性和连续压迫更完整；但阿根廷拥有梅西、劳塔罗和极强的后段比赛处理能力，决赛环境下不会轻易被拉开，平局风险很高。",
+    trend: [45, 29, 26], handicap: { line: -1, trend: [24, 45, 31] }, scores: ["1-0", "1-1", "2-1", "0-0", "0-1", "2-0"], goals: "0–2", risk: "高", riskTone: "high",
+    model: { consistency: 73, confidence: "中", drawRisk: "高", scoreWeights: [17, 16, 12, 10, 8, 7], scoreNotes: ["西班牙小胜", "重点防平", "失球主胜", "低效平局", "阿根廷反打", "零封延伸"], goalDistribution: [{ label: "0–2球", weight: 54, core: true }, { label: "1–3球", weight: 38, core: false }, { label: "2–4球", weight: 8, core: false }], factors: [{ label: "攻防状态", value: 89 }, { label: "阵容完整度", value: 85 }, { label: "节奏控制", value: 88 }, { label: "稳定性", value: 87 }], riskTriggers: ["阿根廷通过梅西和劳塔罗在后段制造关键球", "西班牙控球占优但禁区转化率被马丁内斯压低", "早段进球迫使一方提前放大压迫，比赛从低比分转向1–3球打开"] },
+    riskNotes: ["西班牙防守数据最稳，但决赛不会轻松压制阿根廷", "阿根廷连续逆转能力强，1-1与0-1需要保留", "一球西班牙胜对应让平，防常规时间拖平"],
+    why: "西班牙半决赛2-0击败法国，控球、防守压缩和边路推进都保持高质量；阿根廷则连续依靠比赛后段解决强队，梅西串联和劳塔罗冲击让任何低比分领先都不安全。按90分钟口径，西班牙略占上风，但决赛天然更谨慎，主方向看西班牙胜，比分优先1-0和1-1，总进球看0–2球。"
   }
 ].sort((a, b) => a.date.localeCompare(b.date) || a.time.match(/\d{2}:\d{2}/)[0].localeCompare(b.time.match(/\d{2}:\d{2}/)[0]));
 
@@ -880,7 +892,8 @@ const historyHandicap = {
   "norway-england": { line: 1, trend: [50, 32, 18], prediction: "让胜", actual: "让胜", hit: true },
   "argentina-switzerland": { line: -1, trend: [26, 45, 29], prediction: "让平", actual: "让负", hit: false },
   "france-spain": { line: -1, trend: [24, 45, 31], prediction: "让平", actual: "让负", hit: false },
-  "england-argentina": { line: -1, trend: [20, 31, 49], prediction: "让负", actual: "让负", hit: true }
+  "england-argentina": { line: -1, trend: [20, 31, 49], prediction: "让负", actual: "让负", hit: true },
+  "france-england": { line: -1, trend: [29, 43, 28], prediction: "让平", actual: "让负", hit: false }
 };
 
 function historySeed(id) {
@@ -1055,7 +1068,8 @@ const completedResults = {
   "norway-england": { date: "07-12 05:00", result: "1-1", direction: "平局", tags: ["方向未一致", "比分命中", "进球命中"], review: "体彩口径下常规 90 分钟（含伤停补时）为 1-1；英格兰加时 2-1 晋级仅作复盘说明，不改变平局赛果。" },
   "argentina-switzerland": { date: "07-12 09:00", result: "1-1", direction: "平局", tags: ["方向未一致", "比分命中", "进球命中"], review: "体彩口径下常规 90 分钟（含伤停补时）为 1-1；阿根廷加时 3-1 晋级仅作复盘说明，不计入比分和胜平负。" },
   "france-spain": { date: "07-15 03:00", result: "0-2", direction: "西班牙胜", tags: ["方向未一致", "比分未中", "进球命中"], review: "西班牙在常规 90 分钟 2-0 击败法国晋级；赛前法国主方向和首选两个比分未覆盖，但1–3球区间得到验证。" },
-  "england-argentina": { date: "07-16 03:00", result: "1-2", direction: "阿根廷胜", tags: ["方向未一致", "比分未中", "进球未中"], review: "阿根廷在常规 90 分钟补时阶段完成2-1逆转；赛前平局方向、首选两个比分和0–2球主区间均未覆盖。" }
+  "england-argentina": { date: "07-16 03:00", result: "1-2", direction: "阿根廷胜", tags: ["方向未一致", "比分未中", "进球未中"], review: "阿根廷在常规 90 分钟补时阶段完成2-1逆转；赛前平局方向、首选两个比分和0–2球主区间均未覆盖。" },
+  "france-england": { date: "07-19 05:00", result: "4-6", direction: "英格兰胜", tags: ["方向未一致", "比分未中", "进球未中"], review: "英格兰在季军赛常规 90 分钟 6-4 击败法国；比赛完全进入开放对攻，赛前法国小优、首选比分和1–3球主区间均未覆盖。" }
 };
 
 function directionLabelFromMatch(match) {
@@ -1077,7 +1091,7 @@ function outcomeTypeFromDirection(direction, match) {
   return direction.startsWith(homeName) ? "home" : "away";
 }
 
-const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches, ...june30CompletedMatches, ...july1CompletedMatches, ...july2CompletedMatches, ...july3CompletedMatches, ...july4CompletedMatches, ...july5CompletedMatches, ...july6CompletedMatches, ...july7CompletedMatches, ...july8CompletedMatches, ...july10CompletedMatches, ...july11CompletedMatches, ...july12CompletedMatches, ...july15CompletedMatches].map(match => {
+const completedHistoryRecords = [...completedMatches, ...june20CompletedMatches, ...june21CompletedMatches, ...june22CompletedMatches, ...june23CompletedMatches, ...june24CompletedMatches, ...june25CompletedMatches, ...june27CompletedMatches, ...june28CompletedMatches, ...june30CompletedMatches, ...july1CompletedMatches, ...july2CompletedMatches, ...july3CompletedMatches, ...july4CompletedMatches, ...july5CompletedMatches, ...july6CompletedMatches, ...july7CompletedMatches, ...july8CompletedMatches, ...july10CompletedMatches, ...july11CompletedMatches, ...july12CompletedMatches, ...july15CompletedMatches, ...july19CompletedMatches].map(match => {
   const result = completedResults[match.id];
   return {
     id: match.id,
